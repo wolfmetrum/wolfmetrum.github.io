@@ -1,0 +1,32 @@
+---
+layout: default
+title: 首頁
+---
+<h2>最新發布</h2>
+<div id="latest-video">鎖定目標中...</div>
+
+<h2>狼的格律 - 歌曲目錄</h2>
+<ul>
+  {% for song in site.songs %}
+    <li><a href="{{ song.url | relative_url }}">{{ song.title }}</a></li>
+  {% endfor %}
+</ul>
+
+<script>
+// 這裡必須替換為你真實的 YouTube 頻道 ID (例如 UC 開頭的字串)
+const channelId = '你的YouTube頻道ID'; 
+const rssUrl = encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
+const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`;
+
+fetch(apiUrl)
+  .then(res => res.json())
+  .then(data => {
+    if(data.items && data.items.length > 0) {
+      const latestVideo = data.items[0];
+      const videoId = latestVideo.link.split('v=')[1];
+      document.getElementById('latest-video').innerHTML = `
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
+      `;
+    }
+  });
+</script>
