@@ -1,20 +1,9 @@
 ---
-layout: default
+layout: song
+title: 榮耀真光
+composer: Wolf Metrum
+youtube_id: 替換成這首歌的YouTube影片ID
+sheet_music: /assets/sheets/glory_true_light.pdf
 ---
-<h1>{{ page.title }}</h1>
-<p>作曲: {{ page.composer }}</p>
 
-{% if page.youtube_id %}
-<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ page.youtube_id }}" frameborder="0" allowfullscreen></iframe>
-{% endif %}
-
-{% if page.sheet_music %}
-<br><br>
-<a href="{{ page.sheet_music }}" download>
-  <button style="padding: 10px 20px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #333; color: white; border: none;">下載樂譜 (PDF)</button>
-</a>
-{% endif %}
-
-<div style="margin-top: 20px;">
-  {{ content }}
-</div>
+這是《榮耀真光》的樂譜展示頁面。
