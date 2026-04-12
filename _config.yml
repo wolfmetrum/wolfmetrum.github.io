@@ -1,3 +1,8 @@
 title: 狼的格律
 description: Wolf Metrum 官方頻道與原創音樂陣地
 theme: jekyll-theme-primer
+
+collections:
+  songs:
+    output: true
+    
