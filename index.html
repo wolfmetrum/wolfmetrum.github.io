@@ -2,9 +2,11 @@
 layout: default
 title: 首頁
 ---
+
 <style>
-  /* 抹除主題預設的累贅頁首 */
-  header.site-header, .page-header { display: none !important; }
+  /* 隱藏預設的頁首標題，割除視覺贅肉 */
+  header.site-header { display: none !important; }
+  .page-header { display: none !important; }
 </style>
 
 <div style="display: flex; align-items: center; margin-bottom: 40px; border-bottom: 2px solid #eee; padding-bottom: 20px;">
@@ -36,4 +38,89 @@ title: 首頁
 
 <ul id="song-list">
   {% for song in site.songs %}
-    <li class="song-item" data-tags="{{ song.tags | join: ',' }}" style
+    <li class="song-item" data-tags="{{ song.tags | join: ',' }}" style="margin-bottom: 10px;">
+      <a href="{{ song.url | relative_url }}" style="font-size: 1.1em; font-weight: bold;">{{ song.title }}</a>
+      <span style="font-size: 0.8em; color: #666; margin-left: 10px;">[{{ song.tags | join: ', ' }}]</span>
+    </li>
+  {% endfor %}
+</ul>
+
+<script>
+// === YouTube 最新三部影片輪播系統 ===
+const channelId = 'UCqdp7Moy1guJ1UHCocdKFWQ'; 
+const rssUrl = encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
+const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`;
+
+let latestVideos = [];
+let currentVidIndex = 0;
+
+fetch(apiUrl)
+  .then(res => res.json())
+  .then(data => {
+    if(data.items && data.items.length > 0) {
+      // 擷取最新的三部影片 ID
+      latestVideos = data.items.slice(0, 3).map(item => item.link.split('v=')[1]);
+      renderVideo();
+    } else {
+      document.getElementById('video-container').innerHTML = "目前沒有獵物蹤跡。";
+    }
+  });
+
+function renderVideo() {
+  if(latestVideos.length === 0) return;
+  const videoId = latestVideos[currentVidIndex];
+  document.getElementById('video-container').innerHTML = `
+    <iframe style="width: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
+  `;
+}
+
+// 左右切換行動邏輯
+document.getElementById('prev-video').addEventListener('click', () => {
+  if(latestVideos.length > 0) {
+    currentVidIndex = (currentVidIndex - 1 + latestVideos.length) % latestVideos.length;
+    renderVideo();
+  }
+});
+
+document.getElementById('next-video').addEventListener('click', () => {
+  if(latestVideos.length > 0) {
+    currentVidIndex = (currentVidIndex + 1) % latestVideos.length;
+    renderVideo();
+  }
+});
+
+// === 目錄自動分類與過濾系統 ===
+document.addEventListener("DOMContentLoaded", () => {
+  const songItems = document.querySelectorAll('.song-item');
+  const filterContainer = document.getElementById('filter-buttons');
+  const allTags = new Set();
+
+  // 1. 掃描並收集所有存在的標籤
+  songItems.forEach(item => {
+    const tags = item.getAttribute('data-tags').split(',');
+    tags.forEach(tag => {
+      const cleanTag = tag.trim();
+      if(cleanTag) allTags.add(cleanTag);
+    });
+  });
+
+  // 2. 根據收集到的標籤，鑄造按鈕
+  allTags.forEach(tag => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    btn.setAttribute('data-filter', tag);
+    btn.innerText = tag;
+    btn.style.marginRight = '10px';
+    btn.style.padding = '5px 10px';
+    btn.style.cursor = 'pointer';
+    filterContainer.appendChild(btn);
+  });
+
+  // 3. 賦予按鈕篩選的行動邏輯
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      // 切換按鈕的視覺焦點
+      document.querySelectorAll('.filter-btn').forEach(b => b.style.fontWeight = 'normal');
+      this.style.fontWeight = 'bold';
+      
+      const targetTag = this.getAttribute('data
