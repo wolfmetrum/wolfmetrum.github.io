@@ -1,39 +1,72 @@
-- title: 榮耀真光
-  composer: Wolf Metrum
-  lyricist: Wolf Metrum
-  note: 詩歌與鋼琴演奏版
+- title: 榮耀真光(演唱版)
+  composer: 狼的格律
+  lyricist: 狼的格律
+  note: 演唱版 feat. Feng Yi
   youtube_id: dPbFqBXviEk
   sheet_music: /assets/sheets/glory_true_light.pdf
-  tags: [狼的格律原創, 現代詩歌]
+  tags: [狼的格律原創, 現代詩歌, 演唱版]
 
-- title: 測試傳統詩歌 (請替換)
-  composer: 未知
-  lyricist: 未知
-  note: 這是傳統詩歌測試
-  youtube_id: 
+- title: 榮耀真光(鋼琴版)
+  composer: 狼的格律
+  lyricist: 狼的格律
+  note: 
+  youtube_id: fooqSkaonEU
+  sheet_music: /assets/sheets/glory_true_light.pdf
+  tags: [狼的格律原創, 現代詩歌]
+  
+- title: 越過嘆息的哈利路亞(演唱版)
+  composer: 狼的格律
+  lyricist: 狼的格律
+  note: 演唱版 feat. Feng Yi
+  youtube_id: yOAhPlrybD4
+  sheet_music: /assets/sheets/glory_true_light.pdf
+  tags: [狼的格律原創, 現代詩歌, 演唱版]
+
+- title: 越過嘆息的哈利路亞(鋼琴版)
+  composer: 狼的格律
+  lyricist: 狼的格律
+  note: 
+  youtube_id: pxBiAmsThTY
+  sheet_music: /assets/sheets/glory_true_light.pdf
+  tags: [狼的格律原創, 現代詩歌]
+  
+
+- title: 復活得勝主
+  composer: George Frideric Handel
+  lyricist: Edmond L. Budry / Richard B. Hoyle
+  note: 
+  youtube_id: D6MWhmAzeKM
   sheet_music: 
   tags: [傳統詩歌]
   
-- title: 測試現代詩歌2
-  composer: 某某
-  lyricist: 
-  note: 
-  youtube_id: 
+- title: 寶貴十架
+  composer: 曾祥怡, 游智婷
+  lyricist: 曾祥怡
+  note: ©️讚美之泉
+  youtube_id: FJYjzt78ioo
   sheet_music: 
   tags: [現代詩歌]
   
-- title: 測試傳統詩歌2
-  composer: 未知
-  lyricist: 未知
-  note: 這是傳統詩歌測試
-  youtube_id: 
+- title: 頌讚主尊名
+  composer: Ralph E. Hudson / William H. Clark
+  lyricist: Ralph E. Hudson / William H. Clark
+  note: 聖徒詩歌164
+  youtube_id: C9q_80mnjxw
   sheet_music: 
-  tags: [傳統詩歌]
+  tags: [傳統詩歌, 聖徒詩歌]
   
-- title: 測試現代詩歌 (請替換)
-  composer: 某某
-  lyricist: 
-  note: 
-  youtube_id: 
+- title: 我相信一山崗名叫各各他
+  composer: William J. Gaither
+  lyricist: Dale Oldham, Gloria Gaither, William J. Gaither 
+  note: ©️Gaither Music Company
+  youtube_id: kv0FTgvYbUA
   sheet_music: 
   tags: [現代詩歌]
+
+- title: 我心堅定於祢
+  composer: 李呈呈
+  lyricist: 李呈呈
+  note: ©️小羊詩歌
+  youtube_id: kv0FTgvYbUA
+  sheet_music: 
+  tags: [現代詩歌, 小羊詩歌]
