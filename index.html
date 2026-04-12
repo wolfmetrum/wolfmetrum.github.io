@@ -7,15 +7,35 @@ title: 狼的格律 Wolf Metrum
   /* 抹除系統預設的累贅標題 */
   header.site-header, .site-header, .page-header { display: none !important; }
   
-  /* === 新型星空穹頂 (CSS 繪製) === */
+  /* === 新型星空穹頂 (固定視窗層) === */
   body {
-    background-color: #050914;
     margin: 0;
-    overflow-x: hidden;
     color: #e6edf3;
     font-family: sans-serif;
-    position: relative;
     min-height: 100vh;
+    background-color: #050914; /* 兜底底色 */
+  }
+
+  /* 獨立的星空背景層，永遠貼合螢幕，不受捲動影響 */
+  #starry-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -5; /* 退到最底層 */
+    pointer-events: none;
+    overflow: hidden;
+    background-color: #050914;
+    background-image: 
+      radial-gradient(2px 2px at 40px 60px, #ffffff, rgba(0,0,0,0)),
+      radial-gradient(2px 2px at 90px 150px, #e0e0e0, rgba(0,0,0,0)),
+      radial-gradient(2px 2px at 150px 30px, #ffffff, rgba(0,0,0,0)),
+      radial-gradient(2px 2px at 200px 180px, #b3c6ff, rgba(0,0,0,0)),
+      radial-gradient(3px 3px at 250px 90px, #ffffff, rgba(0,0,0,0)),
+      radial-gradient(2px 2px at 300px 220px, #e0e0e0, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 350px 350px;
   }
 
   .star { position: absolute; border-radius: 50%; background-color: #ffffff; animation: twinkle linear infinite; opacity: 0; }
@@ -25,7 +45,7 @@ title: 狼的格律 Wolf Metrum
 
   @keyframes twinkle { 0% { opacity: 0; transform: scale(0.5); } 30% { opacity: 1; transform: scale(1); } 70% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(0.5); } }
 
-  .meteor { position: absolute; width: 2px; height: 2px; background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)); box-shadow: 0 0 5px 1px #fff; border-radius: 50%; opacity: 0; animation: meteor-fall linear 1; pointer-events: none; z-index: -1; }
+  .meteor { position: absolute; width: 2px; height: 2px; background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)); box-shadow: 0 0 5px 1px #fff; border-radius: 50%; opacity: 0; animation: meteor-fall linear 1; pointer-events: none; }
   @keyframes meteor-fall { 0% { opacity: 1; transform: translate(0, 0) rotate(-45deg) scale(1); } 10% { opacity: 1; } 90% { opacity: 1; } 100% { opacity: 0; transform: translate(400px, 400px) rotate(-45deg) scale(0); } }
 
   img { background-color: transparent !important; }
@@ -41,12 +61,21 @@ title: 狼的格律 Wolf Metrum
     padding-bottom: 20px;
     position: relative;
     z-index: 10;
-    flex-wrap: wrap; /* 空間不夠時文字區塊退到 Logo 下方 */
-    gap: 20px;
+    flex-wrap: nowrap; /* 強制不准換行，保護並肩結構 */
+    gap: 15px;
   }
-  .header-logo-link { flex-shrink: 0; }
+  .header-logo-link { 
+    flex-shrink: 0; 
+    width: clamp(60px, 15vw, 120px); /* 螢幕小於時，Logo會自動縮小 */
+  }
+  .header-logo-link img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
   .header-text-content {
-    flex: 1 1 300px;
+    flex: 1;
+    min-width: 0; /* 防止文字過長撐爆 Flex 容器 */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -54,59 +83,72 @@ title: 狼的格律 Wolf Metrum
   .header-title-row {
     display: flex;
     align-items: baseline;
-    flex-wrap: wrap; /* 空間不夠時副標題退到第二行 */
-    gap: 5px 15px;
+    flex-wrap: wrap; /* 標題與副標題之間可換行 */
+    gap: 5px 10px;
   }
   .header-title {
     margin: 0;
     font-weight: bold;
-    font-size: clamp(1.8em, 4vw, 2.5em); /* 自動縮放字型 1.8em ~ 2.5em */
+    font-size: clamp(1.4em, 3.5vw, 2.5em);
+    white-space: nowrap;
   }
   .header-subtitle {
     color: #8b949e;
     font-weight: bold;
-    font-size: clamp(0.9em, 2vw, 1.1em); /* 自動縮放字型 */
+    font-size: clamp(0.8em, 2vw, 1.1em);
   }
   .header-verse {
     color: #d29922;
     margin-top: 8px;
-    font-size: clamp(0.85em, 1.5vw, 0.95em);
+    font-size: clamp(0.75em, 1.5vw, 0.95em);
     line-height: 1.4;
     display: -webkit-box;
-    -webkit-line-clamp: 2; /* 強制最多兩行 */
+    -webkit-line-clamp: 2; /* 經文最多兩行截斷 */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  /* === 2. 歌曲清單基礎與響應式情報列 === */
+  /* === 2. 歌曲清單與情報列 === */
   .song-item { 
     border-bottom: 1px solid #1f2937 !important; 
     padding-bottom: 10px; 
     margin-bottom: 15px; 
     display: flex;
-    flex-wrap: wrap; /* 允許文字過多時折行 */
+    flex-wrap: wrap; 
     align-items: baseline;
   }
   .play-song-btn { cursor: pointer; text-decoration: underline; text-underline-offset: 4px; transition: all 0.2s ease-in-out; display: inline-block; padding: 2px 8px; margin-bottom: 5px; font-size: 1.2em; font-weight: bold; margin-right: 15px; }
   
   .song-info { 
     color: #8b949e; 
-    line-height: 1.5; 
     font-size: 0.85em;
-    flex: 1 1 200px; /* 佔據剩餘空間 */
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* 強制最多兩行，第三行截斷 */
-    -webkit-box-orient: vertical;
+    flex: 1 1 100px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    min-width: 0; /* 允許內部元素收縮 */
+  }
+  
+  .song-meta { white-space: nowrap; } /* 作曲/作詞 不斷行 */
+  
+  /* 備註專屬裝甲：強制單行截斷 */
+  .song-note {
+    display: inline-block;
+    max-width: 100%;
+    white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1 1 auto;
+    color: #a5b0ba; /* 稍微提亮備註顏色以作區別 */
   }
 
-  /* 手機版：強制換行並縮小字體 */
   @media (max-width: 600px) {
     .song-info {
       font-size: 0.75em;
-      margin-left: 8px; /* 稍微對齊按鈕左側 */
-      width: 100%; /* 強制折行 */
+      margin-left: 8px; 
+      width: 100%; 
       flex: 1 1 100%;
     }
   }
@@ -127,14 +169,15 @@ title: 狼的格律 Wolf Metrum
   #play-all-btn { background-color: #238636; color: #ffffff; border: 1px solid rgba(240, 246, 252, 0.1); padding: 5px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 0.9em; transition: 0.2s; }
   #play-all-btn:hover { background-color: #2ea043; }
 
-  /* 主控台標題的情報附屬文字 */
   .player-info-text { font-size: 0.55em; color: #8b949e; margin-left: 15px; font-weight: normal; vertical-align: middle; display: inline-block; }
   @media (max-width: 600px) { .player-info-text { display: block; margin-left: 0; margin-top: 5px; } }
 </style>
 
+<div id="starry-background"></div>
+
 <div class="header-container">
   <a href="{{ '/' | relative_url }}" class="header-logo-link">
-    <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Wolf Metrum Logo" style="max-width: 120px; height: auto; display: block;">
+    <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Wolf Metrum Logo">
   </a>
   <div class="header-text-content">
     <div class="header-title-row">
@@ -186,9 +229,9 @@ title: 狼的格律 Wolf Metrum
           {{ song.title }}
         </a>
         <div class="song-info">
-          {% if song.composer %}🎶{{ song.composer }}&nbsp;&nbsp;{% endif %}
-          {% if song.lyricist %}🧾{{ song.lyricist }}&nbsp;&nbsp;{% endif %}
-          {% if song.note %}🐺{{ song.note }}{% endif %}
+          {% if song.composer %}<span class="song-meta">🎶{{ song.composer }}</span>{% endif %}
+          {% if song.lyricist %}<span class="song-meta">🧾{{ song.lyricist }}</span>{% endif %}
+          {% if song.note %}<span class="song-note">🐺{{ song.note }}</span>{% endif %}
         </div>
       </li>
     {% endif %}
@@ -214,9 +257,9 @@ title: 狼的格律 Wolf Metrum
           {{ song.title }}
         </a>
         <div class="song-info">
-          {% if song.composer %}🎶{{ song.composer }}&nbsp;&nbsp;{% endif %}
-          {% if song.lyricist %}🧾{{ song.lyricist }}&nbsp;&nbsp;{% endif %}
-          {% if song.note %}🐺{{ song.note }}{% endif %}
+          {% if song.composer %}<span class="song-meta">🎶{{ song.composer }}</span>{% endif %}
+          {% if song.lyricist %}<span class="song-meta">🧾{{ song.lyricist }}</span>{% endif %}
+          {% if song.note %}<span class="song-note">🐺{{ song.note }}</span>{% endif %}
         </div>
       </li>
     {% endunless %}
@@ -234,7 +277,8 @@ title: 狼的格律 Wolf Metrum
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const body = document.body;
+  // 穹頂綁定至固定背景層，確保滾動無礙
+  const bgLayer = document.getElementById('starry-background');
   const starCount = 150;
   const colors = ['white', 'blue', 'yellow'];
 
@@ -249,7 +293,7 @@ document.addEventListener("DOMContentLoaded", () => {
     star.style.width = size; star.style.height = size;
     star.style.left = Math.random() * 100 + 'vw'; star.style.top = Math.random() * 100 + 'vh';
     star.style.animationDelay = Math.random() * 5 + 's'; star.style.animationDuration = Math.random() * 3 + 2 + 's';
-    star.style.zIndex = -2; body.appendChild(star);
+    bgLayer.appendChild(star);
   }
 
   function createMeteor() {
@@ -258,7 +302,7 @@ document.addEventListener("DOMContentLoaded", () => {
     meteor.className = 'meteor';
     meteor.style.left = Math.random() * 70 + 'vw'; meteor.style.top = Math.random() * 50 + 'vh';
     meteor.style.animationDuration = Math.random() * 1 + 0.5 + 's';
-    body.appendChild(meteor);
+    bgLayer.appendChild(meteor);
     meteor.addEventListener('animationend', () => { meteor.remove(); });
   }
   setInterval(createMeteor, Math.random() * 4000 + 3000); 
@@ -266,11 +310,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let latestVideos = [];
   let currentVidIndex = 0;
 
-  // 主控台升級：接收情報並渲染
   function loadPlayer(title, youtubeId, sheetUrl, composer = "", lyricist = "", note = "", isLatestMode = false) {
     const titleElem = document.getElementById('player-title');
     
-    // 組裝附加情報
     let infoHtml = "";
     if (!isLatestMode) {
       if (composer) infoHtml += `🎶${composer}&nbsp;&nbsp;`;
@@ -380,7 +422,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   document.getElementById('play-all-btn').addEventListener('click', () => { playAll(); });
 
-  // 攔截並傳遞完整情報
   document.querySelectorAll('.play-song-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       const title = this.getAttribute('data-title');
