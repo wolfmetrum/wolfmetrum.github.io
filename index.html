@@ -26,18 +26,35 @@ title: 狼的格律 Wolf Metrum
   /* 強制擊碎主題預設的圖片白底 */
   img { background-color: transparent !important; }
 
-  /* 文字與視覺元件適應暗色環境 */
+  /* 文字與視覺元件 */
   h1, h2, h3 { color: #ffffff; }
   hr { border-color: #1f2937; }
   
-  /* 歌曲清單的互動視覺 */
-  .play-song-btn { cursor: pointer; color: #58a6ff; text-decoration: none; transition: color 0.2s; }
-  .play-song-btn:hover { color: #79c0ff; text-decoration: underline; }
+  /* === 歌曲清單基礎與專屬視覺武裝 === */
   .song-item { border-bottom: 1px solid #1f2937 !important; padding-bottom: 10px; margin-bottom: 15px; }
-  .song-tag { font-size: 0.85em; color: #8b949e; margin-left: 10px; background: #161b22; padding: 2px 6px; border-radius: 4px; border: 1px solid #30363d; }
+  .song-info { font-size: 0.85em; color: #8b949e; margin-left: 15px; line-height: 1.5; }
+  
+  /* 基礎設定：所有曲名皆加上底線 */
+  .play-song-btn { cursor: pointer; text-decoration: underline; transition: all 0.2s ease-in-out; display: inline-block; padding: 2px 8px; margin-bottom: 5px; font-size: 1.2em; font-weight: bold; }
+
+  /* 狼的格律原創 - 典雅高級 (金色、發光陰影、左側立柱) */
+  .style-elegant { color: #d29922; text-shadow: 0 0 8px rgba(210, 153, 34, 0.4); border-left: 3px solid #d29922; }
+  .style-elegant:hover { color: #ffd700; text-shadow: 0 0 12px rgba(255, 215, 0, 0.8); background: rgba(210, 153, 34, 0.1); }
+
+  /* 傳統詩歌 - 古典 (羊皮紙白、細緻全框線、襯線體) */
+  .style-classical { color: #e8dcc4; font-family: "Times New Roman", Times, serif; border: 1px solid rgba(232, 220, 196, 0.4); border-radius: 2px; }
+  .style-classical:hover { color: #ffffff; background: rgba(232, 220, 196, 0.15); border-color: #e8dcc4; }
+
+  /* 現代詩歌 - 科技感 (霓虹藍、發光外框、無襯線) */
+  .style-tech { color: #58a6ff; text-shadow: 0 0 5px rgba(88, 166, 255, 0.5); border: 1px solid #1f6feb; border-radius: 5px; box-shadow: 0 0 8px rgba(31, 111, 235, 0.3); }
+  .style-tech:hover { color: #79c0ff; box-shadow: 0 0 15px rgba(31, 111, 235, 0.8); background: rgba(31, 111, 235, 0.1); }
+  
+  /* 未分類預設顏色 */
+  .style-default { color: #c9d1d9; }
+  .style-default:hover { color: #ffffff; background: #161b22; }
 
   /* 分類按鈕視覺 */
-  .filter-btn { background: #161b22; color: #c9d1d9; border: 1px solid #30363d; padding: 5px 12px; margin-right: 10px; cursor: pointer; border-radius: 4px; transition: background 0.2s; }
+  .filter-btn { background: #161b22; color: #c9d1d9; border: 1px solid #30363d; padding: 5px 12px; margin-right: 10px; margin-bottom: 10px; cursor: pointer; border-radius: 4px; transition: background 0.2s; }
   .filter-btn:hover { background: #30363d; color: #ffffff; }
   .filter-btn.active { background: #1f6feb; color: #ffffff; border-color: #1f6feb; font-weight: bold; }
 </style>
@@ -84,17 +101,47 @@ title: 狼的格律 Wolf Metrum
 </div>
 
 <ul id="song-list" style="list-style: none; padding: 0;">
-  {% for song in site.songs %}
-    <li class="song-item" data-tags="{{ song.tags | join: ',' }}">
-      <a class="play-song-btn" 
-         data-title="{{ song.title }}" 
-         data-youtube="{{ song.youtube_id }}" 
-         data-sheet="{{ song.sheet_music }}"
-         style="font-size: 1.2em; font-weight: bold;">
-        {{ song.title }}
-      </a>
-      <span class="song-tag">{{ song.tags | join: ', ' }}</span>
-    </li>
+  {% for song in site.data.songs %}
+    {% if song.tags contains '狼的格律原創' %}
+      <li class="song-item" data-tags="{{ song.tags | join: ',' }}">
+        <a class="play-song-btn style-elegant" 
+           data-title="{{ song.title }}" 
+           data-youtube="{{ song.youtube_id }}" 
+           data-sheet="{{ song.sheet_music }}">
+          {{ song.title }}
+        </a>
+        <span class="song-info">
+          {% if song.composer %}[作曲：{{ song.composer }}] {% endif %}
+          {% if song.lyricist %}[作詞：{{ song.lyricist }}] {% endif %}
+          {% if song.note %}[備註：{{ song.note }}]{% endif %}
+        </span>
+      </li>
+    {% endif %}
+  {% endfor %}
+
+  {% for song in site.data.songs %}
+    {% unless song.tags contains '狼的格律原創' %}
+      {% assign style_class = "style-default" %}
+      {% if song.tags contains '傳統詩歌' %}
+        {% assign style_class = "style-classical" %}
+      {% elsif song.tags contains '現代詩歌' %}
+        {% assign style_class = "style-tech" %}
+      {% endif %}
+
+      <li class="song-item" data-tags="{{ song.tags | join: ',' }}">
+        <a class="play-song-btn {{ style_class }}" 
+           data-title="{{ song.title }}" 
+           data-youtube="{{ song.youtube_id }}" 
+           data-sheet="{{ song.sheet_music }}">
+          {{ song.title }}
+        </a>
+        <span class="song-info">
+          {% if song.composer %}[作曲：{{ song.composer }}] {% endif %}
+          {% if song.lyricist %}[作詞：{{ song.lyricist }}] {% endif %}
+          {% if song.note %}[備註：{{ song.note }}]{% endif %}
+        </span>
+      </li>
+    {% endunless %}
   {% endfor %}
 </ul>
 
@@ -108,11 +155,9 @@ title: 狼的格律 Wolf Metrum
 </footer>
 
 <script>
-// === 狀態變數 ===
 let latestVideos = [];
 let currentVidIndex = 0;
 
-// === 主播放器核心邏輯 ===
 function loadPlayer(title, youtubeId, sheetUrl, isLatestMode = false) {
   document.getElementById('player-title').innerText = title;
   const videoContainer = document.getElementById('video-container');
@@ -134,7 +179,7 @@ function loadPlayer(title, youtubeId, sheetUrl, isLatestMode = false) {
   if (sheetUrl && sheetUrl.trim() !== '') {
     sheetContainer.innerHTML = `
       <a href="${sheetUrl}" download target="_blank">
-        <button style="padding: 10px 25px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #1f6feb; color: white; border: none; border-radius: 5px;">
+        <button style="padding: 10px 25px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #d29922; color: #111; border: none; border-radius: 5px;">
           下載樂譜 (PDF)
         </button>
       </a>
