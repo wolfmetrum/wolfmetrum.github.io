@@ -4,14 +4,42 @@ title: 狼的格律 Wolf Metrum
 ---
 
 <style>
+  /* 抹除系統預設的累贅標題 */
   header.site-header, .site-header, .page-header { display: none !important; }
   
+  /* 領地環境：藍色星空背景 */
+  body {
+    background-color: #050914;
+    background-image: 
+      radial-gradient(2px 2px at 40px 60px, #ffffff, rgba(0,0,0,0)),
+      radial-gradient(2px 2px at 90px 150px, #e0e0e0, rgba(0,0,0,0)),
+      radial-gradient(2px 2px at 150px 30px, #ffffff, rgba(0,0,0,0)),
+      radial-gradient(2px 2px at 200px 180px, #b3c6ff, rgba(0,0,0,0)),
+      radial-gradient(3px 3px at 250px 90px, #ffffff, rgba(0,0,0,0)),
+      radial-gradient(2px 2px at 300px 220px, #e0e0e0, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 350px 350px;
+    color: #e6edf3;
+    font-family: sans-serif;
+  }
+
+  /* 文字與視覺元件適應暗色環境 */
+  h1, h2, h3 { color: #ffffff; }
+  hr { border-color: #1f2937; }
+  
   /* 歌曲清單的互動視覺 */
-  .play-song-btn { cursor: pointer; color: #0366d6; text-decoration: none; transition: color 0.2s; }
-  .play-song-btn:hover { color: #000; text-decoration: underline; }
+  .play-song-btn { cursor: pointer; color: #58a6ff; text-decoration: none; transition: color 0.2s; }
+  .play-song-btn:hover { color: #79c0ff; text-decoration: underline; }
+  .song-item { border-bottom: 1px solid #1f2937 !important; padding-bottom: 10px; margin-bottom: 15px; }
+  .song-tag { font-size: 0.85em; color: #8b949e; margin-left: 10px; background: #161b22; padding: 2px 6px; border-radius: 4px; border: 1px solid #30363d; }
+
+  /* 分類按鈕視覺 */
+  .filter-btn { background: #161b22; color: #c9d1d9; border: 1px solid #30363d; padding: 5px 12px; margin-right: 10px; cursor: pointer; border-radius: 4px; transition: background 0.2s; }
+  .filter-btn:hover { background: #30363d; color: #ffffff; }
+  .filter-btn.active { background: #1f6feb; color: #ffffff; border-color: #1f6feb; font-weight: bold; }
 </style>
 
-<div style="display: flex; align-items: center; margin-bottom: 40px; border-bottom: 2px solid #eee; padding-bottom: 20px;">
+<div style="display: flex; align-items: center; margin-bottom: 40px; border-bottom: 2px solid #1f2937; padding-bottom: 20px;">
   <a href="{{ '/' | relative_url }}" style="display: block; margin-right: 20px; text-decoration: none;">
     <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Wolf Metrum Logo" style="max-width: 120px; height: auto; display: block;">
   </a>
@@ -20,14 +48,22 @@ title: 狼的格律 Wolf Metrum
   </a>
 </div>
 
-<h2 id="player-title">最新發布</h2>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+  <h2 id="player-title" style="margin: 0;">最新發布</h2>
+  <button id="back-to-latest" style="display: none; background: #1f2937; color: #c9d1d9; border: 1px solid #30363d; padding: 5px 10px; cursor: pointer; border-radius: 4px;">返回最新發布</button>
+</div>
+
 <div id="player-wrapper" style="margin-bottom: 40px; text-align: center;">
-  <div id="video-container" style="width: 100%; max-width: 800px; margin: 0 auto; background: #111; aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; color: #fff;">
-    鎖定目標中...
+  <div style="display: flex; align-items: center; justify-content: center; gap: 15px;">
+    <button id="prev-video" style="background: none; border: none; font-size: 2em; cursor: pointer; color: #8b949e;">&#10094;</button>
+    
+    <div id="video-container" style="flex-grow: 1; width: 100%; max-width: 800px; background: transparent; aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center;">
+      </div>
+    
+    <button id="next-video" style="background: none; border: none; font-size: 2em; cursor: pointer; color: #8b949e;">&#10095;</button>
   </div>
   
-  <div id="sheet-music-container" style="margin-top: 15px; display: none;">
-    </div>
+  <div id="sheet-music-container" style="margin-top: 15px; display: none;"></div>
 </div>
 
 <hr style="margin: 30px 0;">
@@ -35,12 +71,12 @@ title: 狼的格律 Wolf Metrum
 <h2>歌曲目錄</h2>
 
 <div id="filter-buttons" style="margin-bottom: 20px;">
-  <button class="filter-btn" data-filter="all" style="margin-right: 10px; padding: 5px 10px; cursor: pointer; font-weight: bold;">全部展示</button>
+  <button class="filter-btn active" data-filter="all">全部展示</button>
 </div>
 
 <ul id="song-list" style="list-style: none; padding: 0;">
   {% for song in site.songs %}
-    <li class="song-item" data-tags="{{ song.tags | join: ',' }}" style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+    <li class="song-item" data-tags="{{ song.tags | join: ',' }}">
       <a class="play-song-btn" 
          data-title="{{ song.title }}" 
          data-youtube="{{ song.youtube_id }}" 
@@ -48,33 +84,42 @@ title: 狼的格律 Wolf Metrum
          style="font-size: 1.2em; font-weight: bold;">
         {{ song.title }}
       </a>
-      <span style="font-size: 0.85em; color: #666; margin-left: 10px; background: #f1f1f1; padding: 2px 6px; border-radius: 4px;">{{ song.tags | join: ', ' }}</span>
+      <span class="song-tag">{{ song.tags | join: ', ' }}</span>
     </li>
   {% endfor %}
 </ul>
 
 <script>
-// === 主播放器核心邏輯 ===
-function loadPlayer(title, youtubeId, sheetUrl) {
-  // 1. 更換標題
-  document.getElementById('player-title').innerText = title;
+// === 狀態變數 ===
+let latestVideos = [];
+let currentVidIndex = 0;
 
-  // 2. 更換影片
+// === 主播放器核心邏輯 ===
+function loadPlayer(title, youtubeId, sheetUrl, isLatestMode = false) {
+  document.getElementById('player-title').innerText = title;
   const videoContainer = document.getElementById('video-container');
+
   if (youtubeId && youtubeId.trim() !== '') {
+    // 只有在非首頁預設載入的情況下，點擊才自動播放
+    const autoplayParam = isLatestMode ? "" : "?autoplay=1";
     videoContainer.innerHTML = `
-      <iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${youtubeId}?autoplay=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+      <iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${youtubeId}${autoplayParam}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
     `;
   } else {
-    videoContainer.innerHTML = "此曲目暫無影像紀錄。";
+    videoContainer.innerHTML = ''; 
   }
 
-  // 3. 處理樂譜按鈕
+  // 控制輪播箭頭與返回按鈕的顯隱
+  document.getElementById('prev-video').style.display = isLatestMode ? 'block' : 'none';
+  document.getElementById('next-video').style.display = isLatestMode ? 'block' : 'none';
+  document.getElementById('back-to-latest').style.display = isLatestMode ? 'none' : 'block';
+
+  // 處理樂譜按鈕
   const sheetContainer = document.getElementById('sheet-music-container');
   if (sheetUrl && sheetUrl.trim() !== '') {
     sheetContainer.innerHTML = `
       <a href="${sheetUrl}" download target="_blank">
-        <button style="padding: 10px 25px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #333; color: white; border: none; border-radius: 5px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#555'" onmouseout="this.style.backgroundColor='#333'">
+        <button style="padding: 10px 25px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #1f6feb; color: white; border: none; border-radius: 5px;">
           下載樂譜 (PDF)
         </button>
       </a>
@@ -86,6 +131,14 @@ function loadPlayer(title, youtubeId, sheetUrl) {
   }
 }
 
+// 渲染當前選定的最新影片
+function renderLatestVideo() {
+  if(latestVideos.length === 0) return;
+  const videoData = latestVideos[currentVidIndex];
+  const videoId = videoData.link.split('v=')[1];
+  loadPlayer("最新發布", videoId, "", true);
+}
+
 // === 初始載入：抓取最新影片 ===
 const channelId = 'UCqdp7Moy1guJ1UHCocdKFWQ'; 
 const rssUrl = encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
@@ -95,34 +148,48 @@ fetch(apiUrl)
   .then(res => res.json())
   .then(data => {
     if(data.items && data.items.length > 0) {
-      const latestVideo = data.items[0];
-      const videoId = latestVideo.link.split('v=')[1];
-      // 首頁載入時，不自動播放
-      document.getElementById('video-container').innerHTML = `
-        <iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
-      `;
-    } else {
-      document.getElementById('video-container').innerHTML = "目前沒有獵物蹤跡。";
+      latestVideos = data.items.slice(0, 3);
+      renderLatestVideo();
     }
   });
 
-// === 綁定目錄點擊動作 ===
+// === 綁定互動動作 ===
 document.addEventListener("DOMContentLoaded", () => {
-  // 處理歌曲點擊
+  
+  // 輪播按鈕邏輯
+  document.getElementById('prev-video').addEventListener('click', () => {
+    if(latestVideos.length > 0) {
+      currentVidIndex = (currentVidIndex - 1 + latestVideos.length) % latestVideos.length;
+      renderLatestVideo();
+    }
+  });
+
+  document.getElementById('next-video').addEventListener('click', () => {
+    if(latestVideos.length > 0) {
+      currentVidIndex = (currentVidIndex + 1) % latestVideos.length;
+      renderLatestVideo();
+    }
+  });
+
+  // 返回最新發布按鈕邏輯
+  document.getElementById('back-to-latest').addEventListener('click', () => {
+    currentVidIndex = 0;
+    renderLatestVideo();
+  });
+
+  // 目錄歌曲點擊邏輯
   document.querySelectorAll('.play-song-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       const title = this.getAttribute('data-title');
       const youtubeId = this.getAttribute('data-youtube');
       const sheetUrl = this.getAttribute('data-sheet');
 
-      loadPlayer(title, youtubeId, sheetUrl);
-
-      // 戰術輔助：點擊後自動將畫面平滑滾動回頂部播放區
+      loadPlayer(title, youtubeId, sheetUrl, false);
       document.getElementById('player-title').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
 
-  // === 自動分類與過濾系統 (維持原樣) ===
+  // === 自動分類與過濾系統 ===
   const songItems = document.querySelectorAll('.song-item');
   const filterContainer = document.getElementById('filter-buttons');
   const allTags = new Set();
@@ -140,16 +207,13 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.className = 'filter-btn';
     btn.setAttribute('data-filter', tag);
     btn.innerText = tag;
-    btn.style.marginRight = '10px';
-    btn.style.padding = '5px 10px';
-    btn.style.cursor = 'pointer';
     filterContainer.appendChild(btn);
   });
 
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', function() {
-      document.querySelectorAll('.filter-btn').forEach(b => b.style.fontWeight = 'normal');
-      this.style.fontWeight = 'bold';
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
       
       const targetTag = this.getAttribute('data-filter');
 
