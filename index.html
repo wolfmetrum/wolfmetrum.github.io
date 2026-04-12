@@ -190,16 +190,39 @@ function loadPlayer(title, youtubeId, sheetUrl, isLatestMode = false) {
   }
 }
 
-// 載入整個播放清單並隨機播放
+// 就地抓取領地資料庫，執行洗牌並連續播放
 function playAll() {
   document.getElementById('player-title').innerText = "狼的格律 - 隨機連續播放";
   const videoContainer = document.getElementById('video-container');
   
-  // listType=playlist 告訴播放器載入清單，index=1 表示從第一首開始，我們加上 list= 你的清單 ID
-  // 要達成載入時立刻隨機，YouTube API 預設沒有直接的 shuffle 參數能一次搞定，
-  // 但載入清單後，使用者在播放器內可以點擊洗牌按鈕。
+  // 1. 蒐集陣地內所有的 YouTube ID
+  const allSongBtns = document.querySelectorAll('.play-song-btn');
+  let videoIds = [];
+  allSongBtns.forEach(btn => {
+    const id = btn.getAttribute('data-youtube');
+    if(id && id.trim() !== '') {
+      videoIds.push(id.trim());
+    }
+  });
+
+  if(videoIds.length === 0) {
+    videoContainer.innerHTML = "目前沒有可用的影像紀錄。";
+    return;
+  }
+
+  // 2. 執行陣列洗牌 (Fisher-Yates Shuffle 演算法)
+  for (let i = videoIds.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [videoIds[i], videoIds[j]] = [videoIds[j], videoIds[i]];
+  }
+
+  // 3. 提取首發目標，並將其餘目標串接成自訂播放清單
+  const firstVideo = videoIds[0];
+  const playlistString = videoIds.join(',');
+
+  // 透過 playlist 參數強制 YouTube 按照我們洗好的順序連續播放
   videoContainer.innerHTML = `
-    <iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/videoseries?list=${PLAYLIST_ID}&autoplay=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${firstVideo}?autoplay=1&playlist=${playlistString}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
   `;
 
   document.getElementById('prev-video').style.display = 'none';
@@ -212,6 +235,7 @@ function playAll() {
 
   document.getElementById('player-title').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+  
 
 function renderLatestVideo() {
   if(latestVideos.length === 0) return;
