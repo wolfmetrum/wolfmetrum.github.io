@@ -2,7 +2,7 @@
 layout: song
 title: 榮耀真光
 composer: Wolf Metrum
-youtube_id: 5vd2z9oRdlUpEUgW
+youtube_id: dPbFqBXviEk
 sheet_music: /assets/sheets/glory_true_light.pdf
 ---
 
