@@ -63,19 +63,19 @@ title: 狼的格律 Wolf Metrum
     width: 100%;
     gap: 12px;
   }
-  .header-logo-link { flex: 0 0 clamp(35px, 10vw, 100px); } /* 讓Logo能縮得更小 */
+  .header-logo-link { flex: 0 0 clamp(35px, 10vw, 100px); }
   .header-logo-link img { width: 100%; height: auto; display: block; }
   .header-title-link { flex: 1; min-width: 0; text-decoration: none; color: inherit; }
   
-  /* 標題強制不換行，且解除截斷限制，依靠 clamp 極限縮小 */
+  /* 標題強制不換行，極限下壓字體確保塞入單行 */
   .header-title {
     margin: 0;
     font-weight: bold;
-    font-size: clamp(0.9em, 4.5vw, 2.5em); 
+    font-size: clamp(10px, 5vw, 2.5em); 
     white-space: nowrap;
+    letter-spacing: -0.5px; /* 緊縮字元間距避免溢出 */
   }
 
-  /* 副標題強制不換行，解除截斷限制 */
   .header-subtitle {
     color: #8b949e;
     font-weight: bold;
@@ -96,7 +96,7 @@ title: 狼的格律 Wolf Metrum
     width: 100%;
   }
 
-  /* === 2. 歌曲清單與情報強制截斷 (採用 Grid 網格系統) === */
+  /* === 2. 歌曲清單與情報強制截斷 === */
   .song-item { 
     border-bottom: 1px solid #1f2937 !important; 
     padding-bottom: 6px;
@@ -140,19 +140,22 @@ title: 狼的格律 Wolf Metrum
   .style-default { color: #c9d1d9; border: 1px solid #30363d; border-radius: 4px; }
   .style-default:hover { color: #ffffff; background: #161b22; }
 
-  /* === 3. 篩選標籤單行橫向滑動與指示器 === */
+  /* === 3. 篩選標籤單行橫向滑動與智能指示器 === */
   .filter-container {
     position: relative;
     margin-bottom: 20px;
   }
   
-  /* 明確文字指示器 */
+  /* 明確文字指示器 (預設隱藏) */
   .filter-hint {
     font-size: 0.75em;
     color: #8b949e;
     margin-bottom: 8px;
-    display: block;
+    display: none; /* 由 JS 判斷是否顯示 */
     font-weight: normal;
+  }
+  .filter-container.is-scrollable .filter-hint {
+    display: block;
   }
 
   #filter-buttons-wrapper {
@@ -162,20 +165,29 @@ title: 狼的格律 Wolf Metrum
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none; 
     -ms-overflow-style: none;
-    padding-right: 30px; /* 留出陰影空間 */
+    /* 預留陰影空間 */
+    padding-right: 0px; 
+    transition: padding 0.2s;
+  }
+  .filter-container.is-scrollable #filter-buttons-wrapper {
+    padding-right: 30px;
   }
   #filter-buttons-wrapper::-webkit-scrollbar { display: none; }
 
-  /* 視覺陰影暗示 (覆蓋在最右側，表示還有內容) */
+  /* 視覺陰影暗示 (預設隱藏) */
   .filter-container::after {
     content: '';
     position: absolute;
     right: 0;
     bottom: 0;
-    top: 25px; /* 避開上方的文字指示器 */
+    top: 25px; 
     width: 40px;
     background: linear-gradient(to right, rgba(5,9,20,0), rgba(5,9,20,1));
     pointer-events: none;
+    display: none; /* 由 JS 判斷是否顯示 */
+  }
+  .filter-container.is-scrollable::after {
+    display: block;
   }
 
   #filter-buttons { display: inline-flex; gap: 10px; }
@@ -463,16 +475,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const songItems = document.querySelectorAll('.song-item');
   const filterContainer = document.getElementById('filter-buttons');
+  const filterWrapper = document.getElementById('filter-buttons-wrapper');
+  const filterParent = document.querySelector('.filter-container');
   const allTags = new Set();
+  
   songItems.forEach(item => {
     const tags = item.getAttribute('data-tags').split(',');
     tags.forEach(tag => { const cleanTag = tag.trim(); if(cleanTag) allTags.add(cleanTag); });
   });
+  
   allTags.forEach(tag => {
     const btn = document.createElement('button');
     btn.className = 'filter-btn'; btn.setAttribute('data-filter', tag); btn.innerText = tag;
     filterContainer.appendChild(btn);
   });
+  
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -489,5 +506,19 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   });
+
+  // 智能偵測：標籤數量是否超出版面，決定是否顯示滑動提示
+  function checkFilterScroll() {
+    if (filterWrapper.scrollWidth > filterWrapper.clientWidth) {
+      filterParent.classList.add('is-scrollable');
+    } else {
+      filterParent.classList.remove('is-scrollable');
+    }
+  }
+  // 初次執行偵測
+  setTimeout(checkFilterScroll, 100);
+  // 視窗改變時重新偵測
+  window.addEventListener('resize', checkFilterScroll);
+
 });
 </script>
