@@ -20,7 +20,7 @@ title: 狼的格律 Wolf Metrum
     background-repeat: repeat;
     background-size: 350px 350px;
     color: #e6edf3;
-    font-family: sans-serif;
+    font-family: sans-serif; /* 全域統一字型 */
   }
 
   /* 強制擊碎主題預設的圖片白底 */
@@ -32,17 +32,16 @@ title: 狼的格律 Wolf Metrum
   
   /* === 歌曲清單基礎與專屬視覺武裝 === */
   .song-item { border-bottom: 1px solid #1f2937 !important; padding-bottom: 10px; margin-bottom: 15px; }
-  .song-info { font-size: 0.85em; color: #8b949e; margin-left: 15px; line-height: 1.5; display: inline-flex; gap: 15px; flex-wrap: wrap; }
-  .song-info span { display: inline-flex; align-items: center; gap: 4px; }
+  .song-info { font-size: 0.85em; color: #8b949e; margin-left: 15px; line-height: 1.5; }
   
-  /* 基礎設定：所有曲名皆加上底線，並調整底線距離 */
+  /* 基礎設定：所有曲名皆加上底線，並調整底線距離使其美觀 */
   .play-song-btn { cursor: pointer; text-decoration: underline; text-underline-offset: 4px; transition: all 0.2s ease-in-out; display: inline-block; padding: 2px 8px; margin-bottom: 5px; font-size: 1.2em; font-weight: bold; }
 
   /* 狼的格律原創 - 典雅高級 (金色、發光陰影、左側立柱) */
   .style-elegant { color: #d29922; text-shadow: 0 0 8px rgba(210, 153, 34, 0.4); border-left: 3px solid #d29922; }
   .style-elegant:hover { color: #ffd700; text-shadow: 0 0 12px rgba(255, 215, 0, 0.8); background: rgba(210, 153, 34, 0.1); }
 
-  /* 傳統詩歌 - 古典 (統一字型，羊皮紙白、細緻全框線) */
+  /* 傳統詩歌 - 古典 (拔除特殊字型，維持統一，保留羊皮紙白與細緻全框線) */
   .style-classical { color: #e8dcc4; border: 1px solid rgba(232, 220, 196, 0.4); border-radius: 2px; }
   .style-classical:hover { color: #ffffff; background: rgba(232, 220, 196, 0.15); border-color: #e8dcc4; }
 
@@ -111,11 +110,11 @@ title: 狼的格律 Wolf Metrum
            data-sheet="{{ song.sheet_music }}">
           {{ song.title }}
         </a>
-        <div class="song-info">
-          {% if song.composer %}<span>🎶{{ song.composer }}</span>{% endif %}
-          {% if song.lyricist %}<span>🧾{{ song.lyricist }}</span>{% endif %}
-          {% if song.note %}<span>🐺{{ song.note }}</span>{% endif %}
-        </div>
+        <span class="song-info">
+          {% if song.composer %}🎶{{ song.composer }}&nbsp;&nbsp;{% endif %}
+          {% if song.lyricist %}🧾{{ song.lyricist }}&nbsp;&nbsp;{% endif %}
+          {% if song.note %}🐺{{ song.note }}{% endif %}
+        </span>
       </li>
     {% endif %}
   {% endfor %}
@@ -136,11 +135,11 @@ title: 狼的格律 Wolf Metrum
            data-sheet="{{ song.sheet_music }}">
           {{ song.title }}
         </a>
-        <div class="song-info">
-          {% if song.composer %}<span>🎶{{ song.composer }}</span>{% endif %}
-          {% if song.lyricist %}<span>🧾{{ song.lyricist }}</span>{% endif %}
-          {% if song.note %}<span>🐺{{ song.note }}</span>{% endif %}
-        </div>
+        <span class="song-info">
+          {% if song.composer %}🎶{{ song.composer }}&nbsp;&nbsp;{% endif %}
+          {% if song.lyricist %}🧾{{ song.lyricist }}&nbsp;&nbsp;{% endif %}
+          {% if song.note %}🐺{{ song.note }}{% endif %}
+        </span>
       </li>
     {% endunless %}
   {% endfor %}
