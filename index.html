@@ -4,8 +4,11 @@ title: 狼的格律 Wolf Metrum
 ---
 
 <style>
-  /* 抹除系統預設的累贅標題 */
   header.site-header, .site-header, .page-header { display: none !important; }
+  
+  /* 歌曲清單的互動視覺 */
+  .play-song-btn { cursor: pointer; color: #0366d6; text-decoration: none; transition: color 0.2s; }
+  .play-song-btn:hover { color: #000; text-decoration: underline; }
 </style>
 
 <div style="display: flex; align-items: center; margin-bottom: 40px; border-bottom: 2px solid #eee; padding-bottom: 20px;">
@@ -17,14 +20,14 @@ title: 狼的格律 Wolf Metrum
   </a>
 </div>
 
-<h2>最新發布</h2>
-
-<div style="display: flex; align-items: center; justify-content: center; margin-bottom: 30px; gap: 15px;">
-  <button id="prev-video" style="background: none; border: none; font-size: 2em; cursor: pointer; color: #555;">&#10094;</button>
-  <div id="video-container" style="flex-grow: 1; width: 100%; max-width: 800px; background: #111; aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; color: #fff;">
+<h2 id="player-title">最新發布</h2>
+<div id="player-wrapper" style="margin-bottom: 40px; text-align: center;">
+  <div id="video-container" style="width: 100%; max-width: 800px; margin: 0 auto; background: #111; aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; color: #fff;">
     鎖定目標中...
   </div>
-  <button id="next-video" style="background: none; border: none; font-size: 2em; cursor: pointer; color: #555;">&#10095;</button>
+  
+  <div id="sheet-music-container" style="margin-top: 15px; display: none;">
+    </div>
 </div>
 
 <hr style="margin: 30px 0;">
@@ -33,64 +36,93 @@ title: 狼的格律 Wolf Metrum
 
 <div id="filter-buttons" style="margin-bottom: 20px;">
   <button class="filter-btn" data-filter="all" style="margin-right: 10px; padding: 5px 10px; cursor: pointer; font-weight: bold;">全部展示</button>
-  </div>
+</div>
 
-<ul id="song-list">
+<ul id="song-list" style="list-style: none; padding: 0;">
   {% for song in site.songs %}
-    <li class="song-item" data-tags="{{ song.tags | join: ',' }}" style="margin-bottom: 10px;">
-      <a href="{{ song.url | relative_url }}" style="font-size: 1.1em; font-weight: bold;">{{ song.title }}</a>
-      <span style="font-size: 0.8em; color: #666; margin-left: 10px;">[{{ song.tags | join: ', ' }}]</span>
+    <li class="song-item" data-tags="{{ song.tags | join: ',' }}" style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+      <a class="play-song-btn" 
+         data-title="{{ song.title }}" 
+         data-youtube="{{ song.youtube_id }}" 
+         data-sheet="{{ song.sheet_music }}"
+         style="font-size: 1.2em; font-weight: bold;">
+        {{ song.title }}
+      </a>
+      <span style="font-size: 0.85em; color: #666; margin-left: 10px; background: #f1f1f1; padding: 2px 6px; border-radius: 4px;">{{ song.tags | join: ', ' }}</span>
     </li>
   {% endfor %}
 </ul>
 
 <script>
-// === YouTube 最新三部影片輪播系統 ===
+// === 主播放器核心邏輯 ===
+function loadPlayer(title, youtubeId, sheetUrl) {
+  // 1. 更換標題
+  document.getElementById('player-title').innerText = title;
+
+  // 2. 更換影片
+  const videoContainer = document.getElementById('video-container');
+  if (youtubeId && youtubeId.trim() !== '') {
+    videoContainer.innerHTML = `
+      <iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${youtubeId}?autoplay=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    `;
+  } else {
+    videoContainer.innerHTML = "此曲目暫無影像紀錄。";
+  }
+
+  // 3. 處理樂譜按鈕
+  const sheetContainer = document.getElementById('sheet-music-container');
+  if (sheetUrl && sheetUrl.trim() !== '') {
+    sheetContainer.innerHTML = `
+      <a href="${sheetUrl}" download target="_blank">
+        <button style="padding: 10px 25px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #333; color: white; border: none; border-radius: 5px; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#555'" onmouseout="this.style.backgroundColor='#333'">
+          下載樂譜 (PDF)
+        </button>
+      </a>
+    `;
+    sheetContainer.style.display = 'block';
+  } else {
+    sheetContainer.innerHTML = '';
+    sheetContainer.style.display = 'none';
+  }
+}
+
+// === 初始載入：抓取最新影片 ===
 const channelId = 'UCqdp7Moy1guJ1UHCocdKFWQ'; 
 const rssUrl = encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
 const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`;
-
-let latestVideos = [];
-let currentVidIndex = 0;
 
 fetch(apiUrl)
   .then(res => res.json())
   .then(data => {
     if(data.items && data.items.length > 0) {
-      // 擷取最新的三部影片 ID
-      latestVideos = data.items.slice(0, 3).map(item => item.link.split('v=')[1]);
-      renderVideo();
+      const latestVideo = data.items[0];
+      const videoId = latestVideo.link.split('v=')[1];
+      // 首頁載入時，不自動播放
+      document.getElementById('video-container').innerHTML = `
+        <iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
+      `;
     } else {
       document.getElementById('video-container').innerHTML = "目前沒有獵物蹤跡。";
     }
   });
 
-function renderVideo() {
-  if(latestVideos.length === 0) return;
-  const videoId = latestVideos[currentVidIndex];
-  document.getElementById('video-container').innerHTML = `
-    <iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
-  `;
-}
-
-// 左右切換行動邏輯
-document.getElementById('prev-video').addEventListener('click', () => {
-  if(latestVideos.length > 0) {
-    currentVidIndex = (currentVidIndex - 1 + latestVideos.length) % latestVideos.length;
-    renderVideo();
-  }
-});
-
-document.getElementById('next-video').addEventListener('click', () => {
-  if(latestVideos.length > 0) {
-    currentVidIndex = (currentVidIndex + 1) % latestVideos.length;
-    renderVideo();
-  }
-});
-
-
-// === 目錄自動分類與過濾系統 ===
+// === 綁定目錄點擊動作 ===
 document.addEventListener("DOMContentLoaded", () => {
+  // 處理歌曲點擊
+  document.querySelectorAll('.play-song-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const title = this.getAttribute('data-title');
+      const youtubeId = this.getAttribute('data-youtube');
+      const sheetUrl = this.getAttribute('data-sheet');
+
+      loadPlayer(title, youtubeId, sheetUrl);
+
+      // 戰術輔助：點擊後自動將畫面平滑滾動回頂部播放區
+      document.getElementById('player-title').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // === 自動分類與過濾系統 (維持原樣) ===
   const songItems = document.querySelectorAll('.song-item');
   const filterContainer = document.getElementById('filter-buttons');
   const allTags = new Set();
