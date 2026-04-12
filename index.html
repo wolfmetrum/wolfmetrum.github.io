@@ -4,45 +4,95 @@ title: 狼的格律 Wolf Metrum
 ---
 
 <style>
+  /* 抹除系統預設的累贅標題 */
   header.site-header, .site-header, .page-header { display: none !important; }
   
+  /* === 新型星空穹頂 (CSS 繪製) === */
   body {
-    background-color: #050914;
-    background-image: 
-      radial-gradient(2px 2px at 40px 60px, #ffffff, rgba(0,0,0,0)),
-      radial-gradient(2px 2px at 90px 150px, #e0e0e0, rgba(0,0,0,0)),
-      radial-gradient(2px 2px at 150px 30px, #ffffff, rgba(0,0,0,0)),
-      radial-gradient(2px 2px at 200px 180px, #b3c6ff, rgba(0,0,0,0)),
-      radial-gradient(3px 3px at 250px 90px, #ffffff, rgba(0,0,0,0)),
-      radial-gradient(2px 2px at 300px 220px, #e0e0e0, rgba(0,0,0,0));
-    background-repeat: repeat;
-    background-size: 350px 350px;
+    background-color: #050914; /* 深邃夜空底色 */
+    margin: 0;
+    overflow-x: hidden; /* 防止流星造成橫向捲軸 */
     color: #e6edf3;
     font-family: sans-serif;
+    position: relative; /* 為流星定位做準備 */
+    min-height: 100vh;
   }
 
+  /* 閃爍星星的通用樣式 */
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    background-color: #ffffff; /* 預設白色 */
+    animation: twinkle linear infinite; /* 綁定閃爍動畫 */
+    opacity: 0; /* 初始隱藏 */
+  }
+
+  /* 星星顏色分類 */
+  .star.white { background-color: #ffffff; box-shadow: 0 0 3px #ffffff; }
+  .star.blue { background-color: #a3cfff; box-shadow: 0 0 4px #58a6ff; }
+  .star.yellow { background-color: #fff4a3; box-shadow: 0 0 3px #d29922; }
+
+  /* 閃爍動畫定義 */
+  @keyframes twinkle {
+    0% { opacity: 0; transform: scale(0.5); }
+    30% { opacity: 1; transform: scale(1); }
+    70% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.5); }
+  }
+
+  /* === 流星機制 (CSS動畫) === */
+  .meteor {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)); /* 流星頭部與尾跡 */
+    box-shadow: 0 0 5px 1px #fff;
+    border-radius: 50%;
+    opacity: 0;
+    animation: meteor-fall linear 1; /* 綁定墜落動畫，只播放一次 */
+    pointer-events: none; /* 防止流星阻擋點擊 */
+    z-index: -1; /* 確保在內容下方 */
+  }
+
+  /* 流星墜落動畫定義：從左上往右下飛掠 */
+  @keyframes meteor-fall {
+    0% { opacity: 1; transform: translate(0, 0) rotate(-45deg) scale(1); }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; transform: translate(400px, 400px) rotate(-45deg) scale(0); } /* 飛越距離 */
+  }
+
+  /* 強制擊碎主題預設的圖片白底 */
   img { background-color: transparent !important; }
 
+  /* 文字與視覺元件 */
   h1, h2, h3 { color: #ffffff; }
   hr { border-color: #1f2937; }
   
+  /* === 歌曲清單基礎與專屬視覺武裝 === */
   .song-item { border-bottom: 1px solid #1f2937 !important; padding-bottom: 10px; margin-bottom: 15px; }
   .song-info { font-size: 0.85em; color: #8b949e; margin-left: 15px; line-height: 1.5; }
   
+  /* 基礎設定：所有曲名皆加上底線，並調整底線距離使其美觀 */
   .play-song-btn { cursor: pointer; text-decoration: underline; text-underline-offset: 4px; transition: all 0.2s ease-in-out; display: inline-block; padding: 2px 8px; margin-bottom: 5px; font-size: 1.2em; font-weight: bold; }
 
+  /* 狼的格律原創 - 典雅高級 */
   .style-elegant { color: #d29922; text-shadow: 0 0 8px rgba(210, 153, 34, 0.4); border-left: 3px solid #d29922; }
   .style-elegant:hover { color: #ffd700; text-shadow: 0 0 12px rgba(255, 215, 0, 0.8); background: rgba(210, 153, 34, 0.1); }
 
+  /* 傳統詩歌 - 古典 */
   .style-classical { color: #e8dcc4; border: 1px solid rgba(232, 220, 196, 0.4); border-radius: 2px; }
   .style-classical:hover { color: #ffffff; background: rgba(232, 220, 196, 0.15); border-color: #e8dcc4; }
 
+  /* 現代詩歌 - 科技感 */
   .style-tech { color: #58a6ff; text-shadow: 0 0 5px rgba(88, 166, 255, 0.5); border: 1px solid #1f6feb; border-radius: 5px; box-shadow: 0 0 8px rgba(31, 111, 235, 0.3); }
   .style-tech:hover { color: #79c0ff; box-shadow: 0 0 15px rgba(31, 111, 235, 0.8); background: rgba(31, 111, 235, 0.1); }
   
+  /* 未分類預設顏色 */
   .style-default { color: #c9d1d9; }
   .style-default:hover { color: #ffffff; background: #161b22; }
 
+  /* 分類按鈕視覺 */
   .filter-btn { background: #161b22; color: #c9d1d9; border: 1px solid #30363d; padding: 5px 12px; margin-right: 10px; margin-bottom: 10px; cursor: pointer; border-radius: 4px; transition: background 0.2s; }
   .filter-btn:hover { background: #30363d; color: #ffffff; }
   .filter-btn.active { background: #1f6feb; color: #ffffff; border-color: #1f6feb; font-weight: bold; }
@@ -52,7 +102,7 @@ title: 狼的格律 Wolf Metrum
   #play-all-btn:hover { background-color: #2ea043; }
 </style>
 
-<div style="display: flex; align-items: center; margin-bottom: 40px; border-bottom: 2px solid #1f2937; padding-bottom: 20px;">
+<div style="display: flex; align-items: center; margin-bottom: 40px; border-bottom: 2px solid #1f2937; padding-bottom: 20px; position: relative; z-index: 10;">
   <a href="{{ '/' | relative_url }}" style="display: block; margin-right: 20px; text-decoration: none;">
     <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Wolf Metrum Logo" style="max-width: 120px; height: auto; display: block;">
   </a>
@@ -67,17 +117,17 @@ title: 狼的格律 Wolf Metrum
   </div>
 </div>
 
-<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; position: relative; z-index: 10;">
   <h2 id="player-title" style="margin: 0;">最新發布</h2>
   <button id="back-to-latest" style="display: none; background: #1f2937; color: #c9d1d9; border: 1px solid #30363d; padding: 5px 10px; cursor: pointer; border-radius: 4px;">返回最新發布</button>
 </div>
 
-<div id="player-wrapper" style="margin-bottom: 40px; text-align: center;">
+<div id="player-wrapper" style="margin-bottom: 40px; text-align: center; position: relative; z-index: 10;">
   <div style="display: flex; align-items: center; justify-content: center; gap: 15px;">
     <button id="prev-video" style="background: none; border: none; font-size: 2em; cursor: pointer; color: #8b949e;">&#10094;</button>
     
     <div id="video-container" style="flex-grow: 1; width: 100%; max-width: 800px; background: transparent; aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center;">
-    </div>
+      </div>
     
     <button id="next-video" style="background: none; border: none; font-size: 2em; cursor: pointer; color: #8b949e;">&#10095;</button>
   </div>
@@ -85,18 +135,18 @@ title: 狼的格律 Wolf Metrum
   <div id="sheet-music-container" style="margin-top: 15px; display: none;"></div>
 </div>
 
-<hr style="margin: 30px 0;">
+<hr style="margin: 30px 0; border-color: #1f2937;">
 
-<div style="display: flex; align-items: center; gap: 20px; margin-bottom: 15px;">
+<div style="display: flex; align-items: center; gap: 20px; margin-bottom: 15px; position: relative; z-index: 10;">
   <h2 style="margin: 0;">歌曲目錄</h2>
   <button id="play-all-btn">▶ 播放全部 (隨機)</button>
 </div>
 
-<div id="filter-buttons" style="margin-bottom: 20px;">
+<div id="filter-buttons" style="margin-bottom: 20px; position: relative; z-index: 10;">
   <button class="filter-btn active" data-filter="all">全部展示</button>
 </div>
 
-<ul id="song-list" style="list-style: none; padding: 0;">
+<ul id="song-list" style="list-style: none; padding: 0; position: relative; z-index: 10;">
   {% for song in site.data.songs %}
     {% if song.tags contains '狼的格律原創' %}
       <li class="song-item" data-tags="{{ song.tags | join: ',' }}">
@@ -141,7 +191,7 @@ title: 狼的格律 Wolf Metrum
   {% endfor %}
 </ul>
 
-<footer style="margin-top: 60px; padding-top: 30px; border-top: 1px solid #1f2937; text-align: center; color: #8b949e; font-size: 0.95em; padding-bottom: 30px;">
+<footer style="margin-top: 60px; padding-top: 30px; border-top: 1px solid #1f2937; text-align: center; color: #8b949e; font-size: 0.95em; padding-bottom: 30px; position: relative; z-index: 10;">
   <p style="margin: 0 0 10px 0;">聯絡狼的格律 Wolf Metrum：<a href="mailto:wolfmetrum@outlook.com" style="color: #58a6ff; text-decoration: none;">wolfmetrum@outlook.com</a></p>
   <div style="display: flex; justify-content: center; gap: 20px; align-items: center; margin-top: 15px;">
     <a href="https://www.youtube.com/channel/UCqdp7Moy1guJ1UHCocdKFWQ" target="_blank" style="color: #c9d1d9; text-decoration: none; font-size: 1.2em; font-weight: bold; transition: color 0.2s;" onmouseover="this.style.color='#ff4d4d'" onmouseout="this.style.color='#c9d1d9'">▶ YouTube</a>
@@ -151,113 +201,153 @@ title: 狼的格律 Wolf Metrum
 </footer>
 
 <script>
-let latestVideos = [];
-let currentVidIndex = 0;
+// === 星空與流星生成系統 ===
+document.addEventListener("DOMContentLoaded", () => {
+  const body = document.body;
+  const starCount = 150;
+  const colors = ['white', 'blue', 'yellow'];
 
-// === 替換為你的 YouTube 播放清單 ID ===
-const PLAYLIST_ID = 'PLdKOI1LneF_z067aXwcLXCisdDBUu4IKm'; 
-
-function loadPlayer(title, youtubeId, sheetUrl, isLatestMode = false) {
-  document.getElementById('player-title').innerText = title;
-  const videoContainer = document.getElementById('video-container');
-
-  if (youtubeId && youtubeId.trim() !== '') {
-    const autoplayParam = isLatestMode ? "" : "?autoplay=1";
-    videoContainer.innerHTML = `
-      <iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${youtubeId}${autoplayParam}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    `;
-  } else {
-    videoContainer.innerHTML = ''; 
+  for (let i = 0; i < starCount; i++) {
+    const star = document.createElement('div');
+    
+    let colorClass = colors[0];
+    const colorRoll = Math.random();
+    if (colorRoll > 0.7 && colorRoll <= 0.95) colorClass = colors[1];
+    else if (colorRoll > 0.95) colorClass = colors[2];
+    
+    star.className = `star ${colorClass}`;
+    
+    const size = Math.random() * 2 + 1 + 'px';
+    star.style.width = size;
+    star.style.height = size;
+    star.style.left = Math.random() * 100 + 'vw';
+    star.style.top = Math.random() * 100 + 'vh';
+    
+    star.style.animationDelay = Math.random() * 5 + 's';
+    star.style.animationDuration = Math.random() * 3 + 2 + 's';
+    
+    star.style.zIndex = -2;
+    body.appendChild(star);
   }
 
-  document.getElementById('prev-video').style.display = isLatestMode ? 'block' : 'none';
-  document.getElementById('next-video').style.display = isLatestMode ? 'block' : 'none';
-  document.getElementById('back-to-latest').style.display = isLatestMode ? 'none' : 'block';
+  function createMeteor() {
+    if (Math.random() < 0.3) return;
 
-  const sheetContainer = document.getElementById('sheet-music-container');
-  if (sheetUrl && sheetUrl.trim() !== '') {
-    sheetContainer.innerHTML = `
-      <a href="${sheetUrl}" download target="_blank">
-        <button style="padding: 10px 25px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #d29922; color: #111; border: none; border-radius: 5px;">
-          下載樂譜 (PDF)
-        </button>
-      </a>
+    const meteor = document.createElement('div');
+    meteor.className = 'meteor';
+    
+    meteor.style.left = Math.random() * 70 + 'vw';
+    meteor.style.top = Math.random() * 50 + 'vh';
+    meteor.style.animationDuration = Math.random() * 1 + 0.5 + 's';
+
+    body.appendChild(meteor);
+
+    meteor.addEventListener('animationend', () => {
+      meteor.remove();
+    });
+  }
+
+  setInterval(createMeteor, Math.random() * 4000 + 3000); 
+
+  // === 播放器與邏輯系統 ===
+  let latestVideos = [];
+  let currentVidIndex = 0;
+
+  function loadPlayer(title, youtubeId, sheetUrl, isLatestMode = false) {
+    document.getElementById('player-title').innerText = title;
+    const videoContainer = document.getElementById('video-container');
+
+    if (youtubeId && youtubeId.trim() !== '') {
+      const autoplayParam = isLatestMode ? "" : "?autoplay=1";
+      videoContainer.innerHTML = `
+        <iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${youtubeId}${autoplayParam}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+      `;
+    } else {
+      videoContainer.innerHTML = ''; 
+    }
+
+    document.getElementById('prev-video').style.display = isLatestMode ? 'block' : 'none';
+    document.getElementById('next-video').style.display = isLatestMode ? 'block' : 'none';
+    document.getElementById('back-to-latest').style.display = isLatestMode ? 'none' : 'block';
+
+    const sheetContainer = document.getElementById('sheet-music-container');
+    if (sheetUrl && sheetUrl.trim() !== '') {
+      sheetContainer.innerHTML = `
+        <a href="${sheetUrl}" download target="_blank">
+          <button style="padding: 10px 25px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #d29922; color: #111; border: none; border-radius: 5px;">
+            下載樂譜 (PDF)
+          </button>
+        </a>
+      `;
+      sheetContainer.style.display = 'block';
+    } else {
+      sheetContainer.innerHTML = '';
+      sheetContainer.style.display = 'none';
+    }
+  }
+
+  function playAll() {
+    document.getElementById('player-title').innerText = "狼的格律 - 隨機連續播放";
+    const videoContainer = document.getElementById('video-container');
+    
+    const allSongBtns = document.querySelectorAll('.play-song-btn');
+    let videoIds = [];
+    allSongBtns.forEach(btn => {
+      const id = btn.getAttribute('data-youtube');
+      if(id && id.trim() !== '') {
+        videoIds.push(id.trim());
+      }
+    });
+
+    if(videoIds.length === 0) {
+      videoContainer.innerHTML = "目前沒有可用的影像紀錄。";
+      return;
+    }
+
+    // Fisher-Yates Shuffle
+    for (let i = videoIds.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [videoIds[i], videoIds[j]] = [videoIds[j], videoIds[i]];
+    }
+
+    const firstVideo = videoIds[0];
+    const playlistString = videoIds.join(',');
+
+    videoContainer.innerHTML = `
+      <iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${firstVideo}?autoplay=1&playlist=${playlistString}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
     `;
-    sheetContainer.style.display = 'block';
-  } else {
+
+    document.getElementById('prev-video').style.display = 'none';
+    document.getElementById('next-video').style.display = 'none';
+    document.getElementById('back-to-latest').style.display = 'block';
+    
+    const sheetContainer = document.getElementById('sheet-music-container');
     sheetContainer.innerHTML = '';
     sheetContainer.style.display = 'none';
-  }
-}
 
-// 就地抓取領地資料庫，執行洗牌並連續播放
-function playAll() {
-  document.getElementById('player-title').innerText = "狼的格律 - 隨機連續播放";
-  const videoContainer = document.getElementById('video-container');
-  
-  // 1. 蒐集陣地內所有的 YouTube ID
-  const allSongBtns = document.querySelectorAll('.play-song-btn');
-  let videoIds = [];
-  allSongBtns.forEach(btn => {
-    const id = btn.getAttribute('data-youtube');
-    if(id && id.trim() !== '') {
-      videoIds.push(id.trim());
-    }
-  });
-
-  if(videoIds.length === 0) {
-    videoContainer.innerHTML = "目前沒有可用的影像紀錄。";
-    return;
+    document.getElementById('player-title').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  // 2. 執行陣列洗牌 (Fisher-Yates Shuffle 演算法)
-  for (let i = videoIds.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [videoIds[i], videoIds[j]] = [videoIds[j], videoIds[i]];
+  function renderLatestVideo() {
+    if(latestVideos.length === 0) return;
+    const videoData = latestVideos[currentVidIndex];
+    const videoId = videoData.link.split('v=')[1];
+    loadPlayer("最新發布", videoId, "", true);
   }
 
-  // 3. 提取首發目標，並將其餘目標串接成自訂播放清單
-  const firstVideo = videoIds[0];
-  const playlistString = videoIds.join(',');
+  const channelId = 'UCqdp7Moy1guJ1UHCocdKFWQ'; 
+  const rssUrl = encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
+  const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`;
 
-  // 透過 playlist 參數強制 YouTube 按照我們洗好的順序連續播放
-  videoContainer.innerHTML = `
-    <iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${firstVideo}?autoplay=1&playlist=${playlistString}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-  `;
+  fetch(apiUrl)
+    .then(res => res.json())
+    .then(data => {
+      if(data.items && data.items.length > 0) {
+        latestVideos = data.items.slice(0, 3);
+        renderLatestVideo();
+      }
+    });
 
-  document.getElementById('prev-video').style.display = 'none';
-  document.getElementById('next-video').style.display = 'none';
-  document.getElementById('back-to-latest').style.display = 'block';
-  
-  const sheetContainer = document.getElementById('sheet-music-container');
-  sheetContainer.innerHTML = '';
-  sheetContainer.style.display = 'none';
-
-  document.getElementById('player-title').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-  
-
-function renderLatestVideo() {
-  if(latestVideos.length === 0) return;
-  const videoData = latestVideos[currentVidIndex];
-  const videoId = videoData.link.split('v=')[1];
-  loadPlayer("最新發布", videoId, "", true);
-}
-
-const channelId = 'UCqdp7Moy1guJ1UHCocdKFWQ'; 
-const rssUrl = encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
-const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`;
-
-fetch(apiUrl)
-  .then(res => res.json())
-  .then(data => {
-    if(data.items && data.items.length > 0) {
-      latestVideos = data.items.slice(0, 3);
-      renderLatestVideo();
-    }
-  });
-
-document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('prev-video').addEventListener('click', () => {
     if(latestVideos.length > 0) {
       currentVidIndex = (currentVidIndex - 1 + latestVideos.length) % latestVideos.length;
@@ -277,7 +367,6 @@ document.addEventListener("DOMContentLoaded", () => {
     renderLatestVideo();
   });
 
-  // 綁定「播放全部」按鈕
   document.getElementById('play-all-btn').addEventListener('click', () => {
     playAll();
   });
