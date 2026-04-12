@@ -1,0 +1,20 @@
+---
+layout: default
+---
+<h1>{{ page.title }}</h1>
+<p>作曲: {{ page.composer }}</p>
+
+{% if page.youtube_id %}
+<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ page.youtube_id }}" frameborder="0" allowfullscreen></iframe>
+{% endif %}
+
+{% if page.sheet_music %}
+<br><br>
+<a href="{{ page.sheet_music }}" download>
+  <button style="padding: 10px 20px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #333; color: white; border: none;">下載樂譜 (PDF)</button>
+</a>
+{% endif %}
+
+<div style="margin-top: 20px;">
+  {{ content }}
+</div>
