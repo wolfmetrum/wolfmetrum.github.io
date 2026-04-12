@@ -23,6 +23,9 @@ title: 狼的格律 Wolf Metrum
     font-family: sans-serif;
   }
 
+  /* 強制擊碎主題預設的圖片白底 */
+  img { background-color: transparent !important; }
+
   /* 文字與視覺元件適應暗色環境 */
   h1, h2, h3 { color: #ffffff; }
   hr { border-color: #1f2937; }
@@ -43,9 +46,15 @@ title: 狼的格律 Wolf Metrum
   <a href="{{ '/' | relative_url }}" style="display: block; margin-right: 20px; text-decoration: none;">
     <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Wolf Metrum Logo" style="max-width: 120px; height: auto; display: block;">
   </a>
-  <a href="{{ '/' | relative_url }}" style="text-decoration: none; color: inherit;">
-    <h1 style="margin: 0; font-size: 2.5em; font-weight: bold;">狼的格律 Wolf Metrum</h1>
-  </a>
+  <div style="display: flex; flex-direction: column; justify-content: center;">
+    <div style="display: flex; align-items: baseline; flex-wrap: wrap;">
+      <a href="{{ '/' | relative_url }}" style="text-decoration: none; color: inherit;">
+        <h1 style="margin: 0; font-size: 2.5em; font-weight: bold;">狼的格律 Wolf Metrum</h1>
+      </a>
+      <span style="color: #8b949e; margin-left: 15px; font-size: 1.1em; font-weight: bold;">「讓未馴的靈魂，臣服於恩典的格律。」</span>
+    </div>
+    <span style="color: #d29922; margin-top: 8px; font-size: 0.95em; line-height: 1.4;">豺狼必與綿羊羔同居，豹子與山羊羔同臥，少壯獅子與牛犢並肥畜同群，小孩子要牽引牠們。 －以賽亞書11:6</span>
+  </div>
 </div>
 
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
@@ -89,6 +98,15 @@ title: 狼的格律 Wolf Metrum
   {% endfor %}
 </ul>
 
+<footer style="margin-top: 60px; padding-top: 30px; border-top: 1px solid #1f2937; text-align: center; color: #8b949e; font-size: 0.95em; padding-bottom: 30px;">
+  <p style="margin: 0 0 10px 0;">聯絡狼的格律 Wolf Metrum：<a href="mailto:wolfmetrum@outlook.com" style="color: #58a6ff; text-decoration: none;">wolfmetrum@outlook.com</a></p>
+  <div style="display: flex; justify-content: center; gap: 20px; align-items: center; margin-top: 15px;">
+    <a href="https://www.youtube.com/channel/UCqdp7Moy1guJ1UHCocdKFWQ" target="_blank" style="color: #c9d1d9; text-decoration: none; font-size: 1.2em; font-weight: bold; transition: color 0.2s;" onmouseover="this.style.color='#ff4d4d'" onmouseout="this.style.color='#c9d1d9'">▶ YouTube</a>
+    <a href="{{ '/' | relative_url }}" style="color: #c9d1d9; text-decoration: none; font-size: 1.2em; font-weight: bold; transition: color 0.2s;" onmouseover="this.style.color='#1877F2'" onmouseout="this.style.color='#c9d1d9'">f Facebook</a>
+    <a href="{{ '/' | relative_url }}" style="color: #c9d1d9; text-decoration: none; font-size: 1.4em; font-weight: bold; transition: color 0.2s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#c9d1d9'">𝕏</a>
+  </div>
+</footer>
+
 <script>
 // === 狀態變數 ===
 let latestVideos = [];
@@ -100,7 +118,6 @@ function loadPlayer(title, youtubeId, sheetUrl, isLatestMode = false) {
   const videoContainer = document.getElementById('video-container');
 
   if (youtubeId && youtubeId.trim() !== '') {
-    // 只有在非首頁預設載入的情況下，點擊才自動播放
     const autoplayParam = isLatestMode ? "" : "?autoplay=1";
     videoContainer.innerHTML = `
       <iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${youtubeId}${autoplayParam}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
@@ -109,12 +126,10 @@ function loadPlayer(title, youtubeId, sheetUrl, isLatestMode = false) {
     videoContainer.innerHTML = ''; 
   }
 
-  // 控制輪播箭頭與返回按鈕的顯隱
   document.getElementById('prev-video').style.display = isLatestMode ? 'block' : 'none';
   document.getElementById('next-video').style.display = isLatestMode ? 'block' : 'none';
   document.getElementById('back-to-latest').style.display = isLatestMode ? 'none' : 'block';
 
-  // 處理樂譜按鈕
   const sheetContainer = document.getElementById('sheet-music-container');
   if (sheetUrl && sheetUrl.trim() !== '') {
     sheetContainer.innerHTML = `
@@ -131,7 +146,6 @@ function loadPlayer(title, youtubeId, sheetUrl, isLatestMode = false) {
   }
 }
 
-// 渲染當前選定的最新影片
 function renderLatestVideo() {
   if(latestVideos.length === 0) return;
   const videoData = latestVideos[currentVidIndex];
@@ -139,7 +153,6 @@ function renderLatestVideo() {
   loadPlayer("最新發布", videoId, "", true);
 }
 
-// === 初始載入：抓取最新影片 ===
 const channelId = 'UCqdp7Moy1guJ1UHCocdKFWQ'; 
 const rssUrl = encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
 const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`;
@@ -153,10 +166,7 @@ fetch(apiUrl)
     }
   });
 
-// === 綁定互動動作 ===
 document.addEventListener("DOMContentLoaded", () => {
-  
-  // 輪播按鈕邏輯
   document.getElementById('prev-video').addEventListener('click', () => {
     if(latestVideos.length > 0) {
       currentVidIndex = (currentVidIndex - 1 + latestVideos.length) % latestVideos.length;
@@ -171,13 +181,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 返回最新發布按鈕邏輯
   document.getElementById('back-to-latest').addEventListener('click', () => {
     currentVidIndex = 0;
     renderLatestVideo();
   });
 
-  // 目錄歌曲點擊邏輯
   document.querySelectorAll('.play-song-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       const title = this.getAttribute('data-title');
@@ -189,7 +197,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // === 自動分類與過濾系統 ===
   const songItems = document.querySelectorAll('.song-item');
   const filterContainer = document.getElementById('filter-buttons');
   const allTags = new Set();
