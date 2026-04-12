@@ -44,19 +44,18 @@ title: 狼的格律 Wolf Metrum
   .main-content-wrapper { max-width: 1000px; margin: 0 auto; padding: 20px; position: relative; z-index: 10; }
   img { background-color: transparent !important; }
   h1, h2, h3 { color: #ffffff; }
-  hr { border-color: #1f2937; margin: 30px 0; }
+  hr { border-color: #1f2937; margin: 20px 0; } /* 縮小分隔線間隙 */
   
-  /* === 1. 重構響應式大門陣型 === */
+  /* === 1. 響應式大門陣型 === */
   .header-container {
     display: flex;
     flex-direction: column;
-    margin-bottom: 40px;
+    margin-bottom: 25px; /* 縮小與下方區塊的間隙 */
     border-bottom: 2px solid #1f2937;
-    padding-bottom: 20px;
-    gap: 10px; /* 控制行距 */
+    padding-bottom: 15px;
+    gap: 8px; 
   }
   
-  /* 第一行：Logo + 主標題 (強制不換行，自動縮放) */
   .header-top-row {
     display: flex;
     align-items: center;
@@ -70,13 +69,12 @@ title: 狼的格律 Wolf Metrum
   .header-title {
     margin: 0;
     font-weight: bold;
-    font-size: clamp(1.2em, 5vw, 2.5em); /* 視窗縮小時字體跟著收縮 */
+    font-size: clamp(1.2em, 5vw, 2.5em); 
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  /* 第二行：副標題 (強制不換行) */
   .header-subtitle {
     color: #8b949e;
     font-weight: bold;
@@ -87,7 +85,6 @@ title: 狼的格律 Wolf Metrum
     width: 100%;
   }
 
-  /* 第三行：經文 (最多兩行，自動截斷) */
   .header-verse {
     color: #d29922;
     font-size: clamp(0.8em, 2.5vw, 0.95em);
@@ -100,59 +97,94 @@ title: 狼的格律 Wolf Metrum
     width: 100%;
   }
 
-  /* === 2. 歌曲清單與情報強制截斷 === */
+  /* === 2. 歌曲清單與情報強制截斷 (採用 Grid 網格系統) === */
   .song-item { 
-    border-bottom: 1px solid #1f2937 !important; padding-bottom: 10px; margin-bottom: 15px; 
-    display: flex; flex-wrap: wrap; align-items: baseline; gap: 5px 0;
+    border-bottom: 1px solid #1f2937 !important; 
+    padding-bottom: 6px; /* 收緊下方間隙 */
+    margin-bottom: 8px; /* 收緊物件間隙 */
+    display: grid;
+    grid-template-columns: auto 1fr; /* 兩欄式：左邊按鈕，右邊情報 */
+    align-items: center;
+    gap: 10px 15px;
   }
   .play-song-btn { 
-    cursor: pointer; text-decoration: underline; text-underline-offset: 4px; transition: all 0.2s; 
-    display: inline-block; padding: 2px 8px; font-size: 1.2em; font-weight: bold; margin-right: 15px; 
+    cursor: pointer; text-decoration: none; transition: all 0.2s; 
+    display: inline-block; padding: 4px 10px; font-size: 1.1em; font-weight: bold; 
+    grid-column: 1 / 2; /* 指定在第一欄 */
   }
   
-  /* 情報區域容器 */
+  /* 情報區域容器 (Grid 內部再用 Flex，強制單行) */
   .song-info { 
-    color: #8b949e; font-size: 0.85em; 
-    display: flex; flex-wrap: wrap; align-items: center; gap: 8px 15px;
-    flex: 1 1 200px; min-width: 0;
+    color: #8b949e; font-size: 0.8em; 
+    display: flex; flex-wrap: nowrap; align-items: center; gap: 12px;
+    grid-column: 2 / 3; /* 指定在第二欄 */
+    min-width: 0; /* 允許內部元件收縮 */
   }
   
-  /* 作曲/作詞標籤 */
-  .info-tag { white-space: nowrap; flex: 0 0 auto; }
-  
-  /* 備註：強制單行，放不下自動用 ... 截斷 */
-  .song-note {
-    flex: 1 1 100px; /* 允許縮放並填滿剩餘空間，空間不足時自動折到下一行 */
-    max-width: 100%; 
-    white-space: nowrap; /* 絕對不換行 */
+  /* 作曲/作詞/備註標籤的通用截斷裝甲 */
+  .info-tag { 
+    white-space: nowrap; 
     overflow: hidden; 
-    text-overflow: ellipsis; /* 斬斷點 */
-    display: block;
+    text-overflow: ellipsis;
   }
+
+  /* 分配比例：備註區塊可以佔據較多空間 */
+  .song-composer { flex: 0 1 auto; }
+  .song-lyricist { flex: 0 1 auto; }
+  .song-note { flex: 1 1 50px; }
 
   @media (max-width: 600px) {
-    .song-info { width: 100%; margin-left: 8px; font-size: 0.75em; }
+    .song-item {
+      grid-template-columns: 1fr; /* 手機版改為單欄，上下排列 */
+      gap: 4px 0;
+    }
+    .play-song-btn { grid-column: 1 / -1; justify-self: start; }
+    .song-info { 
+      grid-column: 1 / -1; 
+      width: 100%; 
+      margin-left: 5px; 
+      font-size: 0.7em; 
+    }
   }
 
-  /* 視覺武裝 */
-  .style-elegant { color: #d29922; text-shadow: 0 0 8px rgba(210, 153, 34, 0.4); border-left: 3px solid #d29922; }
-  .style-elegant:hover { color: #ffd700; text-shadow: 0 0 12px rgba(255, 215, 0, 0.8); background: rgba(210, 153, 34, 0.1); }
-  .style-classical { color: #e8dcc4; border: 1px solid rgba(232, 220, 196, 0.4); border-radius: 2px; }
+  /* 視覺武裝 (移除原本醜陋的底線，改用邊框) */
+  .style-elegant { color: #d29922; border: 1px solid #d29922; border-radius: 4px; box-shadow: 0 0 5px rgba(210, 153, 34, 0.3); }
+  .style-elegant:hover { color: #ffd700; box-shadow: 0 0 10px rgba(255, 215, 0, 0.6); background: rgba(210, 153, 34, 0.1); }
+  .style-classical { color: #e8dcc4; border: 1px solid rgba(232, 220, 196, 0.4); border-radius: 4px; }
   .style-classical:hover { color: #ffffff; background: rgba(232, 220, 196, 0.15); border-color: #e8dcc4; }
-  .style-tech { color: #58a6ff; text-shadow: 0 0 5px rgba(88, 166, 255, 0.5); border: 1px solid #1f6feb; border-radius: 5px; box-shadow: 0 0 8px rgba(31, 111, 235, 0.3); }
-  .style-tech:hover { color: #79c0ff; box-shadow: 0 0 15px rgba(31, 111, 235, 0.8); background: rgba(31, 111, 235, 0.1); }
-  .style-default { color: #c9d1d9; }
+  .style-tech { color: #58a6ff; border: 1px solid #1f6feb; border-radius: 4px; box-shadow: 0 0 5px rgba(31, 111, 235, 0.3); }
+  .style-tech:hover { color: #79c0ff; box-shadow: 0 0 10px rgba(31, 111, 235, 0.8); background: rgba(31, 111, 235, 0.1); }
+  .style-default { color: #c9d1d9; border: 1px solid #30363d; border-radius: 4px; }
   .style-default:hover { color: #ffffff; background: #161b22; }
 
-  /* 按鈕視覺 */
-  .filter-btn { background: #161b22; color: #c9d1d9; border: 1px solid #30363d; padding: 5px 12px; margin-right: 10px; margin-bottom: 10px; cursor: pointer; border-radius: 4px; transition: 0.2s; }
+  /* === 3. 篩選標籤單行橫向滑動 === */
+  #filter-buttons-wrapper {
+    margin-bottom: 15px; /* 縮小間隙 */
+    width: 100%;
+    overflow-x: auto; /* 超出螢幕時允許橫向滑動 */
+    white-space: nowrap; /* 絕對不換行 */
+    -webkit-overflow-scrolling: touch; /* 讓手機滑動更順暢 */
+    /* 隱藏捲軸 */
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+  }
+  #filter-buttons-wrapper::-webkit-scrollbar { display: none; }
+
+  #filter-buttons {
+    display: inline-flex; /* 確保內部按鈕排成單行 */
+    gap: 10px;
+  }
+
+  .filter-btn { background: #161b22; color: #c9d1d9; border: 1px solid #30363d; padding: 5px 12px; cursor: pointer; border-radius: 4px; transition: 0.2s; flex: 0 0 auto; /* 確保按鈕不會被壓縮 */ }
   .filter-btn:hover { background: #30363d; color: #ffffff; }
   .filter-btn.active { background: #1f6feb; color: #ffffff; border-color: #1f6feb; font-weight: bold; }
-  #play-all-btn { background-color: #238636; color: #ffffff; border: 1px solid rgba(240, 246, 252, 0.1); padding: 5px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 0.9em; transition: 0.2s; }
+  
+  #play-all-btn { background-color: #238636; color: #ffffff; border: 1px solid rgba(240, 246, 252, 0.1); padding: 5px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 0.9em; transition: 0.2s; flex-shrink: 0; }
   #play-all-btn:hover { background-color: #2ea043; }
 
   /* 主控台標題附屬情報 */
-  .player-info-container { display: inline-flex; flex-wrap: wrap; gap: 10px; font-size: 0.55em; color: #8b949e; margin-left: 15px; font-weight: normal; vertical-align: middle; max-width: 100%; min-width: 0; }
+  .player-info-container { display: inline-flex; flex-wrap: nowrap; gap: 10px; font-size: 0.55em; color: #8b949e; margin-left: 15px; font-weight: normal; vertical-align: middle; max-width: 100%; min-width: 0; overflow: hidden; }
+  .player-info-container span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   @media (max-width: 600px) { .player-info-container { display: flex; margin-left: 0; margin-top: 8px; width: 100%; } }
 </style>
 
@@ -173,12 +205,12 @@ title: 狼的格律 Wolf Metrum
     <div class="header-verse">豺狼必與綿羊羔同居，豹子與山羊羔同臥，少壯獅子與牛犢並肥畜同群，小孩子要牽引牠們。 －以賽亞書11:6</div>
   </div>
 
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-    <h2 id="player-title" style="margin: 0; max-width: 100%;">最新發布</h2>
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+    <h2 id="player-title" style="margin: 0; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">最新發布</h2>
     <button id="back-to-latest" style="display: none; background: #1f2937; color: #c9d1d9; border: 1px solid #30363d; padding: 5px 10px; cursor: pointer; border-radius: 4px; flex-shrink: 0;">返回最新發布</button>
   </div>
 
-  <div id="player-wrapper" style="margin-bottom: 40px; text-align: center;">
+  <div id="player-wrapper" style="margin-bottom: 30px; text-align: center;">
     <div style="display: flex; align-items: center; justify-content: center; gap: 15px;">
       <button id="prev-video" style="background: none; border: none; font-size: 2em; cursor: pointer; color: #8b949e;">&#10094;</button>
       <div id="video-container" style="flex-grow: 1; width: 100%; max-width: 800px; background: transparent; aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center;"></div>
@@ -189,13 +221,15 @@ title: 狼的格律 Wolf Metrum
 
   <hr>
 
-  <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 20px; margin-bottom: 15px;">
-    <h2 style="margin: 0;">歌曲目錄</h2>
+  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: nowrap; gap: 10px; margin-bottom: 15px;">
+    <h2 style="margin: 0; white-space: nowrap;">歌曲目錄</h2>
     <button id="play-all-btn">▶ 播放全部 (隨機)</button>
   </div>
 
-  <div id="filter-buttons" style="margin-bottom: 20px;">
-    <button class="filter-btn active" data-filter="all">全部展示</button>
+  <div id="filter-buttons-wrapper">
+    <div id="filter-buttons">
+      <button class="filter-btn active" data-filter="all">全部展示</button>
+      </div>
   </div>
 
   <ul id="song-list" style="list-style: none; padding: 0;">
@@ -212,9 +246,9 @@ title: 狼的格律 Wolf Metrum
             {{ song.title }}
           </a>
           <div class="song-info">
-            {% if song.composer %}<span class="info-tag">🎶{{ song.composer }}</span>{% endif %}
-            {% if song.lyricist %}<span class="info-tag">🧾{{ song.lyricist }}</span>{% endif %}
-            {% if song.note %}<span class="info-tag song-note" title="{{ song.note }}">🐺{{ song.note }}</span>{% endif %}
+            {% if song.composer %}<span class="info-tag song-composer" title="作曲: {{ song.composer }}">🎶{{ song.composer }}</span>{% endif %}
+            {% if song.lyricist %}<span class="info-tag song-lyricist" title="作詞: {{ song.lyricist }}">🧾{{ song.lyricist }}</span>{% endif %}
+            {% if song.note %}<span class="info-tag song-note" title="備註: {{ song.note }}">🐺{{ song.note }}</span>{% endif %}
           </div>
         </li>
       {% endif %}
@@ -240,16 +274,16 @@ title: 狼的格律 Wolf Metrum
             {{ song.title }}
           </a>
           <div class="song-info">
-            {% if song.composer %}<span class="info-tag">🎶{{ song.composer }}</span>{% endif %}
-            {% if song.lyricist %}<span class="info-tag">🧾{{ song.lyricist }}</span>{% endif %}
-            {% if song.note %}<span class="info-tag song-note" title="{{ song.note }}">🐺{{ song.note }}</span>{% endif %}
+            {% if song.composer %}<span class="info-tag song-composer" title="作曲: {{ song.composer }}">🎶{{ song.composer }}</span>{% endif %}
+            {% if song.lyricist %}<span class="info-tag song-lyricist" title="作詞: {{ song.lyricist }}">🧾{{ song.lyricist }}</span>{% endif %}
+            {% if song.note %}<span class="info-tag song-note" title="備註: {{ song.note }}">🐺{{ song.note }}</span>{% endif %}
           </div>
         </li>
       {% endunless %}
     {% endfor %}
   </ul>
 
-  <footer style="margin-top: 60px; padding-top: 30px; border-top: 1px solid #1f2937; text-align: center; color: #8b949e; font-size: 0.95em; padding-bottom: 30px;">
+  <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #1f2937; text-align: center; color: #8b949e; font-size: 0.95em; padding-bottom: 20px;">
     <p style="margin: 0 0 10px 0;">聯絡狼的格律 Wolf Metrum：<a href="mailto:wolfmetrum@outlook.com" style="color: #58a6ff; text-decoration: none;">wolfmetrum@outlook.com</a></p>
     <div style="display: flex; justify-content: center; gap: 20px; align-items: center; margin-top: 15px;">
       <a href="https://www.youtube.com/channel/UCqdp7Moy1guJ1UHCocdKFWQ" target="_blank" style="color: #c9d1d9; text-decoration: none; font-size: 1.2em; font-weight: bold; transition: color 0.2s;" onmouseover="this.style.color='#ff4d4d'" onmouseout="this.style.color='#c9d1d9'">▶ YouTube</a>
@@ -438,9 +472,13 @@ document.addEventListener("DOMContentLoaded", () => {
       this.classList.add('active');
       const targetTag = this.getAttribute('data-filter');
       songItems.forEach(item => {
-        if (targetTag === 'all') { item.style.display = 'flex'; } else {
+        if (targetTag === 'all') { item.style.display = 'grid'; } else {
           const itemTags = item.getAttribute('data-tags').split(',').map(t => t.trim());
-          if (itemTags.includes(targetTag)) { item.style.display = 'flex'; } else { item.style.display = 'none'; }
+          if (itemTags.includes(targetTag)) { 
+            // 恢復為手機版/電腦版正確的 display 屬性
+            if(window.innerWidth <= 600) { item.style.display = 'grid'; } 
+            else { item.style.display = 'grid'; } 
+          } else { item.style.display = 'none'; }
         }
       });
     });
