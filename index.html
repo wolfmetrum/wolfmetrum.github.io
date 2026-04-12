@@ -44,13 +44,13 @@ title: 狼的格律 Wolf Metrum
   .main-content-wrapper { max-width: 1000px; margin: 0 auto; padding: 20px; position: relative; z-index: 10; }
   img { background-color: transparent !important; }
   h1, h2, h3 { color: #ffffff; }
-  hr { border-color: #1f2937; margin: 20px 0; } /* 縮小分隔線間隙 */
+  hr { border-color: #1f2937; margin: 20px 0; }
   
   /* === 1. 響應式大門陣型 === */
   .header-container {
     display: flex;
     flex-direction: column;
-    margin-bottom: 25px; /* 縮小與下方區塊的間隙 */
+    margin-bottom: 25px;
     border-bottom: 2px solid #1f2937;
     padding-bottom: 15px;
     gap: 8px; 
@@ -61,27 +61,26 @@ title: 狼的格律 Wolf Metrum
     align-items: center;
     flex-wrap: nowrap;
     width: 100%;
-    gap: 15px;
+    gap: 12px;
   }
-  .header-logo-link { flex: 0 0 clamp(40px, 12vw, 100px); }
+  .header-logo-link { flex: 0 0 clamp(35px, 10vw, 100px); } /* 讓Logo能縮得更小 */
   .header-logo-link img { width: 100%; height: auto; display: block; }
   .header-title-link { flex: 1; min-width: 0; text-decoration: none; color: inherit; }
+  
+  /* 標題強制不換行，且解除截斷限制，依靠 clamp 極限縮小 */
   .header-title {
     margin: 0;
     font-weight: bold;
-    font-size: clamp(1.2em, 5vw, 2.5em); 
+    font-size: clamp(0.9em, 4.5vw, 2.5em); 
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
+  /* 副標題強制不換行，解除截斷限制 */
   .header-subtitle {
     color: #8b949e;
     font-weight: bold;
-    font-size: clamp(0.9em, 3.5vw, 1.1em);
+    font-size: clamp(0.8em, 3.5vw, 1.1em);
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     width: 100%;
   }
 
@@ -100,54 +99,38 @@ title: 狼的格律 Wolf Metrum
   /* === 2. 歌曲清單與情報強制截斷 (採用 Grid 網格系統) === */
   .song-item { 
     border-bottom: 1px solid #1f2937 !important; 
-    padding-bottom: 6px; /* 收緊下方間隙 */
-    margin-bottom: 8px; /* 收緊物件間隙 */
+    padding-bottom: 6px;
+    margin-bottom: 8px; 
     display: grid;
-    grid-template-columns: auto 1fr; /* 兩欄式：左邊按鈕，右邊情報 */
+    grid-template-columns: auto 1fr;
     align-items: center;
     gap: 10px 15px;
   }
   .play-song-btn { 
     cursor: pointer; text-decoration: none; transition: all 0.2s; 
     display: inline-block; padding: 4px 10px; font-size: 1.1em; font-weight: bold; 
-    grid-column: 1 / 2; /* 指定在第一欄 */
+    grid-column: 1 / 2;
   }
   
-  /* 情報區域容器 (Grid 內部再用 Flex，強制單行) */
   .song-info { 
     color: #8b949e; font-size: 0.8em; 
     display: flex; flex-wrap: nowrap; align-items: center; gap: 12px;
-    grid-column: 2 / 3; /* 指定在第二欄 */
-    min-width: 0; /* 允許內部元件收縮 */
+    grid-column: 2 / 3;
+    min-width: 0; 
   }
   
-  /* 作曲/作詞/備註標籤的通用截斷裝甲 */
-  .info-tag { 
-    white-space: nowrap; 
-    overflow: hidden; 
-    text-overflow: ellipsis;
-  }
-
-  /* 分配比例：備註區塊可以佔據較多空間 */
+  .info-tag { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .song-composer { flex: 0 1 auto; }
   .song-lyricist { flex: 0 1 auto; }
   .song-note { flex: 1 1 50px; }
 
   @media (max-width: 600px) {
-    .song-item {
-      grid-template-columns: 1fr; /* 手機版改為單欄，上下排列 */
-      gap: 4px 0;
-    }
+    .song-item { grid-template-columns: 1fr; gap: 4px 0; }
     .play-song-btn { grid-column: 1 / -1; justify-self: start; }
-    .song-info { 
-      grid-column: 1 / -1; 
-      width: 100%; 
-      margin-left: 5px; 
-      font-size: 0.7em; 
-    }
+    .song-info { grid-column: 1 / -1; width: 100%; margin-left: 5px; font-size: 0.7em; }
   }
 
-  /* 視覺武裝 (移除原本醜陋的底線，改用邊框) */
+  /* 視覺武裝 */
   .style-elegant { color: #d29922; border: 1px solid #d29922; border-radius: 4px; box-shadow: 0 0 5px rgba(210, 153, 34, 0.3); }
   .style-elegant:hover { color: #ffd700; box-shadow: 0 0 10px rgba(255, 215, 0, 0.6); background: rgba(210, 153, 34, 0.1); }
   .style-classical { color: #e8dcc4; border: 1px solid rgba(232, 220, 196, 0.4); border-radius: 4px; }
@@ -157,25 +140,46 @@ title: 狼的格律 Wolf Metrum
   .style-default { color: #c9d1d9; border: 1px solid #30363d; border-radius: 4px; }
   .style-default:hover { color: #ffffff; background: #161b22; }
 
-  /* === 3. 篩選標籤單行橫向滑動 === */
+  /* === 3. 篩選標籤單行橫向滑動與指示器 === */
+  .filter-container {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  /* 明確文字指示器 */
+  .filter-hint {
+    font-size: 0.75em;
+    color: #8b949e;
+    margin-bottom: 8px;
+    display: block;
+    font-weight: normal;
+  }
+
   #filter-buttons-wrapper {
-    margin-bottom: 15px; /* 縮小間隙 */
     width: 100%;
-    overflow-x: auto; /* 超出螢幕時允許橫向滑動 */
-    white-space: nowrap; /* 絕對不換行 */
-    -webkit-overflow-scrolling: touch; /* 讓手機滑動更順暢 */
-    /* 隱藏捲軸 */
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
     scrollbar-width: none; 
     -ms-overflow-style: none;
+    padding-right: 30px; /* 留出陰影空間 */
   }
   #filter-buttons-wrapper::-webkit-scrollbar { display: none; }
 
-  #filter-buttons {
-    display: inline-flex; /* 確保內部按鈕排成單行 */
-    gap: 10px;
+  /* 視覺陰影暗示 (覆蓋在最右側，表示還有內容) */
+  .filter-container::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 25px; /* 避開上方的文字指示器 */
+    width: 40px;
+    background: linear-gradient(to right, rgba(5,9,20,0), rgba(5,9,20,1));
+    pointer-events: none;
   }
 
-  .filter-btn { background: #161b22; color: #c9d1d9; border: 1px solid #30363d; padding: 5px 12px; cursor: pointer; border-radius: 4px; transition: 0.2s; flex: 0 0 auto; /* 確保按鈕不會被壓縮 */ }
+  #filter-buttons { display: inline-flex; gap: 10px; }
+  .filter-btn { background: #161b22; color: #c9d1d9; border: 1px solid #30363d; padding: 5px 12px; cursor: pointer; border-radius: 4px; transition: 0.2s; flex: 0 0 auto; }
   .filter-btn:hover { background: #30363d; color: #ffffff; }
   .filter-btn.active { background: #1f6feb; color: #ffffff; border-color: #1f6feb; font-weight: bold; }
   
@@ -226,10 +230,13 @@ title: 狼的格律 Wolf Metrum
     <button id="play-all-btn">▶ 播放全部 (隨機)</button>
   </div>
 
-  <div id="filter-buttons-wrapper">
-    <div id="filter-buttons">
-      <button class="filter-btn active" data-filter="all">全部展示</button>
-      </div>
+  <div class="filter-container">
+    <span class="filter-hint">⟷ 左右滑動標籤以篩選曲目</span>
+    <div id="filter-buttons-wrapper">
+      <div id="filter-buttons">
+        <button class="filter-btn active" data-filter="all">全部展示</button>
+        </div>
+    </div>
   </div>
 
   <ul id="song-list" style="list-style: none; padding: 0;">
@@ -475,7 +482,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (targetTag === 'all') { item.style.display = 'grid'; } else {
           const itemTags = item.getAttribute('data-tags').split(',').map(t => t.trim());
           if (itemTags.includes(targetTag)) { 
-            // 恢復為手機版/電腦版正確的 display 屬性
             if(window.innerWidth <= 600) { item.style.display = 'grid'; } 
             else { item.style.display = 'grid'; } 
           } else { item.style.display = 'none'; }
