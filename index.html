@@ -3,16 +3,24 @@ layout: default
 title: 首頁
 ---
 
-<div style="text-align: center; margin-bottom: 30px;">
-  <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Wolf Metrum Logo" style="max-width: 250px; height: auto;">
+<div style="display: flex; align-items: center; margin-bottom: 40px; border-bottom: 2px solid #eee; padding-bottom: 20px;">
+  <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Wolf Metrum Logo" style="max-width: 120px; height: auto; margin-right: 20px;">
+  <h1 style="margin: 0; font-size: 2.5em; font-weight: bold;">狼的格律 Wolf Metrum</h1>
 </div>
 
 <h2>最新發布</h2>
-<div id="latest-video">鎖定目標中...</div>
+
+<div style="display: flex; align-items: center; justify-content: center; margin-bottom: 30px; gap: 15px;">
+  <button id="prev-video" style="background: none; border: none; font-size: 2em; cursor: pointer; color: #555;">&#10094;</button>
+  <div id="video-container" style="flex-grow: 1; width: 100%; max-width: 800px; background: #111; aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; color: #fff;">
+    鎖定目標中...
+  </div>
+  <button id="next-video" style="background: none; border: none; font-size: 2em; cursor: pointer; color: #555;">&#10095;</button>
+</div>
 
 <hr style="margin: 30px 0;">
 
-<h2>狼的格律 - 歌曲目錄</h2>
+<h2>歌曲目錄</h2>
 
 <div id="filter-buttons" style="margin-bottom: 20px;">
   <button class="filter-btn" data-filter="all" style="margin-right: 10px; padding: 5px 10px; cursor: pointer; font-weight: bold;">全部展示</button>
@@ -28,22 +36,51 @@ title: 首頁
 </ul>
 
 <script>
-// === YouTube 最新影片連動 ===
+// === YouTube 最新三部影片輪播系統 ===
 const channelId = 'UCqdp7Moy1guJ1UHCocdKFWQ'; 
 const rssUrl = encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
 const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`;
+
+let latestVideos = [];
+let currentVidIndex = 0;
 
 fetch(apiUrl)
   .then(res => res.json())
   .then(data => {
     if(data.items && data.items.length > 0) {
-      const latestVideo = data.items[0];
-      const videoId = latestVideo.link.split('v=')[1];
-      document.getElementById('latest-video').innerHTML = `
-        <iframe style="width: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
-      `;
+      // 擷取最新的三部影片 ID
+      latestVideos = data.items.slice(0, 3).map(item => item.link.split('v=')[1]);
+      renderVideo();
+    } else {
+      document.getElementById('video-container').innerHTML = "目前沒有獵物蹤跡。";
     }
   });
+
+function renderVideo() {
+  if(latestVideos.length === 0) return;
+  const videoId = latestVideos[currentVidIndex];
+  document.getElementById('video-container').innerHTML = `
+    <iframe style="width: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
+  `;
+}
+
+// 左右切換行動邏輯
+document.getElementById('prev-video').addEventListener('click', () => {
+  if(latestVideos.length > 0) {
+    // 循環切換：當索引小於0時，回到最後一個
+    currentVidIndex = (currentVidIndex - 1 + latestVideos.length) % latestVideos.length;
+    renderVideo();
+  }
+});
+
+document.getElementById('next-video').addEventListener('click', () => {
+  if(latestVideos.length > 0) {
+    // 循環切換：當索引超過長度時，回到第一個
+    currentVidIndex = (currentVidIndex + 1) % latestVideos.length;
+    renderVideo();
+  }
+});
+
 
 // === 目錄自動分類與過濾系統 ===
 document.addEventListener("DOMContentLoaded", () => {
@@ -51,7 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const filterContainer = document.getElementById('filter-buttons');
   const allTags = new Set();
 
-  // 1. 掃描並收集所有存在的標籤
   songItems.forEach(item => {
     const tags = item.getAttribute('data-tags').split(',');
     tags.forEach(tag => {
@@ -60,7 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 2. 根據收集到的標籤，鑄造按鈕
   allTags.forEach(tag => {
     const btn = document.createElement('button');
     btn.className = 'filter-btn';
@@ -72,16 +107,13 @@ document.addEventListener("DOMContentLoaded", () => {
     filterContainer.appendChild(btn);
   });
 
-  // 3. 賦予按鈕篩選的行動邏輯
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', function() {
-      // 切換按鈕的視覺焦點
       document.querySelectorAll('.filter-btn').forEach(b => b.style.fontWeight = 'normal');
       this.style.fontWeight = 'bold';
       
       const targetTag = this.getAttribute('data-filter');
 
-      // 執行顯隱過濾
       songItems.forEach(item => {
         if (targetTag === 'all') {
           item.style.display = 'list-item';
