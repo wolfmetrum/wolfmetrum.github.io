@@ -4,14 +4,13 @@ title: 狼的格律 Wolf Metrum
 ---
 
 <style>
-  /* === 終極抹除系統預設主題 (Primer) 的白色裝甲與邊界 === */
+  /* === 終極抹除系統預設空白 === */
   header.site-header, .site-header, .page-header { display: none !important; }
-  .my-5, .markdown-body, .container-lg, .page-content { margin-top: 0 !important; padding-top: 0 !important; max-width: none !important; }
-  .markdown-body { background-color: transparent !important; color: inherit !important; font-family: inherit !important; }
+  .my-5, .markdown-body, .container-lg, .page-content { margin-top: 0 !important; padding-top: 0 !important; }
   
-  /* 領地環境：確保滿版深色星空 */
+  /* 領地環境：確保滿版與消除邊界 */
   body {
-    background-color: #050914 !important;
+    background-color: #050914;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -47,7 +46,7 @@ title: 狼的格律 Wolf Metrum
   h1, h2, h3 { color: #ffffff; }
   hr { border-color: #1f2937; margin: 20px 0; }
   
-  /* === 1. 響應式大門陣型 (流體縮放，拒絕截斷) === */
+  /* === 1. 響應式大門陣型 (終極防截斷版) === */
   .header-container {
     display: flex;
     flex-direction: column;
@@ -64,30 +63,36 @@ title: 狼的格律 Wolf Metrum
     width: 100%;
     gap: 12px;
   }
-  .header-logo-link { flex: 0 0 clamp(40px, 12vw, 100px); }
-  .header-logo-link img { width: 100%; height: auto; display: block; }
-  .header-title-link { flex: 1 1 auto; text-decoration: none; color: inherit; overflow: visible; }
   
-  /* 流體字型：強制一行，依照螢幕寬度比例完美收縮 */
+  /* Logo 在小螢幕極限縮小，讓出空間給文字 */
+  .header-logo-link { flex: 0 0 clamp(30px, 8vw, 100px); }
+  .header-logo-link img { width: 100%; height: auto; display: block; }
+  
+  /* 標題連結容器 */
+  .header-title-link { flex: 0 1 auto; text-decoration: none; color: inherit; }
+  
+  /* 標題：拔除隱藏截斷，強制單行，依靠更激進的縮放系數適應 */
   .header-title {
     margin: 0;
     font-weight: bold;
-    font-size: min(5.5vw, 2.3em); 
+    font-size: clamp(12px, 4vw, 2.5em); 
     white-space: nowrap;
     letter-spacing: -0.5px;
   }
 
+  /* 副標題：強制單行 */
   .header-subtitle {
     color: #8b949e;
     font-weight: bold;
-    font-size: min(3.3vw, 1.1em);
+    font-size: clamp(10px, 3vw, 1.1em);
     white-space: nowrap;
-    margin-top: 4px;
+    width: 100%;
   }
 
+  /* 經文：最多兩行，放不下才省略 */
   .header-verse {
     color: #d29922;
-    font-size: min(2.8vw, 0.95em);
+    font-size: clamp(0.8em, 2.5vw, 0.95em);
     line-height: 1.4;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -95,10 +100,9 @@ title: 狼的格律 Wolf Metrum
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
-    margin-top: 5px;
   }
 
-  /* === 2. 歌曲清單與情報強制截斷 (採用 Grid 網格系統) === */
+  /* === 2. 歌曲清單與情報 === */
   .song-item { 
     border-bottom: 1px solid #1f2937 !important; 
     padding-bottom: 6px;
@@ -142,29 +146,62 @@ title: 狼的格律 Wolf Metrum
   .style-default { color: #c9d1d9; border: 1px solid #30363d; border-radius: 4px; }
   .style-default:hover { color: #ffffff; background: #161b22; }
 
-  /* === 3. 篩選標籤單行橫向滑動與智能指示器 === */
-  .filter-container { position: relative; margin-bottom: 20px; }
-  
-  .filter-hint {
-    font-size: 0.75em; color: #8b949e; margin-bottom: 8px;
-    display: none; font-weight: normal;
+  /* === 3. 篩選標籤單行橫向滑動與動畫指示器 === */
+  .filter-container {
+    position: relative;
+    margin-bottom: 20px;
   }
-  .filter-container.is-scrollable .filter-hint { display: block; }
+  
+  /* 動畫文字指示器 (顯眼藍色+水平浮動) */
+  .filter-hint {
+    font-size: 0.85em;
+    color: #58a6ff;
+    margin-bottom: 10px;
+    display: none; 
+    font-weight: bold;
+    animation: swipe-hint-anim 2s infinite ease-in-out;
+  }
+  
+  @keyframes swipe-hint-anim {
+    0% { opacity: 0.7; transform: translateX(0); }
+    50% { opacity: 1; transform: translateX(8px); }
+    100% { opacity: 0.7; transform: translateX(0); }
+  }
+
+  .filter-container.is-scrollable .filter-hint {
+    display: inline-block;
+  }
 
   #filter-buttons-wrapper {
-    width: 100%; overflow-x: auto; white-space: nowrap;
-    -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none;
-    padding-right: 0px; transition: padding 0.2s;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+    padding-right: 0px; 
+    transition: padding 0.2s;
   }
-  .filter-container.is-scrollable #filter-buttons-wrapper { padding-right: 30px; }
+  .filter-container.is-scrollable #filter-buttons-wrapper {
+    padding-right: 40px; /* 給右側漸層陰影留出空間 */
+  }
   #filter-buttons-wrapper::-webkit-scrollbar { display: none; }
 
+  /* 視覺陰影暗示 */
   .filter-container::after {
-    content: ''; position: absolute; right: 0; bottom: 0; top: 25px; width: 40px;
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 25px; 
+    width: 50px;
     background: linear-gradient(to right, rgba(5,9,20,0), rgba(5,9,20,1));
-    pointer-events: none; display: none;
+    pointer-events: none;
+    display: none; 
   }
-  .filter-container.is-scrollable::after { display: block; }
+  .filter-container.is-scrollable::after {
+    display: block;
+  }
 
   #filter-buttons { display: inline-flex; gap: 10px; }
   .filter-btn { background: #161b22; color: #c9d1d9; border: 1px solid #30363d; padding: 5px 12px; cursor: pointer; border-radius: 4px; transition: 0.2s; flex: 0 0 auto; }
@@ -436,8 +473,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('play-all-btn').addEventListener('click', () => { playAll(); });
 
   document.querySelectorAll('.play-song-btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault(); /* 攔截任何多餘跳轉 */
+    btn.addEventListener('click', function() {
       const title = this.getAttribute('data-title');
       const youtubeId = this.getAttribute('data-youtube');
       const sheetUrl = this.getAttribute('data-sheet');
@@ -481,16 +517,20 @@ document.addEventListener("DOMContentLoaded", () => {
           } else { item.style.display = 'none'; }
         }
       });
+      // 點擊後重新檢查滑動狀態
+      setTimeout(checkFilterScroll, 100);
     });
   });
 
+  // 智能偵測：標籤數量是否超出版面，決定是否顯示滑動提示與漸層
   function checkFilterScroll() {
-    if (filterWrapper.scrollWidth > filterWrapper.clientWidth) {
+    if (filterWrapper.scrollWidth > filterWrapper.clientWidth + 5) {
       filterParent.classList.add('is-scrollable');
     } else {
       filterParent.classList.remove('is-scrollable');
     }
   }
+  
   setTimeout(checkFilterScroll, 100);
   window.addEventListener('resize', checkFilterScroll);
 
