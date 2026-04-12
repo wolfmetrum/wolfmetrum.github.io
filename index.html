@@ -64,20 +64,25 @@ title: 狼的格律 Wolf Metrum
     gap: 12px;
   }
   
-  /* Logo 在小螢幕極限縮小，讓出空間給文字 */
-  .header-logo-link { flex: 0 0 clamp(30px, 8vw, 100px); }
+  /* 鎖死 Logo 的最小與最大範圍，防止變形 */
+  .header-logo-link { flex: 0 0 clamp(50px, 15vw, 100px); min-width: 50px; }
   .header-logo-link img { width: 100%; height: auto; display: block; }
   
   /* 標題連結容器 */
   .header-title-link { flex: 0 1 auto; text-decoration: none; color: inherit; }
   
-  /* 標題：拔除隱藏截斷，強制單行，依靠更激進的縮放系數適應 */
+/* 標題：強制適應版面，若極限寬度下仍無法單行，則允許換行以防溢出 */
   .header-title {
     margin: 0;
     font-weight: bold;
-    font-size: clamp(12px, 4vw, 2.5em); 
-    white-space: nowrap;
+    /* 縮小字體基底，並加快縮放速率 */
+    font-size: clamp(14px, 6vw, 2.5em); 
     letter-spacing: -0.5px;
+    width: 100%;
+    /* 允許在極端情況下換行，優先保證不溢出 */
+    white-space: normal; 
+    word-break: keep-all; 
+    line-height: 1.1;
   }
 
   /* 副標題：強制單行 */
