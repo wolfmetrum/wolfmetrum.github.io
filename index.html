@@ -4,9 +4,8 @@ title: 首頁
 ---
 
 <style>
-  /* 隱藏預設的頁首標題，割除視覺贅肉 */
-  header.site-header { display: none !important; }
-  .page-header { display: none !important; }
+  /* 抹除系統預設的累贅標題 */
+  header.site-header, .site-header, .page-header { display: none !important; }
 </style>
 
 <div style="display: flex; align-items: center; margin-bottom: 40px; border-bottom: 2px solid #eee; padding-bottom: 20px;">
@@ -70,7 +69,7 @@ function renderVideo() {
   if(latestVideos.length === 0) return;
   const videoId = latestVideos[currentVidIndex];
   document.getElementById('video-container').innerHTML = `
-    <iframe style="width: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
+    <iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
   `;
 }
 
@@ -89,13 +88,13 @@ document.getElementById('next-video').addEventListener('click', () => {
   }
 });
 
+
 // === 目錄自動分類與過濾系統 ===
 document.addEventListener("DOMContentLoaded", () => {
   const songItems = document.querySelectorAll('.song-item');
   const filterContainer = document.getElementById('filter-buttons');
   const allTags = new Set();
 
-  // 1. 掃描並收集所有存在的標籤
   songItems.forEach(item => {
     const tags = item.getAttribute('data-tags').split(',');
     tags.forEach(tag => {
@@ -104,7 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 2. 根據收集到的標籤，鑄造按鈕
   allTags.forEach(tag => {
     const btn = document.createElement('button');
     btn.className = 'filter-btn';
@@ -116,11 +114,26 @@ document.addEventListener("DOMContentLoaded", () => {
     filterContainer.appendChild(btn);
   });
 
-  // 3. 賦予按鈕篩選的行動邏輯
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', function() {
-      // 切換按鈕的視覺焦點
       document.querySelectorAll('.filter-btn').forEach(b => b.style.fontWeight = 'normal');
       this.style.fontWeight = 'bold';
       
-      const targetTag = this.getAttribute('data
+      const targetTag = this.getAttribute('data-filter');
+
+      songItems.forEach(item => {
+        if (targetTag === 'all') {
+          item.style.display = 'list-item';
+        } else {
+          const itemTags = item.getAttribute('data-tags').split(',').map(t => t.trim());
+          if (itemTags.includes(targetTag)) {
+            item.style.display = 'list-item';
+          } else {
+            item.style.display = 'none';
+          }
+        }
+      });
+    });
+  });
+});
+</script>
