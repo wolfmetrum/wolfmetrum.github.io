@@ -1,18 +1,10 @@
-
-
-- title: 復活得勝主
-  composer: George Frideric Handel
-  lyricist: Edmond L. Budry / Richard B. Hoyle
-  youtube_id: D6MWhmAzeKM
-  tags: [傳統詩歌]
-
 - title: 榮耀真光(演唱版)
   composer: 狼的格律
   lyricist: 狼的格律
   note: ©️狼的格律
   youtube_id: dPbFqBXviEk
   sheet_music: /assets/sheets/榮耀真光.pdf
-  tags: [狼的格律原創, 現代詩歌, 演唱版]
+  tags: [狼的格律原創, 演唱版, 現代詩歌]
 
 - title: 榮耀真光(鋼琴版)
   composer: 狼的格律
@@ -28,7 +20,7 @@
   note: ©️狼的格律
   youtube_id: yOAhPlrybD4
   sheet_music: /assets/sheets/越過嘆息的哈利路亞.pdf
-  tags: [狼的格律原創, 現代詩歌, 演唱版]
+  tags: [狼的格律原創, 演唱版, 現代詩歌]
 
 - title: 越過嘆息的哈利路亞(鋼琴版)
   composer: 狼的格律
@@ -38,6 +30,12 @@
   sheet_music: /assets/sheets/越過嘆息的哈利路亞.pdf
   tags: [狼的格律原創, 現代詩歌]
   
+- title: 復活得勝主
+  composer: George Frideric Handel
+  lyricist: Edmond L. Budry / Richard B. Hoyle
+  youtube_id: D6MWhmAzeKM
+  tags: [傳統詩歌]
+
 - title: 寶貴十架
   composer: 曾祥怡, 游智婷
   lyricist: 曾祥怡
