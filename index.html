@@ -46,7 +46,7 @@ title: 狼的格律 Wolf Metrum
   h1, h2, h3 { color: #ffffff; }
   hr { border-color: #1f2937; margin: 20px 0; }
   
-  /* === 1. 響應式大門陣型 (終極防截斷版) === */
+  /* === 1. 響應式大門陣型 === */
   .header-container {
     display: flex;
     flex-direction: column;
@@ -67,25 +67,20 @@ title: 狼的格律 Wolf Metrum
   /* 鎖死 Logo 的最小與最大範圍，防止變形 */
   .header-logo-link { flex: 0 0 clamp(50px, 15vw, 100px); min-width: 50px; }
   .header-logo-link img { width: 100%; height: auto; display: block; }
+  .header-title-link { flex: 1; min-width: 0; text-decoration: none; color: inherit; }
   
-  /* 標題連結容器 */
-  .header-title-link { flex: 0 1 auto; text-decoration: none; color: inherit; }
-  
-/* 標題：強制適應版面，若極限寬度下仍無法單行，則允許換行以防溢出 */
+  /* 標題：強制適應版面，若極限寬度下仍無法單行，則允許換行以防溢出 */
   .header-title {
     margin: 0;
     font-weight: bold;
-    /* 縮小字體基底，並加快縮放速率 */
     font-size: clamp(14px, 6vw, 2.5em); 
     letter-spacing: -0.5px;
     width: 100%;
-    /* 允許在極端情況下換行，優先保證不溢出 */
     white-space: normal; 
     word-break: keep-all; 
     line-height: 1.1;
   }
 
-  /* 副標題：強制單行 */
   .header-subtitle {
     color: #8b949e;
     font-weight: bold;
@@ -94,7 +89,6 @@ title: 狼的格律 Wolf Metrum
     width: 100%;
   }
 
-  /* 經文：最多兩行，放不下才省略 */
   .header-verse {
     color: #d29922;
     font-size: clamp(0.8em, 2.5vw, 0.95em);
@@ -152,71 +146,24 @@ title: 狼的格律 Wolf Metrum
   .style-default:hover { color: #ffffff; background: #161b22; }
 
   /* === 3. 篩選標籤單行橫向滑動與動畫指示器 === */
-  .filter-container {
-    position: relative;
-    margin-bottom: 20px;
-  }
-  
-  /* 動畫文字指示器 (顯眼藍色+水平浮動) */
-  .filter-hint {
-    font-size: 0.85em;
-    color: #58a6ff;
-    margin-bottom: 10px;
-    display: none; 
-    font-weight: bold;
-    animation: swipe-hint-anim 2s infinite ease-in-out;
-  }
-  
-  @keyframes swipe-hint-anim {
-    0% { opacity: 0.7; transform: translateX(0); }
-    50% { opacity: 1; transform: translateX(8px); }
-    100% { opacity: 0.7; transform: translateX(0); }
-  }
+  .filter-container { position: relative; margin-bottom: 20px; }
+  .filter-hint { font-size: 0.85em; color: #58a6ff; margin-bottom: 10px; display: none; font-weight: bold; animation: swipe-hint-anim 2s infinite ease-in-out; }
+  @keyframes swipe-hint-anim { 0% { opacity: 0.7; transform: translateX(0); } 50% { opacity: 1; transform: translateX(8px); } 100% { opacity: 0.7; transform: translateX(0); } }
+  .filter-container.is-scrollable .filter-hint { display: inline-block; }
 
-  .filter-container.is-scrollable .filter-hint {
-    display: inline-block;
-  }
-
-  #filter-buttons-wrapper {
-    width: 100%;
-    overflow-x: auto;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; 
-    -ms-overflow-style: none;
-    padding-right: 0px; 
-    transition: padding 0.2s;
-  }
-  .filter-container.is-scrollable #filter-buttons-wrapper {
-    padding-right: 40px; /* 給右側漸層陰影留出空間 */
-  }
+  #filter-buttons-wrapper { width: 100%; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; padding-right: 0px; transition: padding 0.2s; }
+  .filter-container.is-scrollable #filter-buttons-wrapper { padding-right: 40px; }
   #filter-buttons-wrapper::-webkit-scrollbar { display: none; }
-
-  /* 視覺陰影暗示 */
-  .filter-container::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    top: 25px; 
-    width: 50px;
-    background: linear-gradient(to right, rgba(5,9,20,0), rgba(5,9,20,1));
-    pointer-events: none;
-    display: none; 
-  }
-  .filter-container.is-scrollable::after {
-    display: block;
-  }
+  .filter-container::after { content: ''; position: absolute; right: 0; bottom: 0; top: 25px; width: 50px; background: linear-gradient(to right, rgba(5,9,20,0), rgba(5,9,20,1)); pointer-events: none; display: none; }
+  .filter-container.is-scrollable::after { display: block; }
 
   #filter-buttons { display: inline-flex; gap: 10px; }
   .filter-btn { background: #161b22; color: #c9d1d9; border: 1px solid #30363d; padding: 5px 12px; cursor: pointer; border-radius: 4px; transition: 0.2s; flex: 0 0 auto; }
   .filter-btn:hover { background: #30363d; color: #ffffff; }
   .filter-btn.active { background: #1f6feb; color: #ffffff; border-color: #1f6feb; font-weight: bold; }
-  
   #play-all-btn { background-color: #238636; color: #ffffff; border: 1px solid rgba(240, 246, 252, 0.1); padding: 5px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 0.9em; transition: 0.2s; flex-shrink: 0; }
   #play-all-btn:hover { background-color: #2ea043; }
 
-  /* 主控台標題附屬情報 */
   .player-info-container { display: inline-flex; flex-wrap: nowrap; gap: 10px; font-size: 0.55em; color: #8b949e; margin-left: 15px; font-weight: normal; vertical-align: middle; max-width: 100%; min-width: 0; overflow: hidden; }
   .player-info-container span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   @media (max-width: 600px) { .player-info-container { display: flex; margin-left: 0; margin-top: 8px; width: 100%; } }
@@ -332,6 +279,25 @@ title: 狼的格律 Wolf Metrum
 </div>
 
 <script>
+// 全域函數：切換 PDF 顯示
+window.togglePdfViewer = function(url) {
+  const container = document.getElementById('pdf-viewer-container');
+  const iframe = document.getElementById('pdf-iframe');
+  const btn = document.getElementById('toggle-pdf-btn');
+  
+  if (container.style.display === 'none') {
+    iframe.src = url;
+    container.style.display = 'block';
+    btn.innerText = '隱藏樂譜 (PDF)';
+    btn.style.backgroundColor = '#444';
+  } else {
+    container.style.display = 'none';
+    iframe.src = '';
+    btn.innerText = '顯示樂譜 (PDF)';
+    btn.style.backgroundColor = '#1f6feb';
+  }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById('star-canvas');
   const starCount = 150;
@@ -397,12 +363,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const sheetContainer = document.getElementById('sheet-music-container');
     if (sheetUrl && sheetUrl.trim() !== '') {
+      // 裝備追加：下載與顯示按鈕，以及內嵌的 PDF iframe 容器
       sheetContainer.innerHTML = `
-        <a href="${sheetUrl}" download target="_blank">
-          <button style="padding: 10px 25px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #d29922; color: #111; border: none; border-radius: 5px;">
-            下載樂譜 (PDF)
+        <div style="display: flex; gap: 15px; justify-content: center; margin-bottom: 15px; flex-wrap: wrap;">
+          <a href="${sheetUrl}" download target="_blank">
+            <button style="padding: 10px 25px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #d29922; color: #111; border: none; border-radius: 5px; transition: 0.2s;">
+              下載樂譜 (PDF)
+            </button>
+          </a>
+          <button id="toggle-pdf-btn" onclick="togglePdfViewer('${sheetUrl}')" style="padding: 10px 25px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #1f6feb; color: white; border: none; border-radius: 5px; transition: 0.2s;">
+            顯示樂譜 (PDF)
           </button>
-        </a>
+        </div>
+        <div id="pdf-viewer-container" style="display: none; width: 100%; height: 75vh; max-height: 800px; background: #111; border: 1px solid #30363d; border-radius: 5px; overflow: hidden;">
+          <iframe id="pdf-iframe" src="" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
       `;
       sheetContainer.style.display = 'block';
     } else {
@@ -522,12 +497,10 @@ document.addEventListener("DOMContentLoaded", () => {
           } else { item.style.display = 'none'; }
         }
       });
-      // 點擊後重新檢查滑動狀態
       setTimeout(checkFilterScroll, 100);
     });
   });
 
-  // 智能偵測：標籤數量是否超出版面，決定是否顯示滑動提示與漸層
   function checkFilterScroll() {
     if (filterWrapper.scrollWidth > filterWrapper.clientWidth + 5) {
       filterParent.classList.add('is-scrollable');
