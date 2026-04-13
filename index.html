@@ -8,7 +8,6 @@ title: 狼的格律 Wolf Metrum
   header.site-header, .site-header, .page-header { display: none !important; }
   .my-5, .markdown-body, .container-lg, .page-content { margin-top: 0 !important; padding-top: 0 !important; }
   
-  /* 領地環境：確保滿版與消除邊界 */
   body {
     background-color: #050914;
     margin: 0;
@@ -19,7 +18,6 @@ title: 狼的格律 Wolf Metrum
     min-height: 100vh;
   }
 
-  /* 固定星空背景層 */
   #star-canvas {
     position: fixed;
     top: 0;
@@ -46,7 +44,6 @@ title: 狼的格律 Wolf Metrum
   h1, h2, h3 { color: #ffffff; }
   hr { border-color: #1f2937; margin: 20px 0; }
   
-  /* === 1. 響應式大門陣型 === */
   .header-container {
     display: flex;
     flex-direction: column;
@@ -64,12 +61,10 @@ title: 狼的格律 Wolf Metrum
     gap: 12px;
   }
   
-  /* 鎖死 Logo 的最小與最大範圍，防止變形 */
   .header-logo-link { flex: 0 0 clamp(50px, 15vw, 100px); min-width: 50px; }
   .header-logo-link img { width: 100%; height: auto; display: block; }
   .header-title-link { flex: 1; min-width: 0; text-decoration: none; color: inherit; }
   
-  /* 標題：強制適應版面，若極限寬度下仍無法單行，則允許換行以防溢出 */
   .header-title {
     margin: 0;
     font-weight: bold;
@@ -101,7 +96,6 @@ title: 狼的格律 Wolf Metrum
     width: 100%;
   }
 
-  /* === 2. 歌曲清單與情報 === */
   .song-item { 
     border-bottom: 1px solid #1f2937 !important; 
     padding-bottom: 6px;
@@ -135,7 +129,6 @@ title: 狼的格律 Wolf Metrum
     .song-info { grid-column: 1 / -1; width: 100%; margin-left: 5px; font-size: 0.7em; }
   }
 
-  /* 視覺武裝 */
   .style-elegant { color: #d29922; border: 1px solid #d29922; border-radius: 4px; box-shadow: 0 0 5px rgba(210, 153, 34, 0.3); }
   .style-elegant:hover { color: #ffd700; box-shadow: 0 0 10px rgba(255, 215, 0, 0.6); background: rgba(210, 153, 34, 0.1); }
   .style-classical { color: #e8dcc4; border: 1px solid rgba(232, 220, 196, 0.4); border-radius: 4px; }
@@ -145,7 +138,6 @@ title: 狼的格律 Wolf Metrum
   .style-default { color: #c9d1d9; border: 1px solid #30363d; border-radius: 4px; }
   .style-default:hover { color: #ffffff; background: #161b22; }
 
-  /* === 3. 篩選標籤單行橫向滑動與動畫指示器 === */
   .filter-container { position: relative; margin-bottom: 20px; }
   .filter-hint { font-size: 0.85em; color: #58a6ff; margin-bottom: 10px; display: none; font-weight: bold; animation: swipe-hint-anim 2s infinite ease-in-out; }
   @keyframes swipe-hint-anim { 0% { opacity: 0.7; transform: translateX(0); } 50% { opacity: 1; transform: translateX(8px); } 100% { opacity: 0.7; transform: translateX(0); } }
@@ -212,7 +204,7 @@ title: 狼的格律 Wolf Metrum
     <div id="filter-buttons-wrapper">
       <div id="filter-buttons">
         <button class="filter-btn active" data-filter="all">全部展示</button>
-        </div>
+      </div>
     </div>
   </div>
 
@@ -230,8 +222,12 @@ title: 狼的格律 Wolf Metrum
             {{ song.title }}
           </a>
           <div class="song-info">
-            {% if song.composer %}<span class="info-tag song-composer" title="作曲: {{ song.composer }}">🎶{{ song.composer }}</span>{% endif %}
-            {% if song.lyricist %}<span class="info-tag song-lyricist" title="作詞: {{ song.lyricist }}">🧾{{ song.lyricist }}</span>{% endif %}
+            {% if song.composer == song.lyricist %}
+              <span class="info-tag song-composer">🎶🧾{{ song.composer }}</span>
+            {% else %}
+              {% if song.composer %}<span class="info-tag song-composer">🎶{{ song.composer }}</span>{% endif %}
+              {% if song.lyricist %}<span class="info-tag song-lyricist">🧾{{ song.lyricist }}</span>{% endif %}
+            {% endif %}
             {% if song.note %}<span class="info-tag song-note" title="備註: {{ song.note }}">🐺{{ song.note }}</span>{% endif %}
           </div>
         </li>
@@ -258,8 +254,12 @@ title: 狼的格律 Wolf Metrum
             {{ song.title }}
           </a>
           <div class="song-info">
-            {% if song.composer %}<span class="info-tag song-composer" title="作曲: {{ song.composer }}">🎶{{ song.composer }}</span>{% endif %}
-            {% if song.lyricist %}<span class="info-tag song-lyricist" title="作詞: {{ song.lyricist }}">🧾{{ song.lyricist }}</span>{% endif %}
+            {% if song.composer == song.lyricist %}
+              <span class="info-tag song-composer">🎶🧾{{ song.composer }}</span>
+            {% else %}
+              {% if song.composer %}<span class="info-tag song-composer">🎶{{ song.composer }}</span>{% endif %}
+              {% if song.lyricist %}<span class="info-tag song-lyricist">🧾{{ song.lyricist }}</span>{% endif %}
+            {% endif %}
             {% if song.note %}<span class="info-tag song-note" title="備註: {{ song.note }}">🐺{{ song.note }}</span>{% endif %}
           </div>
         </li>
@@ -279,7 +279,6 @@ title: 狼的格律 Wolf Metrum
 </div>
 
 <script>
-// 全域函數：切換 PDF 顯示
 window.togglePdfViewer = function(url) {
   const container = document.getElementById('pdf-viewer-container');
   const iframe = document.getElementById('pdf-iframe');
@@ -336,9 +335,13 @@ document.addEventListener("DOMContentLoaded", () => {
     
     let infoHtml = "";
     if (!isLatestMode) {
-      if (composer) infoHtml += `<span class="info-tag">🎶${composer}</span>`;
-      if (lyricist) infoHtml += `<span class="info-tag">🧾${lyricist}</span>`;
-      if (note) infoHtml += `<span class="info-tag song-note" title="${note}">🐺${note}</span>`;
+      // 合併標頭邏輯：同名合併，移除備註
+      if (composer && lyricist && composer === lyricist) {
+        infoHtml += `<span class="info-tag">🎶🧾${composer}</span>`;
+      } else {
+        if (composer) infoHtml += `<span class="info-tag">🎶${composer}</span>`;
+        if (lyricist) infoHtml += `<span class="info-tag">🧾${lyricist}</span>`;
+      }
     }
 
     if (infoHtml !== "") {
@@ -363,7 +366,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const sheetContainer = document.getElementById('sheet-music-container');
     if (sheetUrl && sheetUrl.trim() !== '') {
-      // 裝備追加：下載與顯示按鈕，以及內嵌的 PDF iframe 容器
       sheetContainer.innerHTML = `
         <div style="display: flex; gap: 15px; justify-content: center; margin-bottom: 15px; flex-wrap: wrap;">
           <a href="${sheetUrl}" download target="_blank">
@@ -492,8 +494,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (targetTag === 'all') { item.style.display = 'grid'; } else {
           const itemTags = item.getAttribute('data-tags').split(',').map(t => t.trim());
           if (itemTags.includes(targetTag)) { 
-            if(window.innerWidth <= 600) { item.style.display = 'grid'; } 
-            else { item.style.display = 'grid'; } 
+            item.style.display = 'grid';
           } else { item.style.display = 'none'; }
         }
       });
