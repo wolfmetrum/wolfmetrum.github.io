@@ -34,7 +34,7 @@ title: 狼的格律 Wolf Metrum
   h1, h2, h3 { color: #ffffff; }
   hr { border-color: #1f2937; margin: 20px 0; }
   
-  /* === 標題陣容：縮放優先協定 === */
+  /* === 標題陣容 === */
   .header-container {
     display: flex; flex-direction: column;
     margin-bottom: 25px; border-bottom: 2px solid #1f2937;
@@ -77,6 +77,7 @@ title: 狼的格律 Wolf Metrum
   .style-default { color: #c9d1d9; border: 1px solid #30363d; border-radius: 4px; }
   .style-default:hover { color: #ffffff; background: #161b22; }
 
+  /* === 篩選標籤與徽章裝甲 === */
   .filter-container { position: relative; margin-bottom: 20px; }
   .filter-hint { font-size: 0.85em; color: #58a6ff; margin-bottom: 10px; display: none; font-weight: bold; animation: swipe-hint-anim 2s infinite ease-in-out; }
   @keyframes swipe-hint-anim { 0% { opacity: 0.7; transform: translateX(0); } 50% { opacity: 1; transform: translateX(8px); } 100% { opacity: 0.7; transform: translateX(0); } }
@@ -88,14 +89,29 @@ title: 狼的格律 Wolf Metrum
     cursor: grab; 
   }
   #filter-buttons-wrapper:active { cursor: grabbing; } 
-  
   .filter-container.is-scrollable #filter-buttons-wrapper { padding-right: 40px; }
   #filter-buttons-wrapper::-webkit-scrollbar { display: none; }
   .filter-container::after { content: ''; position: absolute; right: 0; bottom: 0; top: 25px; width: 50px; background: linear-gradient(to right, rgba(5,9,20,0), rgba(5,9,20,1)); pointer-events: none; display: none; }
   .filter-container.is-scrollable::after { display: block; }
+  
   #filter-buttons { display: inline-flex; gap: 10px; pointer-events: none; } 
-  .filter-btn { background: #161b22; color: #c9d1d9; border: 1px solid #30363d; padding: 5px 12px; cursor: pointer; border-radius: 4px; transition: 0.2s; flex: 0 0 auto; pointer-events: auto; } 
+  .filter-btn { display: inline-flex; align-items: center; background: #161b22; color: #c9d1d9; border: 1px solid #30363d; padding: 5px 12px; cursor: pointer; border-radius: 4px; transition: 0.2s; flex: 0 0 auto; pointer-events: auto; } 
   .filter-btn.active { background: #1f6feb; color: #ffffff; border-color: #1f6feb; font-weight: bold; }
+  
+  /* 標籤計數徽章 (Tag Count Badge) */
+  .tag-count {
+    font-size: 0.75em;
+    background: rgba(255, 255, 255, 0.1);
+    color: #8b949e;
+    padding: 2px 7px;
+    border-radius: 12px;
+    margin-left: 8px;
+    font-weight: normal;
+    transition: 0.2s;
+  }
+  .filter-btn:hover .tag-count { color: #ffffff; background: rgba(255, 255, 255, 0.2); }
+  .filter-btn.active .tag-count { color: #ffffff; background: rgba(255, 255, 255, 0.25); }
+
   #play-all-btn { background-color: #238636; color: #ffffff; border: 1px solid rgba(240, 246, 252, 0.1); padding: 5px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 0.9em; transition: 0.2s; flex-shrink: 0; }
   #play-all-btn:hover { background-color: #2ea043; }
 
@@ -140,8 +156,7 @@ title: 狼的格律 Wolf Metrum
     <span class="filter-hint">⟷ 左右滑動標籤以篩選曲目</span>
     <div id="filter-buttons-wrapper">
       <div id="filter-buttons">
-        <button class="filter-btn active" data-filter="all">全部展示</button>
-      </div>
+        </div>
     </div>
   </div>
 
@@ -259,8 +274,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function playAll() {
+    // 確保只抓取文字部分，不包含徽章的數字
     const activeBtn = document.querySelector('.filter-btn.active');
-    const filterName = activeBtn ? activeBtn.innerText : "全部展示";
+    const filterName = activeBtn ? activeBtn.childNodes[0].nodeValue.trim() : "全部展示";
     document.getElementById('player-title').innerText = `${filterName} (隨機)`;
 
     const visibleSongItems = Array.from(document.querySelectorAll('.song-item')).filter(item => item.style.display !== 'none');
@@ -310,27 +326,48 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // === 標籤動態排序與生成 ===
+  // === 標籤動態計數與生成模組 ===
   const songItems = document.querySelectorAll('.song-item');
   const filterContainer = document.getElementById('filter-buttons');
-  const allTags = new Set();
+  const tagCounts = {}; // 用於統計數量的武裝庫
   
-  songItems.forEach(item => { item.getAttribute('data-tags').split(',').forEach(tag => { if(tag.trim()) allTags.add(tag.trim()); }); });
-  
-  // 定義強制優先的標籤陣容
-  const fixedTags = ['狼的格律原創', '演唱版', '傳統詩歌', '現代詩歌'];
-  const remainingTags = Array.from(allTags).filter(tag => !fixedTags.includes(tag));
-
-  // 先部署優先標籤
-  fixedTags.forEach(tag => {
-    if(allTags.has(tag)) {
-      const btn = document.createElement('button'); btn.className = 'filter-btn'; btn.setAttribute('data-filter', tag); btn.innerText = tag; filterContainer.appendChild(btn);
-    }
+  // 1. 執行全面清點
+  songItems.forEach(item => { 
+    item.getAttribute('data-tags').split(',').forEach(tag => { 
+      const cleanTag = tag.trim(); 
+      if(cleanTag) {
+        tagCounts[cleanTag] = (tagCounts[cleanTag] || 0) + 1;
+      }
+    }); 
   });
   
-  // 再部署其餘標籤
+  // 2. 生成 "全部展示" 按鈕
+  const allBtn = document.createElement('button');
+  allBtn.className = 'filter-btn active';
+  allBtn.setAttribute('data-filter', 'all');
+  allBtn.innerHTML = `全部展示 <span class="tag-count">${songItems.length}</span>`;
+  filterContainer.appendChild(allBtn);
+
+  // 3. 按照陣型生成各類別標籤
+  const fixedTags = ['狼的格律原創', '演唱版', '傳統詩歌', '現代詩歌'];
+  const remainingTags = Object.keys(tagCounts).filter(tag => !fixedTags.includes(tag));
+
+  function createFilterButton(tag) {
+    const btn = document.createElement('button'); 
+    btn.className = 'filter-btn'; 
+    btn.setAttribute('data-filter', tag); 
+    btn.innerHTML = `${tag} <span class="tag-count">${tagCounts[tag]}</span>`; 
+    filterContainer.appendChild(btn);
+  }
+
+  // 部署主力標籤
+  fixedTags.forEach(tag => {
+    if(tagCounts[tag]) createFilterButton(tag);
+  });
+  
+  // 部署其餘標籤
   remainingTags.forEach(tag => {
-    const btn = document.createElement('button'); btn.className = 'filter-btn'; btn.setAttribute('data-filter', tag); btn.innerText = tag; filterContainer.appendChild(btn);
+    createFilterButton(tag);
   });
   
   let isDragging = false;
