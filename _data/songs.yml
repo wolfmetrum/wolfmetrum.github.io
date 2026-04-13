@@ -1,3 +1,11 @@
+
+
+- title: 復活得勝主
+  composer: George Frideric Handel
+  lyricist: Edmond L. Budry / Richard B. Hoyle
+  youtube_id: D6MWhmAzeKM
+  tags: [傳統詩歌]
+
 - title: 榮耀真光(演唱版)
   composer: 狼的格律
   lyricist: 狼的格律
@@ -30,20 +38,11 @@
   sheet_music: /assets/sheets/越過嘆息的哈利路亞.pdf
   tags: [狼的格律原創, 現代詩歌]
   
-- title: 復活得勝主
-  composer: George Frideric Handel
-  lyricist: Edmond L. Budry / Richard B. Hoyle
-  note: 
-  youtube_id: D6MWhmAzeKM
-  sheet_music: 
-  tags: [傳統詩歌]
-  
 - title: 寶貴十架
   composer: 曾祥怡, 游智婷
   lyricist: 曾祥怡
   note: ©️讚美之泉
   youtube_id: FJYjzt78ioo
-  sheet_music: 
   tags: [現代詩歌]
   
 - title: 頌讚主尊名
@@ -51,7 +50,6 @@
   lyricist: Ralph E. Hudson / William H. Clark
   note: 聖徒詩歌164
   youtube_id: C9q_80mnjxw
-  sheet_music: 
   tags: [傳統詩歌, 聖徒詩歌]
   
 - title: 我相信一山崗名叫各各他
@@ -59,7 +57,6 @@
   lyricist: Dale Oldham, Gloria Gaither, William J. Gaither 
   note: ©️Gaither Music Company
   youtube_id: kv0FTgvYbUA
-  sheet_music: 
   tags: [現代詩歌]
 
 - title: 我心堅定於祢
@@ -67,5 +64,231 @@
   lyricist: 李呈呈
   note: ©️小羊詩歌
   youtube_id: U6poA500YN0
-  sheet_music: 
   tags: [現代詩歌, 小羊詩歌]
+
+- title: 十架為我榮耀
+  composer: William H. Doane
+  lyricist: Fanny J. Crosby
+  note: 頌主新歌136
+  youtube_id: kKAwt5N-pSk
+  tags: [傳統詩歌, 頌主新歌]
+  
+- title: 因祂活著
+  composer: Gloria Gaither
+  lyricist: William J. Gaither
+  youtube_id: orCbYcsxlnc
+  tags: [現代詩歌]
+
+- title: 我的心你要稱頌耶和華
+  composer:  Tracie Lin, Sandy Yu
+  lyricist: Tracie Lin
+  note: ©️讚美之泉
+  youtube_id: yCdsnVwUuMk 
+  tags: [現代詩歌]
+
+- title: 安穩在耶穌手中
+  composer: William H. Doane
+  lyricist: Fanny J. Crosby
+  note: 生命聖詩343
+  youtube_id: WgB2PY51bv4 
+  tags: [傳統詩歌, 生命聖詩]
+
+- title: 恩典-美妙聲音
+  composer: Isaac Smith
+  lyricist: Philip Doddridge
+  note: 聖徒詩歌96
+  youtube_id: f61FSLdNaEA 
+  tags: [傳統詩歌, 聖徒詩歌]
+
+- title: 我捨一切而要耶穌
+  note: 聖徒詩歌330
+  youtube_id: V09w2mAYHys   
+  tags: [傳統詩歌, 聖徒詩歌]
+
+- title: 我捨一切而要耶穌(降4)
+  note: 聖徒詩歌330
+  youtube_id: sppc8m688CM  
+  tags: [傳統詩歌, 聖徒詩歌]
+  dontplay: true
+
+- title: 萬福源頭
+  composer: John Wyeth
+  lyricist: Robert Robinson
+  note: 生命聖詩76
+  youtube_id: bozN9lWZpbA  
+  tags: [傳統詩歌, 生命聖詩]
+
+- title: 樂哉，白白恩典
+  composer: Eugene W. Dunbar
+  lyricist: Isaac Watts
+  note: 聖徒詩歌221
+  youtube_id: U8SC9LXuBhA   
+  tags: [傳統詩歌, 聖徒詩歌]
+
+- title: 十架下我低頭
+  note: 聖徒詩歌199
+  youtube_id: 4aQuyzzY4ms   
+  tags: [傳統詩歌, 聖徒詩歌]
+
+- title: 讓我愛而不受感戴
+  composer: Mimi Lam
+  lyricist: Watchman Nee 
+  note: 聖徒詩歌381
+  youtube_id: IH1MvY95z0Y  
+  tags: [傳統詩歌, 聖徒詩歌]
+
+- title: 昨日、今日、直到永遠
+  composer: James H. Burke
+  lyricist: Albert B. Simpson 
+  note: 聖徒詩歌95
+  youtube_id: MiZN5vfzyZY    
+  tags: [傳統詩歌, 聖徒詩歌]
+
+- title: 昨日、今日、直到永遠(降3)
+  composer: James H. Burke
+  lyricist: Albert B. Simpson 
+  note: 聖徒詩歌95
+  youtube_id: MMBdWNaPeVM   
+  tags: [傳統詩歌, 聖徒詩歌]
+  dontplay: true
+
+- title: 主我今來
+  composer: Lewis Hartsough
+  lyricist: Lewis Hartsough
+  note: 靈糧詩選259
+  youtube_id: eMUeD_ju4Ow    
+  tags: [傳統詩歌, 靈糧詩選]
+
+- title: 我心靈得安寧
+  composer: Philip P. Bliss
+  lyricist: Horatio G. Spafford 
+  note: 生命聖詩342
+  youtube_id: 9HUDxV8ZKwU   
+  tags: [傳統詩歌, 生命聖詩]
+
+- title: 感謝神
+  composer: John A. Hultman
+  lyricist: Auguet L. Storm  
+  note: 聖徒詩歌713
+  youtube_id: PzngT8fvihI      
+  tags: [傳統詩歌, 聖徒詩歌]
+
+- title: 感謝神(降3)
+  composer: John A. Hultman
+  lyricist: Auguet L. Storm  
+  note: 聖徒詩歌713
+  youtube_id: vdArXEdyirI     
+  tags: [傳統詩歌, 聖徒詩歌]
+  dontplay: true
+
+- title: 天使歌唱在高天
+  composer: Gloria in Excelsis Deo
+  note: 頌主新歌98
+  youtube_id: x_tQyXQPREc      
+  tags: [傳統詩歌, 頌主新歌, 聖誕詩歌]
+
+- title: 以馬內利來臨
+  lyricist: John Mason Neale 
+  note: 頌主新歌94
+  youtube_id: QiDhbNrfCV4       
+  tags: [傳統詩歌, 頌主新歌, 聖誕詩歌]
+
+- title: 小伯利恆
+  composer: Lewis H. Redner
+  lyricist: Phillips Brooks 
+  note: 頌主新歌111
+  youtube_id: 3Z6l6vh7DuM       
+  tags: [傳統詩歌, 頌主新歌, 聖誕詩歌]
+
+- title: 平安夜
+  composer: Franz Gruber
+  lyricist: Joseph Mohr 
+  note: 頌主新歌107
+  youtube_id: cvi6EOcsVXo        
+  tags: [傳統詩歌, 頌主新歌, 聖誕詩歌]
+
+- title: 聖嬰孩主耶穌
+  composer: James R. Murray
+  note: 頌主新歌112
+  youtube_id: ZtcNREVaugo         
+  tags: [傳統詩歌, 頌主新歌, 聖誕詩歌]
+
+- title: 新生王歌
+  composer: Felix Mendelssohn
+  lyricist: Charles Wesley  
+  note: 頌主新歌116
+  youtube_id: sNV2OhN9ZEc         
+  tags: [傳統詩歌, 頌主新歌, 聖誕詩歌]
+
+- title: 這位奇妙嬰孩是誰
+  lyricist: William Chatterton Dix   
+  note: 新靈糧詩選173
+  youtube_id: GYaZ8n2pDUM          
+  tags: [傳統詩歌, 頌主新歌, 靈糧詩選]
+
+- title: 普世歡騰
+  composer: Isaac Watts
+  lyricist: Isaac Watts
+  note: 普天頌讚167
+  youtube_id: c-GkmWMcu80           
+  tags: [傳統詩歌, 頌主新歌]
+
+- title: 耶穌同在就是天堂(第二詞)
+  composer: James M. Black
+  lyricist: C .J. Butler 
+  note: 聖徒詩歌206
+  youtube_id: zs4EazFuhbA    
+  tags: [傳統詩歌, 聖徒詩歌]
+
+- title: 耶穌同在就是天堂(第二詞)(降3)
+  composer: James M. Black
+  lyricist: C .J. Butler 
+  note: 聖徒詩歌206
+  youtube_id: UaTHvltUnSo 
+  tags: [傳統詩歌, 聖徒詩歌]
+  dontplay: true
+
+- title: 耶穌同在就是天堂
+  composer: James M. Black
+  lyricist: C .J. Butler 
+  note: 聖徒詩歌206
+  youtube_id: LPM7P-NHXBQ     
+  tags: [傳統詩歌, 聖徒詩歌]
+
+- title: 耶穌同在就是天堂(降3)
+  composer: James M. Black
+  lyricist: C .J. Butler 
+  note: 聖徒詩歌206
+  youtube_id: x3erRuOQsp8  
+  tags: [傳統詩歌, 聖徒詩歌]
+  dontplay: true
+
+- title: 父啊，久在創世之前
+  composer: Philip P. Bliss
+  lyricist: James G. Deck 
+  note: 聖徒詩歌021
+  youtube_id: B28x-7VHeA4    
+  tags: [傳統詩歌, 聖徒詩歌]
+
+- title: 父啊，久在創世之前(降2)
+  composer: Philip P. Bliss
+  lyricist: James G. Deck 
+  note: 聖徒詩歌021
+  youtube_id: wfTdkIdrSew   
+  tags: [傳統詩歌, 聖徒詩歌]
+  dontplay: true
+
+- title: 思念主愛
+  composer: J. A. Butterfield
+  lyricist: W. W. Simpson 
+  note: 聖徒詩歌226
+  youtube_id: FfcqlcTFErs   
+  tags: [傳統詩歌, 聖徒詩歌]
+
+- title: 思念主愛(降3)
+  composer: J. A. Butterfield
+  lyricist: W. W. Simpson 
+  note: 聖徒詩歌226
+  youtube_id: sJXD3HGqGPo    
+  tags: [傳統詩歌, 聖徒詩歌]
+  dontplay: true

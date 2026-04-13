@@ -10,8 +10,7 @@ title: 狼的格律 Wolf Metrum
   
   body {
     background-color: #050914;
-    margin: 0;
-    padding: 0;
+    margin: 0; padding: 0;
     overflow-x: hidden;
     color: #e6edf3;
     font-family: sans-serif;
@@ -19,14 +18,8 @@ title: 狼的格律 Wolf Metrum
   }
 
   #star-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -2;
-    pointer-events: none;
-    overflow: hidden;
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -2; pointer-events: none; overflow: hidden;
   }
 
   .star { position: absolute; border-radius: 50%; background-color: #ffffff; animation: twinkle linear infinite; opacity: 0; }
@@ -44,85 +37,36 @@ title: 狼的格律 Wolf Metrum
   h1, h2, h3 { color: #ffffff; }
   hr { border-color: #1f2937; margin: 20px 0; }
   
+  /* === 標題陣容：縮放優先協定 === */
   .header-container {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 25px;
-    border-bottom: 2px solid #1f2937;
-    padding-bottom: 15px;
-    gap: 8px; 
+    display: flex; flex-direction: column;
+    margin-bottom: 25px; border-bottom: 2px solid #1f2937;
+    padding-bottom: 15px; gap: 8px; 
   }
-  
   .header-top-row {
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
-    width: 100%;
-    gap: 12px;
+    display: flex; align-items: center; flex-wrap: nowrap; width: 100%; gap: 12px;
   }
-  
-  .header-logo-link { flex: 0 0 clamp(50px, 15vw, 100px); min-width: 50px; }
+  .header-logo-link { flex: 0 0 auto; width: clamp(50px, 12vw, 100px); }
   .header-logo-link img { width: 100%; height: auto; display: block; }
-  .header-title-link { flex: 1; min-width: 0; text-decoration: none; color: inherit; }
-  
+  .header-title-link { flex: 1 1 0; min-width: 0; text-decoration: none; color: inherit; }
   .header-title {
-    margin: 0;
-    font-weight: bold;
-    font-size: clamp(14px, 6vw, 2.5em); 
-    letter-spacing: -0.5px;
-    width: 100%;
-    white-space: normal; 
-    word-break: keep-all; 
-    line-height: 1.1;
+    margin: 0; font-weight: bold;
+    font-size: clamp(12px, 5vw, 2.5em); /* 加大縮放速率，下壓最小字級 */
+    white-space: nowrap; letter-spacing: -0.5px;
   }
-
-  .header-subtitle {
-    color: #8b949e;
-    font-weight: bold;
-    font-size: clamp(10px, 3vw, 1.1em);
-    white-space: nowrap;
-    width: 100%;
-  }
-
+  .header-subtitle { color: #8b949e; font-weight: bold; font-size: clamp(10px, 3vw, 1.1em); white-space: nowrap; width: 100%; }
   .header-verse {
-    color: #d29922;
-    font-size: clamp(0.8em, 2.5vw, 0.95em);
-    line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%;
+    color: #d29922; font-size: clamp(0.8em, 2.5vw, 0.95em); line-height: 1.4;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;
   }
 
   .song-item { 
-    border-bottom: 1px solid #1f2937 !important; 
-    padding-bottom: 6px;
-    margin-bottom: 8px; 
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
-    gap: 10px 15px;
+    border-bottom: 1px solid #1f2937 !important; padding-bottom: 6px; margin-bottom: 8px; 
+    display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 10px 15px;
   }
-  .play-song-btn { 
-    cursor: pointer; text-decoration: none; transition: all 0.2s; 
-    display: inline-block; padding: 4px 10px; font-size: 1.1em; font-weight: bold; 
-    grid-column: 1 / 2;
-  }
-  
-  .song-info { 
-    color: #8b949e; font-size: 0.8em; 
-    display: flex; flex-wrap: nowrap; align-items: center; gap: 12px;
-    grid-column: 2 / 3;
-    min-width: 0; 
-  }
-  
+  .play-song-btn { cursor: pointer; text-decoration: none; transition: all 0.2s; display: inline-block; padding: 4px 10px; font-size: 1.1em; font-weight: bold; grid-column: 1 / 2; }
+  .song-info { color: #8b949e; font-size: 0.8em; display: flex; flex-wrap: nowrap; align-items: center; gap: 12px; grid-column: 2 / 3; min-width: 0; }
   .info-tag { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .song-composer { flex: 0 1 auto; }
-  .song-lyricist { flex: 0 1 auto; }
-  .song-note { flex: 1 1 50px; }
-
   @media (max-width: 600px) {
     .song-item { grid-template-columns: 1fr; gap: 4px 0; }
     .play-song-btn { grid-column: 1 / -1; justify-self: start; }
@@ -142,37 +86,28 @@ title: 狼的格律 Wolf Metrum
   .filter-hint { font-size: 0.85em; color: #58a6ff; margin-bottom: 10px; display: none; font-weight: bold; animation: swipe-hint-anim 2s infinite ease-in-out; }
   @keyframes swipe-hint-anim { 0% { opacity: 0.7; transform: translateX(0); } 50% { opacity: 1; transform: translateX(8px); } 100% { opacity: 0.7; transform: translateX(0); } }
   .filter-container.is-scrollable .filter-hint { display: inline-block; }
-
-  #filter-buttons-wrapper { width: 100%; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; padding-right: 0px; transition: padding 0.2s; }
+  #filter-buttons-wrapper { width: 100%; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; padding-right: 0px; }
   .filter-container.is-scrollable #filter-buttons-wrapper { padding-right: 40px; }
   #filter-buttons-wrapper::-webkit-scrollbar { display: none; }
   .filter-container::after { content: ''; position: absolute; right: 0; bottom: 0; top: 25px; width: 50px; background: linear-gradient(to right, rgba(5,9,20,0), rgba(5,9,20,1)); pointer-events: none; display: none; }
   .filter-container.is-scrollable::after { display: block; }
-
   #filter-buttons { display: inline-flex; gap: 10px; }
   .filter-btn { background: #161b22; color: #c9d1d9; border: 1px solid #30363d; padding: 5px 12px; cursor: pointer; border-radius: 4px; transition: 0.2s; flex: 0 0 auto; }
-  .filter-btn:hover { background: #30363d; color: #ffffff; }
   .filter-btn.active { background: #1f6feb; color: #ffffff; border-color: #1f6feb; font-weight: bold; }
   #play-all-btn { background-color: #238636; color: #ffffff; border: 1px solid rgba(240, 246, 252, 0.1); padding: 5px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 0.9em; transition: 0.2s; flex-shrink: 0; }
   #play-all-btn:hover { background-color: #2ea043; }
 
   .player-info-container { display: inline-flex; flex-wrap: nowrap; gap: 10px; font-size: 0.55em; color: #8b949e; margin-left: 15px; font-weight: normal; vertical-align: middle; max-width: 100%; min-width: 0; overflow: hidden; }
-  .player-info-container span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   @media (max-width: 600px) { .player-info-container { display: flex; margin-left: 0; margin-top: 8px; width: 100%; } }
 </style>
 
 <div id="star-canvas"></div>
 
 <div class="main-content-wrapper">
-
   <div class="header-container">
     <div class="header-top-row">
-      <a href="{{ '/' | relative_url }}" class="header-logo-link">
-        <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Wolf Metrum Logo">
-      </a>
-      <a href="{{ '/' | relative_url }}" class="header-title-link">
-        <h1 class="header-title">狼的格律 Wolf Metrum</h1>
-      </a>
+      <a href="{{ '/' | relative_url }}" class="header-logo-link"><img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Wolf Metrum Logo"></a>
+      <a href="{{ '/' | relative_url }}" class="header-title-link"><h1 class="header-title">狼的格律 Wolf Metrum</h1></a>
     </div>
     <div class="header-subtitle">「讓未馴的靈魂，臣服於恩典的格律。」</div>
     <div class="header-verse">豺狼必與綿羊羔同居，豹子與山羊羔同臥，少壯獅子與牛犢並肥畜同群，小孩子要牽引牠們。 －以賽亞書11:6</div>
@@ -209,73 +144,51 @@ title: 狼的格律 Wolf Metrum
   </div>
 
   <ul id="song-list" style="list-style: none; padding: 0;">
-    {% for song in site.data.songs %}
-      {% if song.tags contains '狼的格律原創' %}
-        <li class="song-item" data-tags="{{ song.tags | join: ',' }}">
-          <a class="play-song-btn style-elegant" 
-             data-title="{{ song.title }}" 
-             data-youtube="{{ song.youtube_id }}" 
-             data-sheet="{{ song.sheet_music }}"
-             data-composer="{% if song.composer %}{{ song.composer }}{% endif %}"
-             data-lyricist="{% if song.lyricist %}{{ song.lyricist }}{% endif %}"
-             data-note="{% if song.note %}{{ song.note }}{% endif %}">
-            {{ song.title }}
-          </a>
-          <div class="song-info">
-            {% if song.composer == song.lyricist %}
-              <span class="info-tag song-composer">🎶🧾{{ song.composer }}</span>
-            {% else %}
-              {% if song.composer %}<span class="info-tag song-composer">🎶{{ song.composer }}</span>{% endif %}
-              {% if song.lyricist %}<span class="info-tag song-lyricist">🧾{{ song.lyricist }}</span>{% endif %}
-            {% endif %}
-            {% if song.note %}<span class="info-tag song-note" title="備註: {{ song.note }}">🐺{{ song.note }}</span>{% endif %}
-          </div>
-        </li>
+    {% assign all_songs = site.data.songs %}
+    {% for song in all_songs %}
+      {% assign is_elegant = false %}
+      {% if song.tags contains '狼的格律原創' %}{% assign is_elegant = true %}{% endif %}
+      
+      {% if is_elegant or forloop.first == false %} {% endif %}
+
+      {% assign style_class = "style-default" %}
+      {% if song.tags contains '狼的格律原創' %}{% assign style_class = "style-elegant" %}
+      {% elsif song.tags contains '傳統詩歌' %}{% assign style_class = "style-classical" %}
+      {% elsif song.tags contains '現代詩歌' %}{% assign style_class = "style-tech" %}
       {% endif %}
-    {% endfor %}
 
-    {% for song in site.data.songs %}
-      {% unless song.tags contains '狼的格律原創' %}
-        {% assign style_class = "style-default" %}
-        {% if song.tags contains '傳統詩歌' %}
-          {% assign style_class = "style-classical" %}
-        {% elsif song.tags contains '現代詩歌' %}
-          {% assign style_class = "style-tech" %}
-        {% endif %}
-
-        <li class="song-item" data-tags="{{ song.tags | join: ',' }}">
-          <a class="play-song-btn {{ style_class }}" 
-             data-title="{{ song.title }}" 
-             data-youtube="{{ song.youtube_id }}" 
-             data-sheet="{{ song.sheet_music }}"
-             data-composer="{% if song.composer %}{{ song.composer }}{% endif %}"
-             data-lyricist="{% if song.lyricist %}{{ song.lyricist }}{% endif %}"
-             data-note="{% if song.note %}{{ song.note }}{% endif %}">
-            {{ song.title }}
-          </a>
-          <div class="song-info">
-            {% if song.composer == song.lyricist %}
-              <span class="info-tag song-composer">🎶🧾{{ song.composer }}</span>
-            {% else %}
-              {% if song.composer %}<span class="info-tag song-composer">🎶{{ song.composer }}</span>{% endif %}
-              {% if song.lyricist %}<span class="info-tag song-lyricist">🧾{{ song.lyricist }}</span>{% endif %}
-            {% endif %}
-            {% if song.note %}<span class="info-tag song-note" title="備註: {{ song.note }}">🐺{{ song.note }}</span>{% endif %}
-          </div>
-        </li>
-      {% endunless %}
+      <li class="song-item" data-tags="{{ song.tags | join: ',' }}">
+        <a class="play-song-btn {{ style_class }}" 
+           data-title="{{ song.title }}" 
+           data-youtube="{{ song.youtube_id }}" 
+           data-sheet="{{ song.sheet_music }}"
+           data-composer="{{ song.composer }}"
+           data-lyricist="{{ song.lyricist }}"
+           data-note="{{ song.note }}"
+           data-dontplay="{% if song.dontplay == true %}true{% else %}false{% endif %}">
+          {{ song.title }}
+        </a>
+        <div class="song-info">
+          {% if song.composer == song.lyricist %}
+            <span class="info-tag">🎶🧾{{ song.composer }}</span>
+          {% else %}
+            {% if song.composer %}<span class="info-tag">🎶{{ song.composer }}</span>{% endif %}
+            {% if song.lyricist %}<span class="info-tag">🧾{{ song.lyricist }}</span>{% endif %}
+          {% endif %}
+          {% if song.note %}<span class="info-tag song-note" title="備註: {{ song.note }}">🐺{{ song.note }}</span>{% endif %}
+        </div>
+      </li>
     {% endfor %}
   </ul>
 
   <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #1f2937; text-align: center; color: #8b949e; font-size: 0.95em; padding-bottom: 20px;">
-    <p style="margin: 0 0 10px 0;">聯絡狼的格律 Wolf Metrum：<a href="mailto:wolfmetrum@outlook.com" style="color: #58a6ff; text-decoration: none;">wolfmetrum@outlook.com</a></p>
+    <p>聯絡狼的格律 Wolf Metrum：<a href="mailto:wolfmetrum@outlook.com" style="color: #58a6ff; text-decoration: none;">wolfmetrum@outlook.com</a></p>
     <div style="display: flex; justify-content: center; gap: 20px; align-items: center; margin-top: 15px;">
-      <a href="https://www.youtube.com/channel/UCqdp7Moy1guJ1UHCocdKFWQ" target="_blank" style="color: #c9d1d9; text-decoration: none; font-size: 1.2em; font-weight: bold; transition: color 0.2s;" onmouseover="this.style.color='#ff4d4d'" onmouseout="this.style.color='#c9d1d9'">▶ YouTube</a>
-      <a href="{{ '/' | relative_url }}" style="color: #c9d1d9; text-decoration: none; font-size: 1.2em; font-weight: bold; transition: color 0.2s;" onmouseover="this.style.color='#1877F2'" onmouseout="this.style.color='#c9d1d9'">f Facebook</a>
-      <a href="{{ '/' | relative_url }}" style="color: #c9d1d9; text-decoration: none; font-size: 1.4em; font-weight: bold; transition: color 0.2s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#c9d1d9'">𝕏</a>
+      <a href="https://www.youtube.com/channel/UCqdp7Moy1guJ1UHCocdKFWQ" target="_blank" style="color: #c9d1d9; text-decoration: none; font-size: 1.2em; font-weight: bold;">▶ YouTube</a>
+      <a href="/" style="color: #c9d1d9; text-decoration: none; font-size: 1.2em; font-weight: bold;">f Facebook</a>
+      <a href="/" style="color: #c9d1d9; text-decoration: none; font-size: 1.4em; font-weight: bold;">𝕏</a>
     </div>
   </footer>
-
 </div>
 
 <script>
@@ -283,31 +196,21 @@ window.togglePdfViewer = function(url) {
   const container = document.getElementById('pdf-viewer-container');
   const iframe = document.getElementById('pdf-iframe');
   const btn = document.getElementById('toggle-pdf-btn');
-  
   if (container.style.display === 'none') {
-    iframe.src = url;
-    container.style.display = 'block';
-    btn.innerText = '隱藏樂譜 (PDF)';
-    btn.style.backgroundColor = '#444';
+    iframe.src = url; container.style.display = 'block'; btn.innerText = '隱藏樂譜 (PDF)'; btn.style.backgroundColor = '#444';
   } else {
-    container.style.display = 'none';
-    iframe.src = '';
-    btn.innerText = '顯示樂譜 (PDF)';
-    btn.style.backgroundColor = '#1f6feb';
+    container.style.display = 'none'; iframe.src = ''; btn.innerText = '顯示樂譜 (PDF)'; btn.style.backgroundColor = '#1f6feb';
   }
 };
 
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById('star-canvas');
   const starCount = 150;
-  const colors = ['white', 'blue', 'yellow'];
-
   for (let i = 0; i < starCount; i++) {
     const star = document.createElement('div');
-    let colorClass = colors[0];
-    const colorRoll = Math.random();
-    if (colorRoll > 0.7 && colorRoll <= 0.95) colorClass = colors[1];
-    else if (colorRoll > 0.95) colorClass = colors[2];
+    let colorClass = 'white';
+    const roll = Math.random();
+    if (roll > 0.8) colorClass = roll > 0.95 ? 'yellow' : 'blue';
     star.className = `star ${colorClass}`;
     const size = Math.random() * 2 + 1 + 'px';
     star.style.width = size; star.style.height = size;
@@ -315,7 +218,6 @@ document.addEventListener("DOMContentLoaded", () => {
     star.style.animationDelay = Math.random() * 5 + 's'; star.style.animationDuration = Math.random() * 3 + 2 + 's';
     canvas.appendChild(star);
   }
-
   function createMeteor() {
     if (Math.random() < 0.3) return;
     const meteor = document.createElement('div');
@@ -325,193 +227,109 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.appendChild(meteor);
     meteor.addEventListener('animationend', () => { meteor.remove(); });
   }
-  setInterval(createMeteor, Math.random() * 4000 + 3000); 
+  setInterval(createMeteor, 5000);
 
   let latestVideos = [];
   let currentVidIndex = 0;
 
   function loadPlayer(title, youtubeId, sheetUrl, composer = "", lyricist = "", note = "", isLatestMode = false) {
     const titleElem = document.getElementById('player-title');
-    
     let infoHtml = "";
     if (!isLatestMode) {
-      // 合併標頭邏輯：同名合併，移除備註
-      if (composer && lyricist && composer === lyricist) {
-        infoHtml += `<span class="info-tag">🎶🧾${composer}</span>`;
-      } else {
+      if (composer && lyricist && composer === lyricist) { infoHtml += `<span class="info-tag">🎶🧾${composer}</span>`; } 
+      else {
         if (composer) infoHtml += `<span class="info-tag">🎶${composer}</span>`;
         if (lyricist) infoHtml += `<span class="info-tag">🧾${lyricist}</span>`;
       }
     }
-
-    if (infoHtml !== "") {
-      titleElem.innerHTML = `<span style="display:inline-block; vertical-align:middle; margin-right: 15px;">${title}</span> <span class="player-info-container">${infoHtml}</span>`;
-    } else {
-      titleElem.innerText = title;
-    }
+    titleElem.innerHTML = infoHtml !== "" ? `<span style="display:inline-block; vertical-align:middle; margin-right: 15px;">${title}</span> <span class="player-info-container">${infoHtml}</span>` : title;
 
     const videoContainer = document.getElementById('video-container');
-    if (youtubeId && youtubeId.trim() !== '') {
-      const autoplayParam = isLatestMode ? "" : "?autoplay=1";
-      videoContainer.innerHTML = `
-        <iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${youtubeId}${autoplayParam}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-      `;
-    } else {
-      videoContainer.innerHTML = ''; 
-    }
+    videoContainer.innerHTML = youtubeId ? `<iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${youtubeId}${isLatestMode ? "" : "?autoplay=1"}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>` : '';
 
     document.getElementById('prev-video').style.display = isLatestMode ? 'block' : 'none';
     document.getElementById('next-video').style.display = isLatestMode ? 'block' : 'none';
     document.getElementById('back-to-latest').style.display = isLatestMode ? 'none' : 'block';
 
     const sheetContainer = document.getElementById('sheet-music-container');
-    if (sheetUrl && sheetUrl.trim() !== '') {
-      sheetContainer.innerHTML = `
-        <div style="display: flex; gap: 15px; justify-content: center; margin-bottom: 15px; flex-wrap: wrap;">
-          <a href="${sheetUrl}" download target="_blank">
-            <button style="padding: 10px 25px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #d29922; color: #111; border: none; border-radius: 5px; transition: 0.2s;">
-              下載樂譜 (PDF)
-            </button>
-          </a>
-          <button id="toggle-pdf-btn" onclick="togglePdfViewer('${sheetUrl}')" style="padding: 10px 25px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #1f6feb; color: white; border: none; border-radius: 5px; transition: 0.2s;">
-            顯示樂譜 (PDF)
-          </button>
-        </div>
-        <div id="pdf-viewer-container" style="display: none; width: 100%; height: 75vh; max-height: 800px; background: #111; border: 1px solid #30363d; border-radius: 5px; overflow: hidden;">
-          <iframe id="pdf-iframe" src="" style="width: 100%; height: 100%; border: none;"></iframe>
-        </div>
-      `;
+    if (sheetUrl) {
+      sheetContainer.innerHTML = `<div style="display: flex; gap: 15px; justify-content: center; margin-bottom: 15px; flex-wrap: wrap;"><a href="${sheetUrl}" download target="_blank"><button style="padding: 10px 25px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #d29922; color: #111; border: none; border-radius: 5px;">下載樂譜 (PDF)</button></a><button id="toggle-pdf-btn" onclick="togglePdfViewer('${sheetUrl}')" style="padding: 10px 25px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #1f6feb; color: white; border: none; border-radius: 5px;">顯示樂譜 (PDF)</button></div><div id="pdf-viewer-container" style="display: none; width: 100%; height: 75vh; background: #111; border: 1px solid #30363d; border-radius: 5px; overflow: hidden;"><iframe id="pdf-iframe" src="" style="width: 100%; height: 100%; border: none;"></iframe></div>`;
       sheetContainer.style.display = 'block';
-    } else {
-      sheetContainer.innerHTML = '';
-      sheetContainer.style.display = 'none';
-    }
+    } else { sheetContainer.style.display = 'none'; }
   }
 
+  // === 隨機播放邏輯強化 ===
   function playAll() {
-    document.getElementById('player-title').innerText = "狼的格律 - 隨機連續播放";
-    const videoContainer = document.getElementById('video-container');
-    
-    const allSongBtns = document.querySelectorAll('.play-song-btn');
+    const activeBtn = document.querySelector('.filter-btn.active');
+    const filterName = activeBtn ? activeBtn.innerText : "全部展示";
+    document.getElementById('player-title').innerText = `${filterName} (隨機)`;
+
+    const visibleSongItems = Array.from(document.querySelectorAll('.song-item')).filter(item => item.style.display !== 'none');
     let videoIds = [];
-    allSongBtns.forEach(btn => {
-      const id = btn.getAttribute('data-youtube');
-      if(id && id.trim() !== '') { videoIds.push(id.trim()); }
+    visibleSongItems.forEach(item => {
+      const btn = item.querySelector('.play-song-btn');
+      if (btn && btn.getAttribute('data-dontplay') !== 'true') {
+        const id = btn.getAttribute('data-youtube');
+        if (id && id.trim() !== '') videoIds.push(id.trim());
+      }
     });
 
-    if(videoIds.length === 0) {
-      videoContainer.innerHTML = "目前沒有可用的影像紀錄。"; return;
-    }
-
+    if(videoIds.length === 0) return;
     for (let i = videoIds.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [videoIds[i], videoIds[j]] = [videoIds[j], videoIds[i]];
     }
-
     const firstVideo = videoIds[0];
     const playlistString = videoIds.join(',');
-
-    videoContainer.innerHTML = `
-      <iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${firstVideo}?autoplay=1&playlist=${playlistString}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    `;
-
+    document.getElementById('video-container').innerHTML = `<iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${firstVideo}?autoplay=1&playlist=${playlistString}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
     document.getElementById('prev-video').style.display = 'none';
     document.getElementById('next-video').style.display = 'none';
     document.getElementById('back-to-latest').style.display = 'block';
-    
-    const sheetContainer = document.getElementById('sheet-music-container');
-    sheetContainer.innerHTML = ''; sheetContainer.style.display = 'none';
-
+    document.getElementById('sheet-music-container').style.display = 'none';
     document.getElementById('player-title').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   function renderLatestVideo() {
     if(latestVideos.length === 0) return;
-    const videoData = latestVideos[currentVidIndex];
-    const videoId = videoData.link.split('v=')[1];
+    const videoId = latestVideos[currentVidIndex].link.split('v=')[1];
     loadPlayer("最新發布", videoId, "", "", "", "", true);
   }
 
   const channelId = 'UCqdp7Moy1guJ1UHCocdKFWQ'; 
-  const rssUrl = encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
-  const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`;
+  const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`)}`;
+  fetch(apiUrl).then(res => res.json()).then(data => { if(data.items) { latestVideos = data.items.slice(0, 3); renderLatestVideo(); } });
 
-  fetch(apiUrl).then(res => res.json()).then(data => {
-    if(data.items && data.items.length > 0) {
-      latestVideos = data.items.slice(0, 3);
-      renderLatestVideo();
-    }
-  });
-
-  document.getElementById('prev-video').addEventListener('click', () => {
-    if(latestVideos.length > 0) { currentVidIndex = (currentVidIndex - 1 + latestVideos.length) % latestVideos.length; renderLatestVideo(); }
-  });
-  document.getElementById('next-video').addEventListener('click', () => {
-    if(latestVideos.length > 0) { currentVidIndex = (currentVidIndex + 1) % latestVideos.length; renderLatestVideo(); }
-  });
-  document.getElementById('back-to-latest').addEventListener('click', () => {
-    currentVidIndex = 0; renderLatestVideo();
-  });
-  document.getElementById('play-all-btn').addEventListener('click', () => { playAll(); });
+  document.getElementById('prev-video').addEventListener('click', () => { if(latestVideos.length > 0) { currentVidIndex = (currentVidIndex - 1 + latestVideos.length) % latestVideos.length; renderLatestVideo(); } });
+  document.getElementById('next-video').addEventListener('click', () => { if(latestVideos.length > 0) { currentVidIndex = (currentVidIndex + 1) % latestVideos.length; renderLatestVideo(); } });
+  document.getElementById('back-to-latest').addEventListener('click', () => { currentVidIndex = 0; renderLatestVideo(); });
+  document.getElementById('play-all-btn').addEventListener('click', playAll);
 
   document.querySelectorAll('.play-song-btn').forEach(btn => {
     btn.addEventListener('click', function() {
-      const title = this.getAttribute('data-title');
-      const youtubeId = this.getAttribute('data-youtube');
-      const sheetUrl = this.getAttribute('data-sheet');
-      const composer = this.getAttribute('data-composer');
-      const lyricist = this.getAttribute('data-lyricist');
-      const note = this.getAttribute('data-note');
-
-      loadPlayer(title, youtubeId, sheetUrl, composer, lyricist, note, false);
+      loadPlayer(this.getAttribute('data-title'), this.getAttribute('data-youtube'), this.getAttribute('data-sheet'), this.getAttribute('data-composer'), this.getAttribute('data-lyricist'), this.getAttribute('data-note'), false);
       document.getElementById('player-title').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
 
   const songItems = document.querySelectorAll('.song-item');
   const filterContainer = document.getElementById('filter-buttons');
-  const filterWrapper = document.getElementById('filter-buttons-wrapper');
-  const filterParent = document.querySelector('.filter-container');
   const allTags = new Set();
-  
-  songItems.forEach(item => {
-    const tags = item.getAttribute('data-tags').split(',');
-    tags.forEach(tag => { const cleanTag = tag.trim(); if(cleanTag) allTags.add(cleanTag); });
-  });
-  
+  songItems.forEach(item => { item.getAttribute('data-tags').split(',').forEach(tag => { if(tag.trim()) allTags.add(tag.trim()); }); });
   allTags.forEach(tag => {
-    const btn = document.createElement('button');
-    btn.className = 'filter-btn'; btn.setAttribute('data-filter', tag); btn.innerText = tag;
-    filterContainer.appendChild(btn);
+    const btn = document.createElement('button'); btn.className = 'filter-btn'; btn.setAttribute('data-filter', tag); btn.innerText = tag; filterContainer.appendChild(btn);
   });
-  
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', function() {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      const targetTag = this.getAttribute('data-filter');
-      songItems.forEach(item => {
-        if (targetTag === 'all') { item.style.display = 'grid'; } else {
-          const itemTags = item.getAttribute('data-tags').split(',').map(t => t.trim());
-          if (itemTags.includes(targetTag)) { 
-            item.style.display = 'grid';
-          } else { item.style.display = 'none'; }
-        }
-      });
-      setTimeout(checkFilterScroll, 100);
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); this.classList.add('active');
+      const target = this.getAttribute('data-filter');
+      songItems.forEach(item => { item.style.display = (target === 'all' || item.getAttribute('data-tags').split(',').includes(target)) ? 'grid' : 'none'; });
+      checkFilterScroll();
     });
   });
 
-  function checkFilterScroll() {
-    if (filterWrapper.scrollWidth > filterWrapper.clientWidth + 5) {
-      filterParent.classList.add('is-scrollable');
-    } else {
-      filterParent.classList.remove('is-scrollable');
-    }
-  }
-  
-  setTimeout(checkFilterScroll, 100);
-  window.addEventListener('resize', checkFilterScroll);
-
+  const filterWrapper = document.getElementById('filter-buttons-wrapper');
+  const filterParent = document.querySelector('.filter-container');
+  function checkFilterScroll() { filterParent.classList.toggle('is-scrollable', filterWrapper.scrollWidth > filterWrapper.clientWidth + 5); }
+  setTimeout(checkFilterScroll, 500); window.addEventListener('resize', checkFilterScroll);
 });
 </script>
