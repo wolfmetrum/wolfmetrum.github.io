@@ -4,20 +4,11 @@ title: 狼的格律 Wolf Metrum
 ---
 
 <style>
-  /* === 終極抹除系統預設空白 === */
   header.site-header, .site-header, .page-header { display: none !important; }
   .my-5, .markdown-body, .container-lg, .page-content { margin-top: 0 !important; padding-top: 0 !important; }
   
-  body {
-    background-color: #050914;
-    margin: 0; padding: 0; overflow-x: hidden;
-    color: #e6edf3; font-family: sans-serif; min-height: 100vh;
-  }
-
-  #star-canvas {
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    z-index: -2; pointer-events: none; overflow: hidden;
-  }
+  body { background-color: #050914; margin: 0; padding: 0; overflow-x: hidden; color: #e6edf3; font-family: sans-serif; min-height: 100vh; }
+  #star-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; pointer-events: none; overflow: hidden; }
 
   .star { position: absolute; border-radius: 50%; background-color: #ffffff; animation: twinkle linear infinite; opacity: 0; }
   .star.white { background-color: #ffffff; box-shadow: 0 0 3px #ffffff; }
@@ -29,55 +20,29 @@ title: 狼的格律 Wolf Metrum
   .meteor { position: absolute; width: 2px; height: 2px; background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)); box-shadow: 0 0 5px 1px #fff; border-radius: 50%; opacity: 0; animation: meteor-fall linear 1; pointer-events: none; }
   @keyframes meteor-fall { 0% { opacity: 1; transform: translate(0, 0) rotate(-45deg) scale(1); } 10% { opacity: 1; } 90% { opacity: 1; } 100% { opacity: 0; transform: translate(400px, 400px) rotate(-45deg) scale(0); } }
 
-  .main-content-wrapper { max-width: 1000px; margin: 0 auto; padding: 20px; position: relative; z-index: 10; overflow: hidden; } /* 加入 overflow: hidden 防止內容撐破畫面 */
+  .main-content-wrapper { max-width: 1000px; margin: 0 auto; padding: 20px; position: relative; z-index: 10; }
   img { background-color: transparent !important; }
   h1, h2, h3 { color: #ffffff; }
   hr { border-color: #1f2937; margin: 20px 0; }
   
-  /* === 標題陣容：終極防禦版 === */
-  .header-container {
-    display: flex; flex-direction: column;
-    margin-bottom: 25px; border-bottom: 2px solid #1f2937;
-    padding-bottom: 15px; gap: 8px; 
-    width: 100%; /* 確保容器不超出畫面 */
-  }
-  .header-top-row { 
-    display: flex; align-items: center; flex-wrap: nowrap; 
-    width: 100%; max-width: 100%; /* 限制最大寬度 */
-    gap: 12px; 
-  }
-  .header-logo-link { flex: 0 0 clamp(40px, 12vw, 100px); min-width: 40px; }
+  .header-container { display: flex; flex-direction: column; margin-bottom: 25px; border-bottom: 2px solid #1f2937; padding-bottom: 15px; gap: 8px; }
+  .header-top-row { display: flex; align-items: center; flex-wrap: nowrap; width: 100%; gap: 12px; }
+  .header-logo-link { flex: 0 0 clamp(50px, 15vw, 100px); min-width: 50px; }
   .header-logo-link img { width: 100%; height: auto; display: block; }
+  .header-title-link { flex: 1; min-width: 0; text-decoration: none; color: inherit; }
   
-  /* 標題連結容器，設定 flex: 1 讓它佔滿剩餘空間，但絕不超出 */
-  .header-title-link { 
-    flex: 1; 
-    min-width: 0; 
-    text-decoration: none; color: inherit; 
-    overflow: visible; /* 允許內容顯示，不要截斷 */
-  }
-  
-  .header-title {
-    margin: 0; font-weight: bold;
-    font-size: clamp(12px, 5.5vw, 2.5em); /* 調整縮放比例，讓它在小螢幕縮得更積極 */
-    white-space: nowrap; 
-    letter-spacing: -0.5px;
-    width: 100%;
-  }
-  
-  .header-subtitle { color: #8b949e; font-weight: bold; font-size: clamp(10px, 3vw, 1.1em); white-space: nowrap; width: 100%; overflow: hidden; text-overflow: ellipsis; }
-  .header-verse {
-    color: #d29922; font-size: clamp(0.8em, 2.5vw, 0.95em); line-height: 1.4;
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;
-  }
+  .header-title { margin: 0; font-weight: bold; font-size: clamp(14px, 6vw, 2.5em); letter-spacing: -0.5px; width: 100%; white-space: normal; word-break: keep-all; line-height: 1.1; }
+  .header-subtitle { color: #8b949e; font-weight: bold; font-size: clamp(10px, 3vw, 1.1em); white-space: nowrap; width: 100%; }
+  .header-verse { color: #d29922; font-size: clamp(0.8em, 2.5vw, 0.95em); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; width: 100%; }
 
-  .song-item { 
-    border-bottom: 1px solid #1f2937 !important; padding-bottom: 6px; margin-bottom: 8px; 
-    display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 10px 15px;
-  }
+  .song-item { border-bottom: 1px solid #1f2937 !important; padding-bottom: 6px; margin-bottom: 8px; display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 10px 15px; }
   .play-song-btn { cursor: pointer; text-decoration: none; transition: all 0.2s; display: inline-block; padding: 4px 10px; font-size: 1.1em; font-weight: bold; grid-column: 1 / 2; }
-  .song-info { color: #8b949e; font-size: 0.8em; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; grid-column: 2 / 3; min-width: 0; }
+  .song-info { color: #8b949e; font-size: 0.8em; display: flex; flex-wrap: nowrap; align-items: center; gap: 12px; grid-column: 2 / 3; min-width: 0; }
   .info-tag { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .song-composer { flex: 0 1 auto; }
+  .song-lyricist { flex: 0 1 auto; }
+  .song-note { flex: 1 1 50px; }
+
   @media (max-width: 600px) {
     .song-item { grid-template-columns: 1fr; gap: 4px 0; }
     .play-song-btn { grid-column: 1 / -1; justify-self: start; }
@@ -97,32 +62,19 @@ title: 狼的格律 Wolf Metrum
   .filter-hint { font-size: 0.85em; color: #58a6ff; margin-bottom: 10px; display: none; font-weight: bold; animation: swipe-hint-anim 2s infinite ease-in-out; }
   @keyframes swipe-hint-anim { 0% { opacity: 0.7; transform: translateX(0); } 50% { opacity: 1; transform: translateX(8px); } 100% { opacity: 0.7; transform: translateX(0); } }
   .filter-container.is-scrollable .filter-hint { display: inline-block; }
-  
-  #filter-buttons-wrapper { 
-    width: 100%; overflow-x: auto; white-space: nowrap; 
-    -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; padding-right: 0px; 
-    cursor: grab; 
-  }
-  #filter-buttons-wrapper:active { cursor: grabbing; } 
+
+  #filter-buttons-wrapper { width: 100%; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; padding-right: 0px; cursor: grab; }
+  #filter-buttons-wrapper:active { cursor: grabbing; }
   .filter-container.is-scrollable #filter-buttons-wrapper { padding-right: 40px; }
   #filter-buttons-wrapper::-webkit-scrollbar { display: none; }
   .filter-container::after { content: ''; position: absolute; right: 0; bottom: 0; top: 25px; width: 50px; background: linear-gradient(to right, rgba(5,9,20,0), rgba(5,9,20,1)); pointer-events: none; display: none; }
   .filter-container.is-scrollable::after { display: block; }
-  
+
   #filter-buttons { display: inline-flex; gap: 10px; pointer-events: none; } 
   .filter-btn { display: inline-flex; align-items: center; background: #161b22; color: #c9d1d9; border: 1px solid #30363d; padding: 5px 12px; cursor: pointer; border-radius: 4px; transition: 0.2s; flex: 0 0 auto; pointer-events: auto; } 
   .filter-btn.active { background: #1f6feb; color: #ffffff; border-color: #1f6feb; font-weight: bold; }
   
-  .tag-count {
-    font-size: 0.75em;
-    background: rgba(255, 255, 255, 0.1);
-    color: #8b949e;
-    padding: 2px 7px;
-    border-radius: 12px;
-    margin-left: 8px;
-    font-weight: normal;
-    transition: 0.2s;
-  }
+  .tag-count { font-size: 0.75em; background: rgba(255, 255, 255, 0.1); color: #8b949e; padding: 2px 7px; border-radius: 12px; margin-left: 8px; font-weight: normal; transition: 0.2s; }
   .filter-btn:hover .tag-count { color: #ffffff; background: rgba(255, 255, 255, 0.2); }
   .filter-btn.active .tag-count { color: #ffffff; background: rgba(255, 255, 255, 0.25); }
 
@@ -130,6 +82,7 @@ title: 狼的格律 Wolf Metrum
   #play-all-btn:hover { background-color: #2ea043; }
 
   .player-info-container { display: inline-flex; flex-wrap: nowrap; gap: 10px; font-size: 0.55em; color: #8b949e; margin-left: 15px; font-weight: normal; vertical-align: middle; max-width: 100%; min-width: 0; overflow: hidden; }
+  .player-info-container span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   @media (max-width: 600px) { .player-info-container { display: flex; margin-left: 0; margin-top: 8px; width: 100%; } }
 </style>
 
@@ -199,10 +152,10 @@ title: 狼的格律 Wolf Metrum
         </a>
         <div class="song-info">
           {% if song.composer == song.lyricist %}
-            <span class="info-tag">🎶🧾{{ song.composer }}</span>
+            <span class="info-tag song-composer">🎶🧾{{ song.composer }}</span>
           {% else %}
-            {% if song.composer %}<span class="info-tag">🎶{{ song.composer }}</span>{% endif %}
-            {% if song.lyricist %}<span class="info-tag">🧾{{ song.lyricist }}</span>{% endif %}
+            {% if song.composer %}<span class="info-tag song-composer">🎶{{ song.composer }}</span>{% endif %}
+            {% if song.lyricist %}<span class="info-tag song-lyricist">🧾{{ song.lyricist }}</span>{% endif %}
           {% endif %}
           {% if song.note %}<span class="info-tag song-note" title="備註: {{ song.note }}">🐺{{ song.note }}</span>{% endif %}
         </div>
@@ -281,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('back-to-latest').style.display = isLatestMode ? 'none' : 'block';
 
     const sheetContainer = document.getElementById('sheet-music-container');
-    if (sheetUrl) {
+    if (sheetUrl && sheetUrl.trim() !== '') {
       sheetContainer.innerHTML = `<div style="display: flex; gap: 15px; justify-content: center; margin-bottom: 15px; flex-wrap: wrap;"><a href="${sheetUrl}" download target="_blank"><button style="padding: 10px 25px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #d29922; color: #111; border: none; border-radius: 5px;">下載樂譜 (PDF)</button></a><button id="toggle-pdf-btn" onclick="togglePdfViewer('${sheetUrl}')" style="padding: 10px 25px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #1f6feb; color: white; border: none; border-radius: 5px;">顯示樂譜 (PDF)</button></div><div id="pdf-viewer-container" style="display: none; width: 100%; height: 75vh; background: #111; border: 1px solid #30363d; border-radius: 5px; overflow: hidden;"><iframe id="pdf-iframe" src="" style="width: 100%; height: 100%; border: none;"></iframe></div>`;
       sheetContainer.style.display = 'block';
     } else { sheetContainer.style.display = 'none'; }
@@ -323,9 +276,32 @@ document.addEventListener("DOMContentLoaded", () => {
     loadPlayer("最新發布", videoId, "", "", "", "", true);
   }
 
-  const channelId = 'UCqdp7Moy1guJ1UHCocdKFWQ'; 
-  const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`)}`;
-  fetch(apiUrl).then(res => res.json()).then(data => { if(data.items) { latestVideos = data.items.slice(0, 3); renderLatestVideo(); } });
+  // === 空投參數偵測與初始載入判斷 ===
+  const urlParams = new URLSearchParams(window.location.search);
+  const targetVid = urlParams.get('v');
+
+  if (targetVid) {
+    // 偵測到網址有 ?v=參數，執行攔截
+    const targetBtn = document.querySelector(`.play-song-btn[data-youtube="${targetVid}"]`);
+    if (targetBtn) {
+      const title = targetBtn.getAttribute('data-title');
+      const sheetUrl = targetBtn.getAttribute('data-sheet');
+      const composer = targetBtn.getAttribute('data-composer');
+      const lyricist = targetBtn.getAttribute('data-lyricist');
+      const note = targetBtn.getAttribute('data-note');
+      loadPlayer(title, targetVid, sheetUrl, composer, lyricist, note, false);
+    } else {
+      // 目標不在清單內，強制掛載影片
+      loadPlayer("指定曲目", targetVid, "", "", "", "", false);
+    }
+    // 延遲捲動確保渲染完成
+    setTimeout(() => document.getElementById('player-title').scrollIntoView({ behavior: 'smooth', block: 'start' }), 500);
+  } else {
+    // 無空投參數，執行常規最新發布撈取
+    const channelId = 'UCqdp7Moy1guJ1UHCocdKFWQ'; 
+    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`)}`;
+    fetch(apiUrl).then(res => res.json()).then(data => { if(data.items) { latestVideos = data.items.slice(0, 3); renderLatestVideo(); } });
+  }
 
   document.getElementById('prev-video').addEventListener('click', () => { if(latestVideos.length > 0) { currentVidIndex = (currentVidIndex - 1 + latestVideos.length) % latestVideos.length; renderLatestVideo(); } });
   document.getElementById('next-video').addEventListener('click', () => { if(latestVideos.length > 0) { currentVidIndex = (currentVidIndex + 1) % latestVideos.length; renderLatestVideo(); } });
