@@ -11,6 +11,7 @@
 | 路徑 | 說明 |
 |---|---|
 | `index.html` / `en/index.html` | 中文首頁（`/`）與英文首頁（`/en/`），只有設定語言並引入 `_includes/home.html` |
+| `_layouts/default.html` | 覆寫主題版面：正確的 `<html lang>`、hreflang、favicon、結構化資料，並移除主題自動插入的 h1 |
 | `_includes/home.html` | 共用頁面模板：播放器、篩選、搜尋、歌曲目錄（Liquid 產生列表，JS 處理播放與篩選），依 `page.lang` 切換語言 |
 | `_data/i18n.yml` | 介面文字、標籤與備註的中英文對照 |
 | `_data/songs.yml` | 曲目資料，網站內容的唯一來源 |
@@ -19,6 +20,7 @@
 | `assets/images/` | Logo |
 | `scripts/sync_youtube.py` | 從 YouTube 同步新曲目的腳本 |
 | `.github/workflows/sync-youtube.yml` | 每週自動執行同步 |
+| `robots.txt` | 搜尋引擎規則與 sitemap 位置（`sitemap.xml` 由 `jekyll-sitemap` 自動產生） |
 | `wolfeyeqrscanner_privacy.md` | 其他專案暫放的隱私權政策，與本站無關 |
 | `_layouts/song.html` | 目前未使用 |
 

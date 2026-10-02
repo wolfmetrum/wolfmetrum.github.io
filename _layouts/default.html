@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% assign page_lang = page.lang | default: 'zh' %}
+<html lang="{% if page_lang == 'en' %}en{% else %}zh-TW{% endif %}">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% comment %}Own <title> (page.seo_title) so the English page doesn't get the Chinese site name appended.{% endcomment %}
+    <title>{{ page.seo_title | default: page.title }}</title>
+{% seo title=false %}
+    <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+    <link rel="icon" type="image/png" href="{{ '/assets/images/logo.png' | relative_url }}">
+    <link rel="apple-touch-icon" href="{{ '/assets/images/logo.png' | relative_url }}">
+
+    <link rel="alternate" hreflang="zh-TW" href="{{ '/' | absolute_url }}">
+    <link rel="alternate" hreflang="en" href="{{ '/en/' | absolute_url }}">
+    <link rel="alternate" hreflang="x-default" href="{{ '/' | absolute_url }}">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MusicGroup",
+      "name": "Wolf Metrum",
+      "alternateName": "狼的格律",
+      "url": {{ '/' | absolute_url | jsonify }},
+      "logo": {{ '/assets/images/logo.png' | absolute_url | jsonify }},
+      "sameAs": ["https://www.youtube.com/channel/{{ site.youtube_channel_id }}"]
+    }
+    </script>
+    {% include head-custom.html %}
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      {{ content }}
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+  </body>
+</html>
