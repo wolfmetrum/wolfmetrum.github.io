@@ -12,3 +12,10 @@ collections:
     
 exclude:
   - scripts
+
+# 其他專案暫放的隱私權政策，不列入 sitemap
+defaults:
+  - scope:
+      path: "wolfeyeqrscanner_privacy.md"
+    values:
+      sitemap: false
