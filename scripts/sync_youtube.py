@@ -20,7 +20,10 @@ HEADER = "作品與版權資訊"
 BULLET_RE = re.compile(r"^\s*[•・·\-\*]\s*(.+?)\s*[：:]\s*(.*?)\s*$")
 KEYED_FIELDS = {"曲名": "title", "作曲": "composer", "作詞": "lyricist", "標籤": "tags"}
 NOTE_INDEX = 3  # 第 4 列固定為備註，不論欄位名稱
-TRANSPOSED_RE = re.compile(r"^[(（]\s*移調\s*[)）]")
+TRANSPOSED_RE = re.compile(r"^[(（]\s*移調\s*[)）]\s*")
+KEY_RE = re.compile(r"^[A-G][#b]?m?")
+PLAIN_UNSAFE_RE = re.compile(r"(^[\s\[\]{}&*!|>'\"%@`#,-]|\s$|: | #|:$|[\[\]{},])")
+YAML_SPECIAL_RE = re.compile(r"^(true|false|yes|no|on|off|null|~|[-+]?[\d.][\d._:eE+-]*)$", re.I)
 
 
 def parse_description(desc):
@@ -50,8 +53,14 @@ def parse_description(desc):
         field = next((f for k, f in KEYED_FIELDS.items() if key.startswith(k)), None)
         if field is None and idx == NOTE_INDEX and not key.startswith(("鋼琴", "調性")):
             field = "note"
-        if key.startswith("調性") and TRANSPOSED_RE.match(value):
-            fields["dontplay"] = True
+        if key.startswith("調性"):
+            if TRANSPOSED_RE.match(value):
+                fields["dontplay"] = True
+                value = TRANSPOSED_RE.sub("", value)
+            m = KEY_RE.match(value.strip())
+            if m:
+                fields["key"] = m.group(0)
+            continue
         if field and value:
             fields[field] = value
 
@@ -61,7 +70,7 @@ def parse_description(desc):
 
 
 def yaml_scalar(value):
-    if (re.search(r"(^[\s\[\]{}&*!|>'\"%@`#,-]|\s$|: | #|:$)", value)):
+    if PLAIN_UNSAFE_RE.search(value) or YAML_SPECIAL_RE.match(value):
         return '"' + value.replace("\\", "\\\\").replace('"', '\\"') + '"'
     return value
 
@@ -72,7 +81,9 @@ def render_entry(song):
         if song.get(key):
             lines.append(f"  {key}: {yaml_scalar(song[key])}")
     lines.append(f"  youtube_id: {song['youtube_id']}")
-    lines.append("  tags: [" + ", ".join(song.get("tags", [])) + "]")
+    if song.get("key"):
+        lines.append(f"  key: {song['key']}")
+    lines.append("  tags: [" + ", ".join(yaml_scalar(t) for t in song.get("tags", [])) + "]")
     if song.get("dontplay"):
         lines.append("  dontplay: true")
     return "\n".join(lines)

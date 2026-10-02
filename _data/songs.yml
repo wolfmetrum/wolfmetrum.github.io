@@ -3,6 +3,7 @@
   lyricist: 狼的格律
   note: Aegisulf©️狼的格律
   youtube_id: 0PIoV51qx3Q
+  key: C
   sheet_music: /assets/sheets/永恆恩典.pdf
   tags: [狼的格律原創, 演唱版, 現代詩歌]
 
@@ -11,6 +12,7 @@
   lyricist: 狼的格律
   note: Aegisulf©️狼的格律
   youtube_id: EYYSTQN3vXE
+  key: A
   sheet_music: /assets/sheets/無限的慈愛.pdf
   tags: [狼的格律原創, 演唱版, 現代詩歌]
 
@@ -19,6 +21,7 @@
   lyricist: 狼的格律
   note: Aegisulf©️狼的格律
   youtube_id: dPbFqBXviEk
+  key: C
   sheet_music: /assets/sheets/榮耀真光.pdf
   tags: [狼的格律原創, 演唱版, 現代詩歌]
 
@@ -27,6 +30,7 @@
   lyricist: 狼的格律
   note: Aegisulf©️狼的格律
   youtube_id: fooqSkaonEU
+  key: C
   sheet_music: /assets/sheets/榮耀真光.pdf
   tags: [狼的格律原創, 現代詩歌]
   
@@ -35,6 +39,7 @@
   lyricist: 狼的格律
   note: Aegisulf©️狼的格律
   youtube_id: yOAhPlrybD4
+  key: Cm
   sheet_music: /assets/sheets/越過嘆息的哈利路亞.pdf
   tags: [狼的格律原創, 演唱版, 現代詩歌]
 
@@ -43,6 +48,7 @@
   lyricist: 狼的格律
   note: Aegisulf©️狼的格律
   youtube_id: pxBiAmsThTY
+  key: Cm
   sheet_music: /assets/sheets/越過嘆息的哈利路亞.pdf
   tags: [狼的格律原創, 現代詩歌]
 
@@ -51,6 +57,7 @@
   lyricist: 盛曉玫
   note: ©️泥土音樂
   youtube_id: gcoz2s3ZtWc
+  key: D
   tags: [現代詩歌, 泥土音樂]
 
 - title: 全然向祢
@@ -58,6 +65,7 @@
   lyricist: 李信儀
   note: ©️讚美之泉
   youtube_id: 1xlGV5cGyqg
+  key: D
   tags: [現代詩歌, 讚美之泉]
 
 - title: 因祢與我同行
@@ -65,6 +73,7 @@
   lyricist: 曾毓蘭
   note: ©️有情天音樂
   youtube_id: WIONI-XB5X0
+  key: E
   tags: [現代詩歌]
 
 - title: 除祢以外
@@ -72,6 +81,7 @@
   lyricist: 詩篇（改編：讚美之泉）
   note: ©️讚美之泉
   youtube_id: 9VWTTcWkrvw
+  key: C
   tags: [現代詩歌, 讚美之泉]
 
 - title: 我的神我要敬拜祢
@@ -79,6 +89,7 @@
   lyricist: 林文蘭
   note: ©️我心旋律
   youtube_id: tDzlMqeTrsc
+  key: C
   tags: [現代詩歌, 我心旋律]
 
 - title: 永遠的依靠
@@ -86,6 +97,7 @@
   lyricist: 陳國富
   note: ©️約書亞樂團
   youtube_id: Mi8SJ9tKe44
+  key: E
   tags: [現代詩歌, 約書亞樂團]
 
 - title: 祢真偉大
@@ -93,6 +105,7 @@
   lyricist: Carl Boberg, Stuart K. Hine
   note: 生命聖詩12/靈糧詩選67
   youtube_id: W7GAGB08OX4
+  key: A
   tags: [傳統詩歌, 生命聖詩, 靈糧詩選]
 
 - title: 恩典之路
@@ -100,12 +113,14 @@
   lyricist: 曾祥怡
   note: ©️讚美之泉
   youtube_id: VFEXMBNJ-_4 
+  key: F
   tags: [現代詩歌, 讚美之泉]
 
 - title: 復活得勝主
   composer: George Frideric Handel
   lyricist: Edmond L. Budry / Richard B. Hoyle
   youtube_id: D6MWhmAzeKM
+  key: D
   tags: [傳統詩歌]
 
 - title: 寶貴十架
@@ -113,6 +128,7 @@
   lyricist: 曾祥怡
   note: ©️讚美之泉
   youtube_id: FJYjzt78ioo
+  key: A
   tags: [現代詩歌, 讚美之泉]
   
 - title: 頌讚主尊名
@@ -120,6 +136,7 @@
   lyricist: Ralph E. Hudson / William H. Clark
   note: 聖徒詩歌164
   youtube_id: C9q_80mnjxw
+  key: Ab
   tags: [傳統詩歌, 聖徒詩歌]
   
 - title: 我是個罪人蒙主恩
@@ -127,6 +144,7 @@
   lyricist: James M. Gray
   note: 聖徒詩歌220
   youtube_id: lKQAi2a56tc
+  key: C
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 我相信一山崗名叫各各他
@@ -134,6 +152,7 @@
   lyricist: Dale Oldham, Gloria Gaither, William J. Gaither 
   note: ©️Gaither Music Company
   youtube_id: kv0FTgvYbUA
+  key: A
   tags: [現代詩歌]
 
 - title: 我心堅定於祢
@@ -141,6 +160,7 @@
   lyricist: 李呈呈
   note: ©️小羊詩歌
   youtube_id: U6poA500YN0
+  key: C#
   tags: [現代詩歌, 小羊詩歌]
 
 - title: 十架為我榮耀
@@ -148,12 +168,14 @@
   lyricist: Fanny J. Crosby
   note: 頌主新歌136
   youtube_id: kKAwt5N-pSk
+  key: F
   tags: [傳統詩歌, 頌主新歌]
   
 - title: 因祂活著
   composer: Gloria Gaither
   lyricist: William J. Gaither
   youtube_id: orCbYcsxlnc
+  key: Eb
   tags: [現代詩歌]
 
 - title: 我的心你要稱頌耶和華
@@ -161,6 +183,7 @@
   lyricist: Tracie Lin
   note: ©️讚美之泉
   youtube_id: yCdsnVwUuMk 
+  key: C
   tags: [現代詩歌, 讚美之泉]
 
 - title: 安穩在耶穌手中
@@ -168,6 +191,7 @@
   lyricist: Fanny J. Crosby
   note: 生命聖詩343
   youtube_id: WgB2PY51bv4 
+  key: G
   tags: [傳統詩歌, 生命聖詩]
 
 - title: 恩典-美妙聲音
@@ -175,16 +199,19 @@
   lyricist: Philip Doddridge
   note: 聖徒詩歌96
   youtube_id: f61FSLdNaEA 
+  key: D
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 我捨一切而要耶穌
   note: 聖徒詩歌330
   youtube_id: V09w2mAYHys   
+  key: Db
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 我捨一切而要耶穌(降4)
   note: 聖徒詩歌330
   youtube_id: sppc8m688CM  
+  key: A
   tags: [傳統詩歌, 聖徒詩歌]
   dontplay: true
 
@@ -193,6 +220,7 @@
   lyricist: Robert Robinson
   note: 生命聖詩76
   youtube_id: bozN9lWZpbA  
+  key: Eb
   tags: [傳統詩歌, 生命聖詩]
 
 - title: 樂哉，白白恩典
@@ -200,11 +228,13 @@
   lyricist: Isaac Watts
   note: 聖徒詩歌221
   youtube_id: U8SC9LXuBhA   
+  key: G
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 十架下我低頭
   note: 聖徒詩歌199
   youtube_id: 4aQuyzzY4ms   
+  key: F
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 讓我愛而不受感戴
@@ -212,6 +242,7 @@
   lyricist: Watchman Nee 
   note: 聖徒詩歌381
   youtube_id: IH1MvY95z0Y  
+  key: Em
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 昨日、今日、直到永遠
@@ -219,6 +250,7 @@
   lyricist: Albert B. Simpson 
   note: 聖徒詩歌95
   youtube_id: MiZN5vfzyZY    
+  key: Bb
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 昨日、今日、直到永遠(降3)
@@ -226,6 +258,7 @@
   lyricist: Albert B. Simpson 
   note: 聖徒詩歌95
   youtube_id: MMBdWNaPeVM   
+  key: G
   tags: [傳統詩歌, 聖徒詩歌]
   dontplay: true
 
@@ -234,6 +267,7 @@
   lyricist: Lewis Hartsough
   note: 靈糧詩選259
   youtube_id: eMUeD_ju4Ow    
+  key: Eb
   tags: [傳統詩歌, 靈糧詩選]
 
 - title: 我心靈得安寧
@@ -241,6 +275,7 @@
   lyricist: Horatio G. Spafford 
   note: 生命聖詩342
   youtube_id: 9HUDxV8ZKwU   
+  key: Db
   tags: [傳統詩歌, 生命聖詩]
 
 - title: 感謝神
@@ -248,6 +283,7 @@
   lyricist: Auguet L. Storm  
   note: 聖徒詩歌713
   youtube_id: PzngT8fvihI      
+  key: Bb
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 感謝神(降3)
@@ -255,6 +291,7 @@
   lyricist: Auguet L. Storm  
   note: 聖徒詩歌713
   youtube_id: vdArXEdyirI     
+  key: G
   tags: [傳統詩歌, 聖徒詩歌]
   dontplay: true
 
@@ -262,12 +299,14 @@
   composer: Gloria in Excelsis Deo
   note: 頌主新歌98
   youtube_id: x_tQyXQPREc      
+  key: G
   tags: [傳統詩歌, 頌主新歌, 聖誕詩歌]
 
 - title: 以馬內利來臨
   lyricist: John Mason Neale 
   note: 頌主新歌94
   youtube_id: QiDhbNrfCV4       
+  key: Em
   tags: [傳統詩歌, 頌主新歌, 聖誕詩歌]
 
 - title: 小伯利恆
@@ -275,6 +314,7 @@
   lyricist: Phillips Brooks 
   note: 頌主新歌111
   youtube_id: 3Z6l6vh7DuM       
+  key: G
   tags: [傳統詩歌, 頌主新歌, 聖誕詩歌]
 
 - title: 平安夜
@@ -282,12 +322,14 @@
   lyricist: Joseph Mohr 
   note: 頌主新歌107
   youtube_id: cvi6EOcsVXo        
+  key: Bb
   tags: [傳統詩歌, 頌主新歌, 聖誕詩歌]
 
 - title: 聖嬰孩主耶穌
   composer: James R. Murray
   note: 頌主新歌112
   youtube_id: ZtcNREVaugo         
+  key: F
   tags: [傳統詩歌, 頌主新歌, 聖誕詩歌]
 
 - title: 新生王歌
@@ -295,12 +337,14 @@
   lyricist: Charles Wesley  
   note: 頌主新歌116
   youtube_id: sNV2OhN9ZEc         
+  key: F
   tags: [傳統詩歌, 頌主新歌, 聖誕詩歌]
 
 - title: 這位奇妙嬰孩是誰
   lyricist: William Chatterton Dix   
   note: 新靈糧詩選173
   youtube_id: GYaZ8n2pDUM          
+  key: Ebm
   tags: [傳統詩歌, 頌主新歌, 靈糧詩選]
 
 - title: 普世歡騰
@@ -308,6 +352,7 @@
   lyricist: Isaac Watts
   note: 普天頌讚167
   youtube_id: c-GkmWMcu80           
+  key: D
   tags: [傳統詩歌, 頌主新歌]
 
 - title: 耶穌同在就是天堂(第二詞)
@@ -315,6 +360,7 @@
   lyricist: C .J. Butler 
   note: 聖徒詩歌206
   youtube_id: zs4EazFuhbA    
+  key: Ab
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 耶穌同在就是天堂(第二詞)(降3)
@@ -322,6 +368,7 @@
   lyricist: C .J. Butler 
   note: 聖徒詩歌206
   youtube_id: UaTHvltUnSo 
+  key: F
   tags: [傳統詩歌, 聖徒詩歌]
   dontplay: true
 
@@ -330,6 +377,7 @@
   lyricist: C .J. Butler 
   note: 聖徒詩歌206
   youtube_id: LPM7P-NHXBQ     
+  key: Ab
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 耶穌同在就是天堂(降3)
@@ -337,6 +385,7 @@
   lyricist: C .J. Butler 
   note: 聖徒詩歌206
   youtube_id: x3erRuOQsp8  
+  key: F
   tags: [傳統詩歌, 聖徒詩歌]
   dontplay: true
 
@@ -345,6 +394,7 @@
   lyricist: James G. Deck 
   note: 聖徒詩歌021
   youtube_id: B28x-7VHeA4    
+  key: F
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 父啊，久在創世之前(降2)
@@ -352,6 +402,7 @@
   lyricist: James G. Deck 
   note: 聖徒詩歌021
   youtube_id: wfTdkIdrSew   
+  key: Eb
   tags: [傳統詩歌, 聖徒詩歌]
   dontplay: true
 
@@ -360,6 +411,7 @@
   lyricist: W. W. Simpson 
   note: 聖徒詩歌226
   youtube_id: FfcqlcTFErs   
+  key: F
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 思念主愛(降3)
@@ -367,5 +419,6 @@
   lyricist: W. W. Simpson 
   note: 聖徒詩歌226
   youtube_id: sJXD3HGqGPo    
+  key: D
   tags: [傳統詩歌, 聖徒詩歌]
   dontplay: true

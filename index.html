@@ -87,6 +87,13 @@ title: 狼的格律 Wolf Metrum
   .filter-btn:hover .tag-count { color: #ffffff; background: rgba(255, 255, 255, 0.2); }
   .filter-btn.active .tag-count { color: #ffffff; background: rgba(255, 255, 255, 0.25); }
 
+  .search-row { display: flex; gap: 10px; margin-bottom: 15px; }
+  #song-search { flex: 1 1 auto; min-width: 0; background: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; padding: 6px 10px; font-size: 0.95em; }
+  #song-search:focus, #key-filter:focus, #mode-filter:focus { outline: none; border-color: #58a6ff; }
+  #key-filter, #mode-filter { flex: 0 0 auto; background: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 4px; padding: 6px 8px; font-size: 0.95em; }
+  #no-results { color: #8b949e; text-align: center; margin: 20px 0; }
+  .song-key { color: #d29922; flex: 0 0 auto; }
+
   #play-all-btn { background-color: #238636; color: #ffffff; border: 1px solid rgba(240, 246, 252, 0.1); padding: 5px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 0.9em; transition: 0.2s; flex-shrink: 0; }
   #play-all-btn:hover { background-color: #2ea043; }
 
@@ -136,6 +143,12 @@ title: 狼的格律 Wolf Metrum
     </div>
   </div>
 
+  <div class="search-row">
+    <input id="song-search" type="search" placeholder="搜尋曲名、作曲、作詞、備註、調性…" aria-label="搜尋曲目" autocomplete="off">
+    <select id="mode-filter" aria-label="依大小調篩選"><option value="">Major / Minor</option><option value="major">Major 大調</option><option value="minor">Minor 小調</option></select>
+    <select id="key-filter" aria-label="依調性篩選"><option value="">全部調性</option></select>
+  </div>
+
   <ul id="song-list" style="list-style: none; padding: 0;">
     {% assign all_songs = site.data.songs %}
     {% for song in all_songs %}
@@ -145,7 +158,8 @@ title: 狼的格律 Wolf Metrum
       {% elsif song.tags contains '現代詩歌' %}{% assign style_class = "style-tech" %}
       {% endif %}
 
-      <li class="song-item" data-tags="{{ song.tags | join: ',' | escape }}">
+      {% assign key_disp = song.key | replace: 'b', '♭' | replace: '#', '♯' %}
+      <li class="song-item" data-tags="{{ song.tags | join: ',' | escape }}" data-search="{{ song.title | append: ' ' | append: song.composer | append: ' ' | append: song.lyricist | append: ' ' | append: song.note | append: ' ' | append: song.key | append: ' ' | append: key_disp | downcase | escape }}">
         <a class="play-song-btn {{ style_class }}"
            href="{{ '/' | relative_url }}?v={{ song.youtube_id | url_encode }}"
            data-title="{{ song.title | escape }}"
@@ -154,10 +168,12 @@ title: 狼的格律 Wolf Metrum
            data-composer="{{ song.composer | escape }}"
            data-lyricist="{{ song.lyricist | escape }}"
            data-note="{{ song.note | escape }}"
+           data-key="{{ song.key | escape }}"
            data-dontplay="{% if song.dontplay == true %}true{% else %}false{% endif %}">
           {{ song.title | escape }}
         </a>
         <div class="song-info">
+          {% if song.key %}<span class="info-tag song-key" title="調性">🎹{{ key_disp }}</span>{% endif %}
           {% if song.composer == song.lyricist %}
             <span class="info-tag song-composer">🎶🧾{{ song.composer | escape }}</span>
           {% else %}
@@ -169,6 +185,7 @@ title: 狼的格律 Wolf Metrum
       </li>
     {% endfor %}
   </ul>
+  <p id="no-results" hidden>找不到符合的曲目</p>
 
   <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #1f2937; text-align: center; color: #8b949e; font-size: 0.95em; padding-bottom: 20px;">
     <p>聯絡狼的格律 Wolf Metrum：<a href="mailto:wolfmetrum@outlook.com" style="color: #58a6ff; text-decoration: none;">wolfmetrum@outlook.com</a></p>
@@ -181,6 +198,11 @@ title: 狼的格律 Wolf Metrum
 
 <script>
 const CHANNEL_ID = '{{ site.youtube_channel_id }}';
+
+// 資料以 Bb / C# 表示，顯示時轉成 ♭ / ♯
+function formatKey(key) {
+  return String(key || '').replace(/b/g, '♭').replace(/#/g, '♯');
+}
 
 function escapeHtml(str) {
   return String(str == null ? '' : str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -215,10 +237,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let latestVideos = [];
   let currentVidIndex = 0;
 
-  function loadPlayer(title, youtubeId, sheetUrl, composer = "", lyricist = "", note = "", isLatestMode = false) {
+  function loadPlayer(title, youtubeId, sheetUrl, composer = "", lyricist = "", key = "", isLatestMode = false) {
     const titleElem = document.getElementById('player-title');
     let infoHtml = "";
     if (!isLatestMode) {
+      if (key) infoHtml += `<span class="info-tag">🎹${escapeHtml(formatKey(key))}</span>`;
       if (composer && lyricist && composer === lyricist) { infoHtml += `<span class="info-tag">🎶🧾${escapeHtml(composer)}</span>`; } 
       else {
         if (composer) infoHtml += `<span class="info-tag">🎶${escapeHtml(composer)}</span>`;
@@ -253,7 +276,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function playAll() {
     const activeBtn = document.querySelector('.filter-btn.active');
-    const filterName = activeBtn ? activeBtn.childNodes[0].nodeValue.trim() : "全部展示";
+    let filterName = activeBtn ? activeBtn.childNodes[0].nodeValue.trim() : "全部展示";
+    const query = document.getElementById('song-search').value.trim();
+    const keyValue = document.getElementById('key-filter').value;
+    const modeSelectElem = document.getElementById('mode-filter');
+    if (query) filterName = `搜尋「${query}」`;
+    if (keyValue) filterName += ` ${formatKey(keyValue)}`;
+    if (modeSelectElem.value) filterName += ` ${modeSelectElem.options[modeSelectElem.selectedIndex].text.split(' ')[0]}`;
     document.getElementById('player-title').innerText = `${filterName} (隨機)`;
 
     const visibleSongItems = Array.from(document.querySelectorAll('.song-item')).filter(item => item.style.display !== 'none');
@@ -323,7 +352,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function loadFromButton(btn) {
-    loadPlayer(btn.getAttribute('data-title'), btn.getAttribute('data-youtube'), btn.getAttribute('data-sheet'), btn.getAttribute('data-composer'), btn.getAttribute('data-lyricist'), btn.getAttribute('data-note'), false);
+    loadPlayer(btn.getAttribute('data-title'), btn.getAttribute('data-youtube'), btn.getAttribute('data-sheet'), btn.getAttribute('data-composer'), btn.getAttribute('data-lyricist'), btn.getAttribute('data-key'), false);
   }
 
   // 依網址 ?v= 決定播放內容 (初次載入與上一頁/下一頁共用)
@@ -408,14 +437,52 @@ document.addEventListener("DOMContentLoaded", () => {
   fixedTags.forEach(tag => { if(tagCounts[tag]) createFilterButton(tag); });
   remainingTags.forEach(tag => { createFilterButton(tag); });
   
+  // === 搜尋 / 調性 / 標籤 篩選 ===
+  const searchInput = document.getElementById('song-search');
+  const keySelect = document.getElementById('key-filter');
+  const modeSelect = document.getElementById('mode-filter');
+  const noResults = document.getElementById('no-results');
+  let activeTag = 'all';
+
+  function applyFilters() {
+    const query = searchInput.value.trim().toLowerCase();
+    const keyValue = keySelect.value;
+    const modeValue = modeSelect.value;
+    let shown = 0;
+    songItems.forEach(item => {
+      const tagOk = activeTag === 'all' || item.getAttribute('data-tags').split(',').includes(activeTag);
+      const itemKey = item.querySelector('.play-song-btn').getAttribute('data-key');
+      const keyOk = (!keyValue || itemKey === keyValue)
+        && (!modeValue || (itemKey && (itemKey.endsWith('m') ? 'minor' : 'major') === modeValue));
+      const searchOk = !query || item.getAttribute('data-search').includes(query);
+      const visible = tagOk && keyOk && searchOk;
+      item.style.display = visible ? 'grid' : 'none';
+      if (visible) shown++;
+    });
+    noResults.hidden = shown > 0;
+  }
+
+  const keyOrder = { C: 0, D: 1, E: 2, F: 3, G: 4, A: 5, B: 6 };
+  const keySortValue = k => keyOrder[k[0]] * 10 + (k[1] === 'b' ? 0 : k[1] === '#' ? 2 : 1) * 2 + (k.endsWith('m') ? 1 : 0);
+  const keysInUse = [...new Set(Array.from(songItems).map(item => item.querySelector('.play-song-btn').getAttribute('data-key')).filter(Boolean))];
+  keysInUse.sort((a, b) => keySortValue(a) - keySortValue(b)).forEach(k => {
+    const opt = document.createElement('option');
+    opt.value = k;
+    opt.textContent = formatKey(k);
+    keySelect.appendChild(opt);
+  });
+  searchInput.addEventListener('input', applyFilters);
+  keySelect.addEventListener('change', applyFilters);
+  modeSelect.addEventListener('change', applyFilters);
+
   let isDragging = false;
 
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', function(e) {
       if (isDragging) { e.preventDefault(); return; }
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); this.classList.add('active');
-      const target = this.getAttribute('data-filter');
-      songItems.forEach(item => { item.style.display = (target === 'all' || item.getAttribute('data-tags').split(',').includes(target)) ? 'grid' : 'none'; });
+      activeTag = this.getAttribute('data-filter');
+      applyFilters();
       checkFilterScroll();
     });
   });
