@@ -85,6 +85,9 @@
   .filter-btn:hover .tag-count { color: #ffffff; background: rgba(255, 255, 255, 0.2); }
   .filter-btn.active .tag-count { color: #ffffff; background: rgba(255, 255, 255, 0.25); }
 
+  /* jekyll-theme-primer 在頁面標題與網站標題不同時會自動插入一個 h1（英文頁會出現） */
+  .markdown-body > h1, .container-lg > h1 { display: none !important; }
+
   .header-top-row .lang-switch { flex: 0 0 auto; margin-left: auto; color: #c9d1d9; text-decoration: none; border: 1px solid #30363d; border-radius: 4px; padding: 4px 10px; font-size: 0.9em; }
   .header-top-row .lang-switch:hover { color: #ffffff; background: #161b22; }
 
@@ -162,9 +165,9 @@
 
       {% assign key_disp = song.key | replace: 'b', '♭' | replace: '#', '♯' %}
       {% assign title_disp = song.title %}{% if lang == 'en' and song.title_en %}{% assign title_disp = song.title_en %}{% endif %}
-      {% assign composer_disp = song.composer %}{% assign lyricist_disp = song.lyricist %}{% if lang == 'en' %}{% if song.composer_en %}{% assign composer_disp = song.composer_en %}{% endif %}{% if song.lyricist_en %}{% assign lyricist_disp = song.lyricist_en %}{% endif %}{% endif %}
+      {% assign composer_disp = song.composer %}{% assign lyricist_disp = song.lyricist %}{% if lang == 'en' %}{% if song.composer_en %}{% assign composer_disp = song.composer_en %}{% endif %}{% if song.lyricist_en %}{% assign lyricist_disp = song.lyricist_en %}{% endif %}{% if t.names[composer_disp] %}{% assign composer_disp = t.names[composer_disp] %}{% endif %}{% if t.names[lyricist_disp] %}{% assign lyricist_disp = t.names[lyricist_disp] %}{% endif %}{% endif %}
       {% assign note_disp = song.note %}{% for term in t.terms %}{% assign note_disp = note_disp | replace: term.from, term.to %}{% endfor %}{% assign note_disp = note_disp | strip %}
-      <li class="song-item" data-tags="{{ song.tags | join: ',' | escape }}" data-search="{{ song.title | append: ' ' | append: song.composer | append: ' ' | append: song.composer_en | append: ' ' | append: song.lyricist | append: ' ' | append: song.lyricist_en | append: ' ' | append: song.note | append: ' ' | append: note_disp | append: ' ' | append: song.title_en | append: ' ' | append: song.key | append: ' ' | append: key_disp | downcase | escape }}">
+      <li class="song-item" data-tags="{{ song.tags | join: ',' | escape }}" data-search="{{ song.title | append: ' ' | append: song.composer | append: ' ' | append: song.composer_en | append: ' ' | append: song.lyricist | append: ' ' | append: song.lyricist_en | append: ' ' | append: composer_disp | append: ' ' | append: lyricist_disp | append: ' ' | append: song.note | append: ' ' | append: note_disp | append: ' ' | append: song.title_en | append: ' ' | append: song.key | append: ' ' | append: key_disp | downcase | escape }}">
         <a class="play-song-btn {{ style_class }}"
            href="{{ '/' | relative_url }}?v={{ song.youtube_id | url_encode }}"
            data-title="{{ title_disp | escape }}"

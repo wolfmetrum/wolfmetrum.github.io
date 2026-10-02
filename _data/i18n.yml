@@ -62,9 +62,9 @@ en:
   note_title: Note
   no_results: No matching songs found
   contact: "Contact Wolf Metrum: "
-  download_pdf: Download Sheet Music (PDF)
-  show_pdf: Show Sheet Music (PDF)
-  hide_pdf: Hide Sheet Music (PDF)
+  download_pdf: Download Sheet Music (PDF) (Chinese)
+  show_pdf: Show Sheet Music (PDF) (Chinese)
+  hide_pdf: Hide Sheet Music (PDF) (Chinese)
   tags:
     狼的格律原創: Wolf Metrum Originals
     演唱版: Vocal Versions
@@ -80,6 +80,8 @@ en:
     靈糧詩選: Spiritual Hymns
     聖徒詩歌: Hymnary
     頌主新歌: New Songs of Praise
+  names:
+    狼的格律: Wolf Metrum
   terms:
     - { from: 新靈糧詩選, to: "New Spiritual Hymns " }
     - { from: 靈糧詩選, to: "Spiritual Hymns " }
