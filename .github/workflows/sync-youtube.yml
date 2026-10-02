@@ -1,0 +1,31 @@
+name: Sync YouTube songs
+
+on:
+  schedule:
+    - cron: "0 1 * * 1" # 每週一 09:00 (台灣時間)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch new videos and update songs.yml
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          PR_BODY_PATH: ${{ runner.temp }}/pr_body.md
+        run: python scripts/sync_youtube.py
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: auto/sync-youtube
+          title: "同步 YouTube 新曲目"
+          body-path: ${{ runner.temp }}/pr_body.md
+          commit-message: "+同步 YouTube 新曲目"
+          add-paths: _data/songs.yml

@@ -114,9 +114,9 @@ title: 狼的格律 Wolf Metrum
 
   <div id="player-wrapper" style="margin-bottom: 30px; text-align: center;">
     <div style="display: flex; align-items: center; justify-content: center; gap: 15px;">
-      <button id="prev-video" style="background: none; border: none; font-size: 2em; cursor: pointer; color: #8b949e;">&#10094;</button>
+      <button id="prev-video" aria-label="上一則最新發布" style="background: none; border: none; font-size: 2em; cursor: pointer; color: #8b949e;">&#10094;</button>
       <div id="video-container" style="flex-grow: 1; width: 100%; max-width: 800px; background: transparent; aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center;"></div>
-      <button id="next-video" style="background: none; border: none; font-size: 2em; cursor: pointer; color: #8b949e;">&#10095;</button>
+      <button id="next-video" aria-label="下一則最新發布" style="background: none; border: none; font-size: 2em; cursor: pointer; color: #8b949e;">&#10095;</button>
     </div>
     <div id="sheet-music-container" style="margin-top: 15px; display: none;"></div>
   </div>
@@ -139,34 +139,32 @@ title: 狼的格律 Wolf Metrum
   <ul id="song-list" style="list-style: none; padding: 0;">
     {% assign all_songs = site.data.songs %}
     {% for song in all_songs %}
-      {% assign is_elegant = false %}
-      {% if song.tags contains '狼的格律原創' %}{% assign is_elegant = true %}{% endif %}
-      
       {% assign style_class = "style-default" %}
       {% if song.tags contains '狼的格律原創' %}{% assign style_class = "style-elegant" %}
       {% elsif song.tags contains '傳統詩歌' %}{% assign style_class = "style-classical" %}
       {% elsif song.tags contains '現代詩歌' %}{% assign style_class = "style-tech" %}
       {% endif %}
 
-      <li class="song-item" data-tags="{{ song.tags | join: ',' }}">
-        <a class="play-song-btn {{ style_class }}" 
-           data-title="{{ song.title }}" 
-           data-youtube="{{ song.youtube_id }}" 
-           data-sheet="{{ song.sheet_music }}"
-           data-composer="{{ song.composer }}"
-           data-lyricist="{{ song.lyricist }}"
-           data-note="{{ song.note }}"
+      <li class="song-item" data-tags="{{ song.tags | join: ',' | escape }}">
+        <a class="play-song-btn {{ style_class }}"
+           href="{{ '/' | relative_url }}?v={{ song.youtube_id | url_encode }}"
+           data-title="{{ song.title | escape }}"
+           data-youtube="{{ song.youtube_id | escape }}"
+           data-sheet="{{ song.sheet_music | escape }}"
+           data-composer="{{ song.composer | escape }}"
+           data-lyricist="{{ song.lyricist | escape }}"
+           data-note="{{ song.note | escape }}"
            data-dontplay="{% if song.dontplay == true %}true{% else %}false{% endif %}">
-          {{ song.title }}
+          {{ song.title | escape }}
         </a>
         <div class="song-info">
           {% if song.composer == song.lyricist %}
-            <span class="info-tag song-composer">🎶🧾{{ song.composer }}</span>
+            <span class="info-tag song-composer">🎶🧾{{ song.composer | escape }}</span>
           {% else %}
-            {% if song.composer %}<span class="info-tag song-composer">🎶{{ song.composer }}</span>{% endif %}
-            {% if song.lyricist %}<span class="info-tag song-lyricist">🧾{{ song.lyricist }}</span>{% endif %}
+            {% if song.composer %}<span class="info-tag song-composer">🎶{{ song.composer | escape }}</span>{% endif %}
+            {% if song.lyricist %}<span class="info-tag song-lyricist">🧾{{ song.lyricist | escape }}</span>{% endif %}
           {% endif %}
-          {% if song.note %}<span class="info-tag song-note" title="備註: {{ song.note }}">🐺{{ song.note }}</span>{% endif %}
+          {% if song.note %}<span class="info-tag song-note" title="備註: {{ song.note | escape }}">🐺{{ song.note | escape }}</span>{% endif %}
         </div>
       </li>
     {% endfor %}
@@ -175,25 +173,18 @@ title: 狼的格律 Wolf Metrum
   <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #1f2937; text-align: center; color: #8b949e; font-size: 0.95em; padding-bottom: 20px;">
     <p>聯絡狼的格律 Wolf Metrum：<a href="mailto:wolfmetrum@outlook.com" style="color: #58a6ff; text-decoration: none;">wolfmetrum@outlook.com</a></p>
     <div style="display: flex; justify-content: center; gap: 20px; align-items: center; margin-top: 15px;">
-      <a href="https://www.youtube.com/channel/UCqdp7Moy1guJ1UHCocdKFWQ" target="_blank" style="color: #c9d1d9; text-decoration: none; font-size: 1.2em; font-weight: bold;">▶ YouTube</a>
-      <a href="/" style="color: #c9d1d9; text-decoration: none; font-size: 1.2em; font-weight: bold;">f Facebook</a>
-      <a href="/" style="color: #c9d1d9; text-decoration: none; font-size: 1.4em; font-weight: bold;">𝕏</a>
+      <a href="https://www.youtube.com/channel/{{ site.youtube_channel_id }}" target="_blank" rel="noopener" style="color: #c9d1d9; text-decoration: none; font-size: 1.2em; font-weight: bold;">▶ YouTube</a>
       <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fwolfmetrum.github.io&label=&icon=music-note-list&color=%23031633&message=&style=for-the-badge&tz=Asia%2FTaipei">
     </div>
   </footer>
 </div>
 
 <script>
-window.togglePdfViewer = function(url) {
-  const container = document.getElementById('pdf-viewer-container');
-  const iframe = document.getElementById('pdf-iframe');
-  const btn = document.getElementById('toggle-pdf-btn');
-  if (container.style.display === 'none') {
-    iframe.src = url; container.style.display = 'block'; btn.innerText = '隱藏樂譜 (PDF)'; btn.style.backgroundColor = '#444';
-  } else {
-    container.style.display = 'none'; iframe.src = ''; btn.innerText = '顯示樂譜 (PDF)'; btn.style.backgroundColor = '#1f6feb';
-  }
-};
+const CHANNEL_ID = '{{ site.youtube_channel_id }}';
+
+function escapeHtml(str) {
+  return String(str == null ? '' : str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById('star-canvas');
@@ -228,16 +219,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const titleElem = document.getElementById('player-title');
     let infoHtml = "";
     if (!isLatestMode) {
-      if (composer && lyricist && composer === lyricist) { infoHtml += `<span class="info-tag">🎶🧾${composer}</span>`; } 
+      if (composer && lyricist && composer === lyricist) { infoHtml += `<span class="info-tag">🎶🧾${escapeHtml(composer)}</span>`; } 
       else {
-        if (composer) infoHtml += `<span class="info-tag">🎶${composer}</span>`;
-        if (lyricist) infoHtml += `<span class="info-tag">🧾${lyricist}</span>`;
+        if (composer) infoHtml += `<span class="info-tag">🎶${escapeHtml(composer)}</span>`;
+        if (lyricist) infoHtml += `<span class="info-tag">🧾${escapeHtml(lyricist)}</span>`;
       }
     }
-    titleElem.innerHTML = infoHtml !== "" ? `<span style="display:inline-block; vertical-align:middle; margin-right: 15px;">${title}</span> <span class="player-info-container">${infoHtml}</span>` : title;
+    titleElem.innerHTML = infoHtml !== "" ? `<span style="display:inline-block; vertical-align:middle; margin-right: 15px;">${escapeHtml(title)}</span> <span class="player-info-container">${infoHtml}</span>` : escapeHtml(title);
 
     const videoContainer = document.getElementById('video-container');
-    videoContainer.innerHTML = youtubeId ? `<iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${youtubeId}${isLatestMode ? "" : "?autoplay=1"}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>` : '';
+    videoContainer.innerHTML = youtubeId ? `<iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${encodeURIComponent(youtubeId)}${isLatestMode ? "" : "?autoplay=1"}" title="${escapeHtml(title)}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>` : '';
 
     document.getElementById('prev-video').style.display = isLatestMode ? 'block' : 'none';
     document.getElementById('next-video').style.display = isLatestMode ? 'block' : 'none';
@@ -245,8 +236,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const sheetContainer = document.getElementById('sheet-music-container');
     if (sheetUrl) {
-      sheetContainer.innerHTML = `<div style="display: flex; gap: 15px; justify-content: center; margin-bottom: 15px; flex-wrap: wrap;"><a href="${sheetUrl}" download target="_blank"><button style="padding: 10px 25px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #d29922; color: #111; border: none; border-radius: 5px;">下載樂譜 (PDF)</button></a><button id="toggle-pdf-btn" onclick="togglePdfViewer('${sheetUrl}')" style="padding: 10px 25px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #1f6feb; color: white; border: none; border-radius: 5px;">顯示樂譜 (PDF)</button></div><div id="pdf-viewer-container" style="display: none; width: 100%; height: 75vh; background: #111; border: 1px solid #30363d; border-radius: 5px; overflow: hidden;"><iframe id="pdf-iframe" src="" style="width: 100%; height: 100%; border: none;"></iframe></div>`;
+      sheetContainer.innerHTML = `<div style="display: flex; gap: 15px; justify-content: center; margin-bottom: 15px; flex-wrap: wrap;"><a href="${escapeHtml(sheetUrl)}" download target="_blank" rel="noopener"><button style="padding: 10px 25px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #d29922; color: #111; border: none; border-radius: 5px;">下載樂譜 (PDF)</button></a><button id="toggle-pdf-btn" style="padding: 10px 25px; font-size: 16px; font-weight: bold; cursor: pointer; background-color: #1f6feb; color: white; border: none; border-radius: 5px;">顯示樂譜 (PDF)</button></div><div id="pdf-viewer-container" style="display: none; width: 100%; height: 75vh; background: #111; border: 1px solid #30363d; border-radius: 5px; overflow: hidden;"><iframe id="pdf-iframe" src="" style="width: 100%; height: 100%; border: none;"></iframe></div>`;
       sheetContainer.style.display = 'block';
+      const pdfBtn = document.getElementById('toggle-pdf-btn');
+      pdfBtn.addEventListener('click', () => {
+        const viewer = document.getElementById('pdf-viewer-container');
+        const iframe = document.getElementById('pdf-iframe');
+        const opening = viewer.style.display === 'none';
+        viewer.style.display = opening ? 'block' : 'none';
+        iframe.src = opening ? sheetUrl : '';
+        pdfBtn.innerText = opening ? '隱藏樂譜 (PDF)' : '顯示樂譜 (PDF)';
+        pdfBtn.style.backgroundColor = opening ? '#444' : '#1f6feb';
+      });
     } else { sheetContainer.style.display = 'none'; }
   }
 
@@ -271,8 +272,8 @@ document.addEventListener("DOMContentLoaded", () => {
       [videoIds[i], videoIds[j]] = [videoIds[j], videoIds[i]];
     }
     const firstVideo = videoIds[0];
-    const playlistString = videoIds.join(',');
-    document.getElementById('video-container').innerHTML = `<iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${firstVideo}?autoplay=1&playlist=${playlistString}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+    const playlistString = videoIds.slice(1).join(',');
+    document.getElementById('video-container').innerHTML = `<iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/${firstVideo}?autoplay=1&playlist=${playlistString}" title="隨機播放" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
     document.getElementById('prev-video').style.display = 'none';
     document.getElementById('next-video').style.display = 'none';
     document.getElementById('back-to-latest').style.display = 'block';
@@ -280,92 +281,98 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('player-title').scrollIntoView({ behavior: 'smooth', block: 'start' });
     
     // 隨機播放時清除網址參數
-    const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-    window.history.replaceState({}, '', cleanUrl);
+    window.history.replaceState({}, '', cleanUrl());
   }
 
-  // 將索取最新發布的邏輯模組化
-  function fetchAndRenderLatest() {
-    const channelId = 'UCqdp7Moy1guJ1UHCocdKFWQ'; 
-    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`)}`;
-    fetch(apiUrl).then(res => res.json()).then(data => { 
-      if(data.items) { 
-        latestVideos = data.items.slice(0, 3); 
-        if(latestVideos.length > 0) {
-          const videoId = latestVideos[currentVidIndex].link.split('v=')[1];
-          loadPlayer("最新發布", videoId, "", "", "", "", true);
-        }
-      } 
-    });
+  const cleanUrl = () => window.location.protocol + "//" + window.location.host + window.location.pathname;
+
+  function latestVideoId(item) {
+    const m = item && item.link && item.link.match(/[?&]v=([\w-]+)/);
+    return m ? m[1] : '';
   }
 
-  // === 初始化階段：網址參數空投偵測 ===
-  const urlParams = new URLSearchParams(window.location.search);
-  const targetVid = urlParams.get('v');
-
-  if (targetVid) {
-    const targetBtn = document.querySelector(`.play-song-btn[data-youtube="${targetVid}"]`);
-    if (targetBtn) {
-      // 成功索敵：載入指定曲目
-      const title = targetBtn.getAttribute('data-title');
-      const sheetUrl = targetBtn.getAttribute('data-sheet');
-      const composer = targetBtn.getAttribute('data-composer');
-      const lyricist = targetBtn.getAttribute('data-lyricist');
-      const note = targetBtn.getAttribute('data-note');
-      loadPlayer(title, targetVid, sheetUrl, composer, lyricist, note, false);
-      setTimeout(() => document.getElementById('player-title').scrollIntoView({ behavior: 'smooth', block: 'start' }), 500);
+  function showLatest() {
+    currentVidIndex = 0;
+    if (latestVideos.length > 0) {
+      loadPlayer("最新發布", latestVideoId(latestVideos[0]), "", "", "", "", true);
     } else {
-      // 索敵失敗：洗淨網址並退回最新發布防線
-      const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-      window.history.replaceState({}, '', cleanUrl);
       fetchAndRenderLatest();
     }
-  } else {
-    // 無參數：直接索取最新發布
-    fetchAndRenderLatest();
   }
 
-  document.getElementById('prev-video').addEventListener('click', () => { 
-    if(latestVideos.length > 0) { 
-      currentVidIndex = (currentVidIndex - 1 + latestVideos.length) % latestVideos.length; 
-      const videoId = latestVideos[currentVidIndex].link.split('v=')[1];
-      loadPlayer("最新發布", videoId, "", "", "", "", true);
-    } 
-  });
-  document.getElementById('next-video').addEventListener('click', () => { 
-    if(latestVideos.length > 0) { 
-      currentVidIndex = (currentVidIndex + 1) % latestVideos.length; 
-      const videoId = latestVideos[currentVidIndex].link.split('v=')[1];
-      loadPlayer("最新發布", videoId, "", "", "", "", true);
-    } 
-  });
-  
-  // 點擊返回最新發布時，洗淨網址
-  document.getElementById('back-to-latest').addEventListener('click', () => { 
-    currentVidIndex = 0; 
-    if(latestVideos.length > 0) {
-      const videoId = latestVideos[currentVidIndex].link.split('v=')[1];
-      loadPlayer("最新發布", videoId, "", "", "", "", true);
+  // rss2json 失敗時，改嵌入頻道的上傳清單 (UC… → UU…)
+  function renderLatestFallback() {
+    document.getElementById('player-title').innerText = '最新發布';
+    document.getElementById('video-container').innerHTML = `<iframe style="width: 100%; height: 100%; aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/videoseries?list=UU${CHANNEL_ID.slice(2)}" title="最新發布" frameborder="0" allow="fullscreen" allowfullscreen></iframe>`;
+    document.getElementById('prev-video').style.display = 'none';
+    document.getElementById('next-video').style.display = 'none';
+    document.getElementById('back-to-latest').style.display = 'none';
+    document.getElementById('sheet-music-container').style.display = 'none';
+  }
+
+  function fetchAndRenderLatest() {
+    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`)}`;
+    fetch(apiUrl).then(res => res.json()).then(data => {
+      latestVideos = ((data && data.items) || []).filter(item => latestVideoId(item)).slice(0, 3);
+      if (latestVideos.length > 0) {
+        loadPlayer("最新發布", latestVideoId(latestVideos[0]), "", "", "", "", true);
+      } else {
+        renderLatestFallback();
+      }
+    }).catch(renderLatestFallback);
+  }
+
+  function loadFromButton(btn) {
+    loadPlayer(btn.getAttribute('data-title'), btn.getAttribute('data-youtube'), btn.getAttribute('data-sheet'), btn.getAttribute('data-composer'), btn.getAttribute('data-lyricist'), btn.getAttribute('data-note'), false);
+  }
+
+  // 依網址 ?v= 決定播放內容 (初次載入與上一頁/下一頁共用)
+  function routeFromUrl(isInitial) {
+    const targetVid = new URLSearchParams(window.location.search).get('v');
+    const targetBtn = targetVid && document.querySelector(`.play-song-btn[data-youtube="${CSS.escape(targetVid)}"]`);
+    if (targetBtn) {
+      loadFromButton(targetBtn);
+      if (isInitial) setTimeout(() => document.getElementById('player-title').scrollIntoView({ behavior: 'smooth', block: 'start' }), 500);
+    } else {
+      if (targetVid) window.history.replaceState({}, '', cleanUrl());
+      showLatest();
     }
-    const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-    window.history.pushState({}, '', cleanUrl);
+  }
+
+  routeFromUrl(true);
+  window.addEventListener('popstate', () => routeFromUrl(false));
+
+  document.getElementById('prev-video').addEventListener('click', () => {
+    if (latestVideos.length > 0) {
+      currentVidIndex = (currentVidIndex - 1 + latestVideos.length) % latestVideos.length;
+      loadPlayer("最新發布", latestVideoId(latestVideos[currentVidIndex]), "", "", "", "", true);
+    }
   });
-  
+  document.getElementById('next-video').addEventListener('click', () => {
+    if (latestVideos.length > 0) {
+      currentVidIndex = (currentVidIndex + 1) % latestVideos.length;
+      loadPlayer("最新發布", latestVideoId(latestVideos[currentVidIndex]), "", "", "", "", true);
+    }
+  });
+
+  // 點擊返回最新發布時，洗淨網址
+  document.getElementById('back-to-latest').addEventListener('click', () => {
+    showLatest();
+    window.history.pushState({}, '', cleanUrl());
+  });
+
   document.getElementById('play-all-btn').addEventListener('click', playAll);
 
   // === 點擊曲目時，修改網址列 ===
   document.querySelectorAll('.play-song-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', function(e) {
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return; // 保留「新分頁開啟」
+      e.preventDefault();
       const youtubeId = this.getAttribute('data-youtube');
-      
-      loadPlayer(this.getAttribute('data-title'), youtubeId, this.getAttribute('data-sheet'), this.getAttribute('data-composer'), this.getAttribute('data-lyricist'), this.getAttribute('data-note'), false);
-      
-      // 無縫切換網址
+      loadFromButton(this);
       if (youtubeId && youtubeId.trim() !== '') {
-        const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?v=' + youtubeId;
-        window.history.pushState({path:newUrl}, '', newUrl);
+        window.history.pushState({}, '', cleanUrl() + '?v=' + encodeURIComponent(youtubeId));
       }
-
       document.getElementById('player-title').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
