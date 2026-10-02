@@ -1,0 +1,96 @@
+# UI strings per language. zh = default site (/), en = English site (/en/).
+# `terms` are applied (in order) as substring replacements to song notes;
+# `tags` map a tag (as written in songs.yml) to its filter-button label.
+
+zh:
+  site_title: 狼的格律 Wolf Metrum
+  subtitle: 「讓未馴的靈魂，臣服於恩典的格律。」
+  verse: 豺狼必與綿羊羔同居，豹子與山羊羔同臥，少壯獅子與牛犢並肥畜同群，小孩子要牽引牠們。 －以賽亞書11:6
+  switch_label: English
+  latest: 最新發布
+  back_to_latest: 返回最新發布
+  prev_latest: 上一則最新發布
+  next_latest: 下一則最新發布
+  catalog: 歌曲目錄
+  play_all: ▶ 播放全部 (隨機)
+  shuffle_suffix: (隨機)
+  shuffle_title: 隨機播放
+  filter_hint: ⟷ 左右滑動標籤以篩選曲目
+  all: 全部展示
+  search_placeholder: 搜尋曲名、作曲、作詞、備註、調性…
+  search_aria: 搜尋曲目
+  search_label: 搜尋「{q}」
+  mode_aria: 依大小調篩選
+  mode_all: Major / Minor
+  mode_major: Major 大調
+  mode_minor: Minor 小調
+  key_aria: 依調性篩選
+  key_all: 全部調性
+  key_title: 調性
+  note_title: 備註
+  no_results: 找不到符合的曲目
+  contact: 聯絡狼的格律 Wolf Metrum：
+  download_pdf: 下載樂譜 (PDF)
+  show_pdf: 顯示樂譜 (PDF)
+  hide_pdf: 隱藏樂譜 (PDF)
+
+en:
+  site_title: Wolf Metrum
+  subtitle: Let the untamed soul bow to the meter of grace.
+  verse: The wolf also shall dwell with the lamb, and the leopard shall lie down with the kid; and the calf and the young lion and the fatling together; and a little child shall lead them. — Isaiah 11:6 (KJV)
+  switch_label: 中文
+  latest: Latest Release
+  back_to_latest: Back to Latest
+  prev_latest: Previous release
+  next_latest: Next release
+  catalog: Song Catalog
+  play_all: ▶ Shuffle All
+  shuffle_suffix: (Shuffle)
+  shuffle_title: Shuffle play
+  filter_hint: ⟷ Swipe the tags to filter songs
+  all: All
+  search_placeholder: Search title, composer, lyricist, source, key…
+  search_aria: Search songs
+  search_label: Search "{q}"
+  mode_aria: Filter by major/minor
+  mode_all: Major / Minor
+  mode_major: Major
+  mode_minor: Minor
+  key_aria: Filter by key
+  key_all: All keys
+  key_title: Key
+  note_title: Note
+  no_results: No matching songs found
+  contact: "Contact Wolf Metrum: "
+  download_pdf: Download Sheet Music (PDF)
+  show_pdf: Show Sheet Music (PDF)
+  hide_pdf: Hide Sheet Music (PDF)
+  tags:
+    狼的格律原創: Wolf Metrum Originals
+    演唱版: Vocal Versions
+    傳統詩歌: Traditional Hymns
+    現代詩歌: Contemporary Worship
+    聖誕詩歌: Christmas
+    讚美之泉: Stream of Praise
+    我心旋律: Melody of My Heart
+    約書亞樂團: Joshua Band
+    泥土音樂: Clay Music (泥土音樂)
+    小羊詩歌: Lamb Music
+    生命聖詩: Hymns of Life (生命聖詩)
+    靈糧詩選: Spiritual Hymns
+    聖徒詩歌: Hymnary
+    頌主新歌: New Songs of Praise
+  terms:
+    - { from: 新靈糧詩選, to: "New Spiritual Hymns " }
+    - { from: 靈糧詩選, to: "Spiritual Hymns " }
+    - { from: 聖徒詩歌, to: "Hymnary " }
+    - { from: 生命聖詩, to: "Hymns of Life " }
+    - { from: 頌主新歌, to: "New Songs of Praise " }
+    - { from: 普天頌讚, to: "Hymns of Universal Praise " }
+    - { from: 讚美之泉, to: "Stream of Praise" }
+    - { from: 我心旋律, to: "Melody of My Heart" }
+    - { from: 約書亞樂團, to: "Joshua Band" }
+    - { from: 泥土音樂, to: "Clay Music" }
+    - { from: 小羊詩歌, to: "Lamb Music" }
+    - { from: 有情天音樂, to: "Heaventunes" }
+    - { from: 狼的格律, to: "Wolf Metrum" }

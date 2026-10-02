@@ -1,4 +1,5 @@
 - title: 永恆恩典(演唱版)
+  title_en: Eternal Grace (Vocal Version)
   composer: 狼的格律
   lyricist: 狼的格律
   note: Aegisulf©️狼的格律
@@ -8,6 +9,7 @@
   tags: [狼的格律原創, 演唱版, 現代詩歌]
 
 - title: 無限的慈愛(演唱版)
+  title_en: Boundless Love (Vocal Version)
   composer: 狼的格律
   lyricist: 狼的格律
   note: Aegisulf©️狼的格律
@@ -17,6 +19,7 @@
   tags: [狼的格律原創, 演唱版, 現代詩歌]
 
 - title: 榮耀真光(演唱版)
+  title_en: True Light of Glory (Vocal Version)
   composer: 狼的格律
   lyricist: 狼的格律
   note: Aegisulf©️狼的格律
@@ -26,6 +29,7 @@
   tags: [狼的格律原創, 演唱版, 現代詩歌]
 
 - title: 榮耀真光(鋼琴版)
+  title_en: True Light of Glory (Piano Version)
   composer: 狼的格律
   lyricist: 狼的格律
   note: Aegisulf©️狼的格律
@@ -35,6 +39,7 @@
   tags: [狼的格律原創, 現代詩歌]
   
 - title: 越過嘆息的哈利路亞(演唱版)
+  title_en: "Beyond the Sighing: Hallelujah (Vocal Version)"
   composer: 狼的格律
   lyricist: 狼的格律
   note: Aegisulf©️狼的格律
@@ -44,6 +49,7 @@
   tags: [狼的格律原創, 演唱版, 現代詩歌]
 
 - title: 越過嘆息的哈利路亞(鋼琴版)
+  title_en: "Beyond the Sighing: Hallelujah (Piano Version)"
   composer: 狼的格律
   lyricist: 狼的格律
   note: Aegisulf©️狼的格律
@@ -53,6 +59,7 @@
   tags: [狼的格律原創, 現代詩歌]
 
 - title: 愛你到底
+  title_en: Love You Till the End
   composer: 盛曉玫
   lyricist: 盛曉玫
   note: ©️泥土音樂
@@ -61,6 +68,7 @@
   tags: [現代詩歌, 泥土音樂]
 
 - title: 全然向祢
+  title_en: All For You
   composer: 游智婷
   lyricist: 李信儀
   note: ©️讚美之泉
@@ -69,6 +77,7 @@
   tags: [現代詩歌, 讚美之泉]
 
 - title: 因祢與我同行
+  title_en: Because You Walk With Me
   composer: 曾毓蘭
   lyricist: 曾毓蘭
   note: ©️有情天音樂
@@ -77,6 +86,7 @@
   tags: [現代詩歌]
 
 - title: 除祢以外
+  title_en: Whom Have I But You
   composer: 洪啟元
   lyricist: 詩篇（改編：讚美之泉）
   note: ©️讚美之泉
@@ -85,6 +95,7 @@
   tags: [現代詩歌, 讚美之泉]
 
 - title: 我的神我要敬拜祢
+  title_en: Oh Lord, I Worship You
   composer: 林文蘭
   lyricist: 林文蘭
   note: ©️我心旋律
@@ -93,6 +104,7 @@
   tags: [現代詩歌, 我心旋律]
 
 - title: 永遠的依靠
+  title_en: Lean on You
   composer: 陳國富
   lyricist: 陳國富
   note: ©️約書亞樂團
@@ -101,6 +113,7 @@
   tags: [現代詩歌, 約書亞樂團]
 
 - title: 祢真偉大
+  title_en: How Great Thou Art
   composer: Swedish Folk Melody, Stuart K. Hine
   lyricist: Carl Boberg, Stuart K. Hine
   note: 生命聖詩12/靈糧詩選67
@@ -109,6 +122,7 @@
   tags: [傳統詩歌, 生命聖詩, 靈糧詩選]
 
 - title: 恩典之路
+  title_en: The Path of Grace
   composer: 曾祥怡
   lyricist: 曾祥怡
   note: ©️讚美之泉
@@ -117,6 +131,7 @@
   tags: [現代詩歌, 讚美之泉]
 
 - title: 復活得勝主
+  title_en: Thine Is the Glory
   composer: George Frideric Handel
   lyricist: Edmond L. Budry / Richard B. Hoyle
   youtube_id: D6MWhmAzeKM
@@ -124,6 +139,7 @@
   tags: [傳統詩歌]
 
 - title: 寶貴十架
+  title_en: Precious Cross
   composer: 曾祥怡, 游智婷
   lyricist: 曾祥怡
   note: ©️讚美之泉
@@ -132,6 +148,7 @@
   tags: [現代詩歌, 讚美之泉]
   
 - title: 頌讚主尊名
+  title_en: Blessed Be the Name
   composer: Ralph E. Hudson / William H. Clark
   lyricist: Ralph E. Hudson / William H. Clark
   note: 聖徒詩歌164
@@ -140,6 +157,7 @@
   tags: [傳統詩歌, 聖徒詩歌]
   
 - title: 我是個罪人蒙主恩
+  title_en: Only a Sinner Saved by Grace
   composer: Daniel B. Towner
   lyricist: James M. Gray
   note: 聖徒詩歌220
@@ -148,6 +166,7 @@
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 我相信一山崗名叫各各他
+  title_en: I Believe in a Hill Called Mount Calvary
   composer: William J. Gaither
   lyricist: Dale Oldham, Gloria Gaither, William J. Gaither 
   note: ©️Gaither Music Company
@@ -156,6 +175,7 @@
   tags: [現代詩歌]
 
 - title: 我心堅定於祢
+  title_en: Fixed on You
   composer: 李呈呈
   lyricist: 李呈呈
   note: ©️小羊詩歌
@@ -164,6 +184,7 @@
   tags: [現代詩歌, 小羊詩歌]
 
 - title: 十架為我榮耀
+  title_en: Jesus, Keep Me Near the Cross
   composer: William H. Doane
   lyricist: Fanny J. Crosby
   note: 頌主新歌136
@@ -172,6 +193,7 @@
   tags: [傳統詩歌, 頌主新歌]
   
 - title: 因祂活著
+  title_en: Because He Lives
   composer: Gloria Gaither
   lyricist: William J. Gaither
   youtube_id: orCbYcsxlnc
@@ -179,6 +201,7 @@
   tags: [現代詩歌]
 
 - title: 我的心你要稱頌耶和華
+  title_en: Bless the Lord, O My Soul
   composer:  Tracie Lin, Sandy Yu
   lyricist: Tracie Lin
   note: ©️讚美之泉
@@ -187,6 +210,7 @@
   tags: [現代詩歌, 讚美之泉]
 
 - title: 安穩在耶穌手中
+  title_en: Safe in the Arms of Jesus
   composer: William H. Doane
   lyricist: Fanny J. Crosby
   note: 生命聖詩343
@@ -195,6 +219,7 @@
   tags: [傳統詩歌, 生命聖詩]
 
 - title: 恩典-美妙聲音
+  title_en: Grace! 'Tis a Charming Sound
   composer: Isaac Smith
   lyricist: Philip Doddridge
   note: 聖徒詩歌96
@@ -203,12 +228,14 @@
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 我捨一切而要耶穌
+  title_en: I'll Give My All, Jesus to Gain
   note: 聖徒詩歌330
   youtube_id: V09w2mAYHys   
   key: Db
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 我捨一切而要耶穌(降4)
+  title_en: I'll Give My All, Jesus to Gain (Key -4)
   note: 聖徒詩歌330
   youtube_id: sppc8m688CM  
   key: A
@@ -216,6 +243,7 @@
   dontplay: true
 
 - title: 萬福源頭
+  title_en: Come, Thou Fount of Every Blessing
   composer: John Wyeth
   lyricist: Robert Robinson
   note: 生命聖詩76
@@ -224,6 +252,7 @@
   tags: [傳統詩歌, 生命聖詩]
 
 - title: 樂哉，白白恩典
+  title_en: Rejoice! His Grace Is Free
   composer: Eugene W. Dunbar
   lyricist: Isaac Watts
   note: 聖徒詩歌221
@@ -232,12 +261,14 @@
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 十架下我低頭
+  title_en: "'Neath the Cross of My Savior"
   note: 聖徒詩歌199
   youtube_id: 4aQuyzzY4ms   
   key: F
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 讓我愛而不受感戴
+  title_en: Let Me Love and Not Be Respected
   composer: Mimi Lam
   lyricist: Watchman Nee 
   note: 聖徒詩歌381
@@ -246,6 +277,7 @@
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 昨日、今日、直到永遠
+  title_en: Yesterday, Today, Forever
   composer: James H. Burke
   lyricist: Albert B. Simpson 
   note: 聖徒詩歌95
@@ -254,6 +286,7 @@
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 昨日、今日、直到永遠(降3)
+  title_en: Yesterday, Today, Forever (Key -3)
   composer: James H. Burke
   lyricist: Albert B. Simpson 
   note: 聖徒詩歌95
@@ -263,6 +296,7 @@
   dontplay: true
 
 - title: 主我今來
+  title_en: I Am Coming, Lord
   composer: Lewis Hartsough
   lyricist: Lewis Hartsough
   note: 靈糧詩選259
@@ -271,6 +305,7 @@
   tags: [傳統詩歌, 靈糧詩選]
 
 - title: 我心靈得安寧
+  title_en: It Is Well with My Soul
   composer: Philip P. Bliss
   lyricist: Horatio G. Spafford 
   note: 生命聖詩342
@@ -279,6 +314,7 @@
   tags: [傳統詩歌, 生命聖詩]
 
 - title: 感謝神
+  title_en: Thanks to God
   composer: John A. Hultman
   lyricist: Auguet L. Storm  
   note: 聖徒詩歌713
@@ -287,6 +323,7 @@
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 感謝神(降3)
+  title_en: Thanks to God (Key -3)
   composer: John A. Hultman
   lyricist: Auguet L. Storm  
   note: 聖徒詩歌713
@@ -296,6 +333,7 @@
   dontplay: true
 
 - title: 天使歌唱在高天
+  title_en: Angels We Have Heard on High
   composer: Gloria in Excelsis Deo
   note: 頌主新歌98
   youtube_id: x_tQyXQPREc      
@@ -303,6 +341,7 @@
   tags: [傳統詩歌, 頌主新歌, 聖誕詩歌]
 
 - title: 以馬內利來臨
+  title_en: O Come, O Come, Emmanuel
   lyricist: John Mason Neale 
   note: 頌主新歌94
   youtube_id: QiDhbNrfCV4       
@@ -310,6 +349,7 @@
   tags: [傳統詩歌, 頌主新歌, 聖誕詩歌]
 
 - title: 小伯利恆
+  title_en: O Little Town of Bethlehem
   composer: Lewis H. Redner
   lyricist: Phillips Brooks 
   note: 頌主新歌111
@@ -318,6 +358,7 @@
   tags: [傳統詩歌, 頌主新歌, 聖誕詩歌]
 
 - title: 平安夜
+  title_en: Silent Night, Holy Night
   composer: Franz Gruber
   lyricist: Joseph Mohr 
   note: 頌主新歌107
@@ -326,6 +367,7 @@
   tags: [傳統詩歌, 頌主新歌, 聖誕詩歌]
 
 - title: 聖嬰孩主耶穌
+  title_en: Away in a Manger
   composer: James R. Murray
   note: 頌主新歌112
   youtube_id: ZtcNREVaugo         
@@ -333,6 +375,7 @@
   tags: [傳統詩歌, 頌主新歌, 聖誕詩歌]
 
 - title: 新生王歌
+  title_en: Hark! The Herald Angels Sing
   composer: Felix Mendelssohn
   lyricist: Charles Wesley  
   note: 頌主新歌116
@@ -341,6 +384,7 @@
   tags: [傳統詩歌, 頌主新歌, 聖誕詩歌]
 
 - title: 這位奇妙嬰孩是誰
+  title_en: What Child Is This?
   lyricist: William Chatterton Dix   
   note: 新靈糧詩選173
   youtube_id: GYaZ8n2pDUM          
@@ -348,6 +392,7 @@
   tags: [傳統詩歌, 頌主新歌, 靈糧詩選]
 
 - title: 普世歡騰
+  title_en: Joy to the World
   composer: Isaac Watts
   lyricist: Isaac Watts
   note: 普天頌讚167
@@ -356,6 +401,7 @@
   tags: [傳統詩歌, 頌主新歌]
 
 - title: 耶穌同在就是天堂(第二詞)
+  title_en: Where Jesus Is, 'Tis Heaven There (2nd Lyrics)
   composer: James M. Black
   lyricist: C .J. Butler 
   note: 聖徒詩歌206
@@ -364,6 +410,7 @@
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 耶穌同在就是天堂(第二詞)(降3)
+  title_en: Where Jesus Is, 'Tis Heaven There (2nd Lyrics) (Key -3)
   composer: James M. Black
   lyricist: C .J. Butler 
   note: 聖徒詩歌206
@@ -373,6 +420,7 @@
   dontplay: true
 
 - title: 耶穌同在就是天堂
+  title_en: Where Jesus Is, 'Tis Heaven There
   composer: James M. Black
   lyricist: C .J. Butler 
   note: 聖徒詩歌206
@@ -381,6 +429,7 @@
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 耶穌同在就是天堂(降3)
+  title_en: Where Jesus Is, 'Tis Heaven There (Key -3)
   composer: James M. Black
   lyricist: C .J. Butler 
   note: 聖徒詩歌206
@@ -390,6 +439,7 @@
   dontplay: true
 
 - title: 父啊，久在創世之前
+  title_en: Father, 'Twas Thy Love That Knew Us
   composer: Philip P. Bliss
   lyricist: James G. Deck 
   note: 聖徒詩歌021
@@ -398,6 +448,7 @@
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 父啊，久在創世之前(降2)
+  title_en: Father, 'Twas Thy Love That Knew Us (Key -2)
   composer: Philip P. Bliss
   lyricist: James G. Deck 
   note: 聖徒詩歌021
@@ -407,6 +458,7 @@
   dontplay: true
 
 - title: 思念主愛
+  title_en: Thy Love, O Lord
   composer: J. A. Butterfield
   lyricist: W. W. Simpson 
   note: 聖徒詩歌226
@@ -415,6 +467,7 @@
   tags: [傳統詩歌, 聖徒詩歌]
 
 - title: 思念主愛(降3)
+  title_en: Thy Love, O Lord (Key -3)
   composer: J. A. Butterfield
   lyricist: W. W. Simpson 
   note: 聖徒詩歌226

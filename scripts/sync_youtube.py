@@ -18,12 +18,60 @@ CONFIG_PATH = os.path.join(ROOT, "_config.yml")
 
 HEADER = "作品與版權資訊"
 BULLET_RE = re.compile(r"^\s*[•・·\-\*]\s*(.+?)\s*[：:]\s*(.*?)\s*$")
-KEYED_FIELDS = {"曲名": "title", "作曲": "composer", "作詞": "lyricist", "標籤": "tags"}
-NOTE_INDEX = 3  # 第 4 列固定為備註，不論欄位名稱
+KEYED_FIELDS = {"曲名": "title", "英文": "title_en", "作曲": "composer", "作詞": "lyricist", "標籤": "tags"}
+IGNORED_KEYS = ("鋼琴", "調性")
+LATIN_RE = re.compile(r"[A-Za-z]")
+CJK_RE = re.compile(r"[一-鿿]")
+NAME_PAIR_RE = re.compile(r"^(.*?)\s*[(（]\s*(.*?)\s*[)）]$")
 TRANSPOSED_RE = re.compile(r"^[(（]\s*移調\s*[)）]\s*")
 KEY_RE = re.compile(r"^[A-G][#b]?m?")
 PLAIN_UNSAFE_RE = re.compile(r"(^[\s\[\]{}&*!|>'\"%@`#,-]|\s$|: | #|:$|[\[\]{},])")
 YAML_SPECIAL_RE = re.compile(r"^(true|false|yes|no|on|off|null|~|[-+]?[\d.][\d._:eE+-]*)$", re.I)
+
+
+def is_title_en_key(key):
+    return key.lower().startswith(("name", "english")) or key.startswith("英文")
+
+
+def split_names(value):
+    """Split "中文 (english), 中文2 (english2)" into (中文 part, english part).
+
+    Names without parentheses (e.g. Western names) are used for both languages.
+    Separators (, ， 、) between names are kept as written.
+    """
+    tokens, seps, buf, depth = [], [], "", 0
+    for ch in value:
+        if ch in "(（":
+            depth += 1
+        elif ch in ")）":
+            depth = max(depth - 1, 0)
+        if ch in ",，、" and depth == 0:
+            tokens.append(buf)
+            seps.append(ch + (" " if ch == "," else ""))
+            buf = ""
+        else:
+            buf += ch
+    tokens.append(buf)
+
+    zh_parts, en_parts, paired = [], [], False
+    for token in tokens:
+        token = token.strip()
+        m = NAME_PAIR_RE.match(token)
+        if m and m.group(1) and LATIN_RE.search(m.group(2)) and not CJK_RE.search(m.group(2)):
+            zh_parts.append(m.group(1))
+            en_parts.append(m.group(2))
+            paired = True
+        else:
+            zh_parts.append(token)
+            en_parts.append(token)
+
+    def join(parts):
+        out = parts[0]
+        for sep, part in zip(seps, parts[1:]):
+            out += sep.rstrip() + " " + part if sep.strip() == "," else sep + part
+        return out
+
+    return join(zh_parts), (join(en_parts) if paired else None)
 
 
 def parse_description(desc):
@@ -49,9 +97,11 @@ def parse_description(desc):
         return None
 
     fields = {}
-    for idx, (key, value) in enumerate(bullets):
-        field = next((f for k, f in KEYED_FIELDS.items() if key.startswith(k)), None)
-        if field is None and idx == NOTE_INDEX and not key.startswith(("鋼琴", "調性")):
+    for key, value in bullets:
+        field = "title_en" if is_title_en_key(key) else next(
+            (f for k, f in KEYED_FIELDS.items() if key.startswith(k)), None)
+        # 備註：第一個不是已知欄位的列（欄位名稱不限，例如「收錄」）
+        if field is None and not key.startswith(IGNORED_KEYS) and "note" not in fields:
             field = "note"
         if key.startswith("調性"):
             if TRANSPOSED_RE.match(value):
@@ -63,6 +113,12 @@ def parse_description(desc):
             continue
         if field and value:
             fields[field] = value
+
+    for field in ("composer", "lyricist"):
+        if field in fields:
+            fields[field], en = split_names(fields[field])
+            if en:
+                fields[field + "_en"] = en
 
     if "tags" in fields:
         fields["tags"] = [t.strip() for t in re.split(r"[,，、]", fields["tags"]) if t.strip()]
@@ -77,7 +133,9 @@ def yaml_scalar(value):
 
 def render_entry(song):
     lines = [f"- title: {yaml_scalar(song['title'])}"]
-    for key in ("composer", "lyricist", "note"):
+    if song.get("title_en"):
+        lines.append(f"  title_en: {yaml_scalar(song['title_en'])}")
+    for key in ("composer", "composer_en", "lyricist", "lyricist_en", "note"):
         if song.get(key):
             lines.append(f"  {key}: {yaml_scalar(song[key])}")
     lines.append(f"  youtube_id: {song['youtube_id']}")
