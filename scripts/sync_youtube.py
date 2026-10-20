@@ -2,7 +2,7 @@
 
 Reads the channel's uploads via YouTube Data API v3 (key from YOUTUBE_API_KEY),
 parses the "作品與版權資訊" block in each video description, and appends entries
-for video ids that are not yet in songs.yml. Existing entries are never touched.
+for video ids that are not yet in songs.yml. Existing entries are never touched. New entries are inserted at the top (newest first).
 A PR description is written to the path in PR_BODY_PATH (default pr_body.md).
 """
 import json
@@ -193,7 +193,7 @@ def main():
 
     added, flagged, skipped = [], [], []
     entries = []
-    for vid in reversed(new_ids):  # 舊的在前，新的在後
+    for vid in new_ids:  # API 由新到舊；新曲目放在列表最上方，最新的在最前
         snippet = videos.get(vid)
         if not snippet:
             continue  # 私人或已刪除
@@ -212,7 +212,7 @@ def main():
 
     if entries:
         nl = "\r\n" if "\r\n" in raw else "\n"
-        text = raw.replace("\r\n", "\n").rstrip("\n") + "\n\n" + "\n\n".join(entries) + "\n"
+        text = "\n\n".join(entries) + "\n\n" + raw.replace("\r\n", "\n").lstrip("\n")
         with open(SONGS_PATH, "w", encoding="utf-8", newline="") as f:
             f.write(text.replace("\n", nl))
 
