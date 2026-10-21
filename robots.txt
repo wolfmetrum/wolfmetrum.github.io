@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://wolfmetrum.github.io/sitemap.xml
+Sitemap: https://wolfmetrum.aegisulf.com/sitemap.xml
