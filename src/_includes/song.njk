@@ -35,7 +35,10 @@
       <div><h2>{{ L.devotion }}</h2>{{ w.devotion | safe }}</div>
       {%- endif %}
       {%- if w.lyrics %}
-      <div><h2>{{ L.lyrics }}</h2><p class="lyrics" lang="zh-TW">{{ w.lyrics }}</p></div>
+      <div><h2>{{ L.lyrics }}</h2>
+      {%- for p in w.lyrics %}
+        <h3 class="lyrics__part">{{ L.parts[p.part] }}</h3><p class="lyrics" lang="zh-TW">{{ p.text }}</p>
+      {%- endfor %}</div>
       {%- endif %}
     </div>
   </section>

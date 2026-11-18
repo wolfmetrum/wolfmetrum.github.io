@@ -4,6 +4,7 @@
   <ol class="serve__grid">
     <li><h2 class="h3">{{ L.serveNew }}</h2><p>{{ L.serveNewText }}</p></li>
     <li><h2 class="h3">{{ L.serveKey }}</h2><p>{{ L.serveKeyText }}</p></li>
+    <li><h2 class="h3">{{ L.serveSheet }}</h2><p>{{ L.serveSheetText }}</p></li>
     <li class="serve__act">
       {%- if t.formUrl %}<a class="btn" href="{{ t.formUrl }}">{{ L.form }}</a>{% else %}<a class="btn" aria-disabled="true">{{ L.form }}</a><span class="fill">{{ L.pending }}</span>{% endif %}
       {%- if t.kofiUrl %}<a class="link" href="{{ t.kofiUrl }}">{{ L.kofi }}</a>{% else %}<span>{{ L.kofi }}　<span class="fill">{{ L.pending }}</span></span>{% endif %}

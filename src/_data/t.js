@@ -27,9 +27,10 @@ const zh = {
   cols: { title: '曲名', key: '調性', source: '出處', kind: '類型' },
   versionsN: '共 {n} 個版本',
   empty: '查無符合的曲目，請更換關鍵字或清除篩選。', more: '顯示全部 {n} 首',
-  serve: '為您的聚會預備伴奏', serveLead: '為教會與團契錄製鋼琴伴奏，隨心奉獻。',
+  serve: '為您的聚會預備伴奏', serveLead: '為教會與團契錄製鋼琴伴奏、製作樂譜，隨心奉獻。',
   serveNew: '新詩歌鋼琴伴奏', serveNewText: '提供曲名與出處，即為您錄製鋼琴伴奏。',
   serveKey: '現有影片移調', serveKeyText: '依會眾音域，重新錄製合宜的調性。',
+  serveSheet: '製作詩歌樂譜', serveSheetText: '提供音樂或影片，即為您製作適合教會使用的樂譜。',
   serveTerms: '僅供教會及非營利用途，收到後將以 Email 回覆。', serveMore: '服事需求說明',
   form: '填寫需求表單', kofi: '在 Ko-fi 奉獻', pending: '連結待提供',
   // song page
@@ -39,6 +40,7 @@ const zh = {
   wordsMusic: '詞曲', composer: '作曲', lyricist: '作詞', source: '出處', versions: '版本',
   download: '下載樂譜 PDF', openSheet: '在瀏覽器開啟樂譜',
   lyrics: '歌詞', devotion: '經文與簡介',
+  parts: { verse: '主歌', verse1: '主歌一', verse2: '主歌二', chorus: '副歌', chorus1: '副歌（第一詞）', chorus2: '副歌（第二詞）', bridge: '橋段' },
   relatedOriginal: '狼的格律的其他原創曲目', relatedOther: '其他詩歌',
   // sheets
   sheetsTitle: '原創樂譜', sheetsLead: '狼的格律原創曲目之樂譜，供教會聚會使用。', sheetsMeta: '樂譜下載',
@@ -97,9 +99,10 @@ const en = {
   cols: { title: 'Title', key: 'Key', source: 'Source', kind: 'Type' },
   versionsN: '{n} versions',
   empty: 'No songs match. Try another word or clear the filters.', more: 'Show all {n}',
-  serve: 'Accompaniment for your service', serveLead: 'Piano accompaniment for churches and fellowships, for a freewill gift.',
+  serve: 'Accompaniment for your service', serveLead: 'Piano accompaniment and sheet music for churches and fellowships, for a freewill gift.',
   serveNew: 'A new hymn, accompanied', serveNewText: 'Send the title and source; a piano accompaniment will be recorded.',
   serveKey: 'A video in another key', serveKeyText: 'An existing video, recorded again in a key for your congregation.',
+  serveSheet: 'Sheet music prepared', serveSheetText: 'Send a recording or video; a score fit for church use will be prepared.',
   serveTerms: 'For churches and non-profit use. Replies by email.', serveMore: 'About requests',
   form: 'Send a request', kofi: 'Give on Ko-fi', pending: 'link to come',
   vocal: 'Vocal', piano: 'Piano', lyrics2: '2nd lyrics', transpose: '{n} down', paren: [' (', ')'], comma: ', ',
@@ -107,7 +110,8 @@ const en = {
   versionsAria: 'Versions', infoAria: 'Song details',
   wordsMusic: 'Words & music', composer: 'Music', lyricist: 'Words', source: 'Source', versions: 'Versions',
   download: 'Download sheet music (PDF, Chinese)', openSheet: 'View in the browser',
-  lyrics: 'Lyrics', devotion: 'Scripture and reflection',
+  lyrics: 'Lyrics (Chinese)', devotion: 'Scripture and reflection',
+  parts: { verse: 'Verse', verse1: 'Verse 1', verse2: 'Verse 2', chorus: 'Chorus', chorus1: 'Chorus (first words)', chorus2: 'Chorus (second words)', bridge: 'Bridge' },
   relatedOriginal: 'More original works by Wolf Metrum', relatedOther: 'More songs',
   sheetsTitle: 'Sheet music', sheetsLead: 'Scores of the Wolf Metrum originals, in Chinese, for use in worship.', sheetsMeta: 'Sheet music',
   aboutTitle: 'About Wolf Metrum',
@@ -151,6 +155,6 @@ export default {
   url: 'https://wolfmetrum.aegisulf.com',
   email: 'wolfmetrum@outlook.com',
   youtube: 'https://www.youtube.com/@WolfMetrumRs',
-  formUrl: '', // GOOGLE_FORM_URL: to be provided
-  kofiUrl: '', // KO_FI_URL: to be provided
+  formUrl: 'https://forms.gle/7NE9jibhk5SJ2fJo7',
+  kofiUrl: 'https://ko-fi.com/wolfmetrum'
 };

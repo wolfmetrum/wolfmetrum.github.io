@@ -22,6 +22,8 @@ function loadWorks(works, occasions) {
       if (!VTYPE.includes(v.type)) throw new Error(`${where}: version type must be vocal | piano`);
       if (!KEY.test(v.key || '')) throw new Error(`${where}: bad key ${v.key} (write C, Bb, C#, Cm)`);
     }
+    for (const l of w.lyrics || []) if (!t.zh.parts[l.part] || !l.text) throw new Error(`${where}: lyrics part must be ${Object.keys(t.zh.parts).join(' | ')} with text`);
+    if (w.lyrics && w.kind !== 'original') throw new Error(`${where}: lyrics are for originals only (copyright)`);
     w.occasions ||= [];
     w.keys = [...new Set(w.versions.map((v) => v.key))];
   }

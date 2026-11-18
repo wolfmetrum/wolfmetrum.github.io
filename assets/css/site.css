@@ -150,7 +150,7 @@ a.cover:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3
 .serve__grid > li:not(.serve__act) { counter-increment: s; }
 .serve__grid > li:not(.serve__act)::before { content: counter(s); font: 600 var(--text-2xl)/1 var(--font-display); color: var(--color-accent); }
 .serve__grid p { color: var(--color-ink-2); }
-.serve__grid > .serve__act { border-top-color: var(--color-accent); }
+.serve__grid > .serve__act { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-md) var(--space-lg); border-top-color: var(--color-accent); }
 .serve__act .btn { justify-self: start; }
 .serve__act .btn[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; }
 .terms { font-size: var(--text-sm); color: var(--color-ink-2); }
@@ -188,6 +188,7 @@ a.cover:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3
 .side .facts { margin: 0; }
 .facts .sub { display: block; font-size: var(--text-xs); color: var(--color-ink-2); }
 .cover iframe { width: 100%; height: 100%; border: 0; }
+.lyrics__part { margin: var(--space-lg) 0 var(--space-xs); font: 500 var(--text-sm)/1.4 var(--font-body); color: var(--color-ink-2); }
 .lyrics { white-space: pre-line; font: 400 var(--text-lg)/1.9 var(--font-display); }
 .side .btn { justify-content: center; }
 .prose { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: var(--gap-columns); }

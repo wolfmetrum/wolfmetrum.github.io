@@ -13,6 +13,31 @@
   kind: original
   occasions: [christmas]
   sheet_music: /assets/sheets/平安降臨.pdf
+  lyrics:
+  - part: verse1
+    text: |-
+      星光落在伯利恆的小鎮，
+      一位聖嬰悄然降生；
+      不需華麗殿堂，不求金銀珠寶，
+      只因祂來到世上，靜夜也綻放光芒。
+  - part: chorus
+    text: |-
+      平安降臨，降臨在世間，
+      溫暖地充滿世人的心。
+      平安降臨，愛的光輝，
+      眷顧著沉睡的大地，每一個夜晚。
+  - part: verse2
+    text: |-
+      天父心意，裝進小小懷抱，
+      最好禮物悄悄送來；
+      不需酬謝，不需償還，白白領受，
+      只因祂愛你永恆，不止息暖遍世間。
+  - part: bridge
+    text: |-
+      天使唱榮耀歸給神，天使唱平安歸給人，
+      大喜的信息傳遍四方，天地同歡唱。
+      天使唱讚美新生王，天使唱平安歸給人，
+      遠方傳來歌聲，穿過寒夜，溫柔唱著平安。
   versions:
   - {youtube_id: BakXbdBvzjQ, type: vocal, key: C}
 
@@ -25,6 +50,27 @@
   kind: original
   occasions: []
   sheet_music: /assets/sheets/永恆恩典.pdf
+  lyrics:
+  - part: verse
+    text: |-
+      創世以先的恩典，萬代堅立不變；
+      亙古不變的慈愛，聖約在萬代傳揚。
+      踏出信心的開端，隨祢走過平原；
+      跨越時間的深淵，慈愛引領我到永遠。
+      縱然天地會移轉，祢愛不曾改變；
+      堅定仰望這聖約，邁向那永恆應許家園。
+  - part: chorus1
+    text: |-
+      永恆恩典，萬代不變，祢信實到永遠。
+      基督中保，寶血成全，成就救恩的完全。
+      永恆恩典，立定在天，屬天榮耀彰顯。
+      俯伏敬拜，仰望神前，歡呼讚美到永遠！
+  - part: chorus2
+    text: |-
+      永恆恩典，輕聲呼喚，領我回祢面前。
+      永恆恩典，大能彰顯，救贖我生命完全。
+      永恆恩典，溫柔憐憫，拭去我的淚眼。
+      永恆恩典，榮耀冠冕，讚美祢直到永遠！
   versions:
   - {youtube_id: 0PIoV51qx3Q, type: vocal, key: C}
 
@@ -37,6 +83,25 @@
   kind: original
   occasions: []
   sheet_music: /assets/sheets/無限的慈愛.pdf
+  lyrics:
+  - part: verse1
+    text: |-
+      祢愛如晨光，溫柔且明亮，照耀著我的臉龐；
+      祢恩典深廣，撫平了創傷，擁抱我回到家鄉。
+      在祢懷，尋得安息；祢話語，帶來能力。
+      縱軟弱，也不畏懼；祢憐憫，永不止息。
+  - part: chorus
+    text: |-
+      神啊，祢有無盡的愛；救主，賜下豐富憐憫。
+      如母親，看顧著每一天，祢恩典，永不改變。
+      神啊，祢是我的倚靠；聖靈，帶來無比安慰。
+      到永遠，我要歌頌讚美，這份無限的慈愛。
+  - part: verse2
+    text: |-
+      祢愛如高山，永遠作陪伴，引領我度過艱難；
+      祢信實豐滿，賜下真平安，領我到安歇水邊。
+      遇風暴，主作盾牌；走曠野，有祢同在。
+      縱跌倒，落入塵埃；祢雙手，抱入胸懷。
   versions:
   - {youtube_id: EYYSTQN3vXE, type: vocal, key: A}
 
@@ -49,6 +114,25 @@
   kind: original
   occasions: []
   sheet_music: /assets/sheets/榮耀真光.pdf
+  lyrics:
+  - part: verse1
+    text: |-
+      晨光照亮山崗，來到聖所心盼望，
+      琴聲響徹四方，高聲讚美主恩光；
+      憂愁全都釋放，唯有耶穌是君王，
+      軟弱變為剛強，因為聖靈在我們身旁。
+  - part: chorus
+    text: |-
+      齊來敬拜，榮耀君王在天上，祂的慈愛充滿了四方，
+      看見救恩活水在流淌，神的大能就在身旁；
+      不要懷疑，信心堅定不驚慌，聖靈火焰點燃盼望，
+      跟隨聖靈自由地飛翔，喜樂充滿了心房，黑暗之中看見真光。
+  - part: verse2
+    text: |-
+      舉手向天仰望，信心堅定不徬徨，
+      真理就是方向，帶領我們去翱翔；
+      打破黑暗圍牆，生命綻放新光芒，
+      榮耀充滿殿堂，活水江河在這裡流淌。
   versions:
   - {youtube_id: dPbFqBXviEk, type: vocal, key: C}
   - {youtube_id: fooqSkaonEU, type: piano, key: C}
@@ -62,6 +146,27 @@
   kind: original
   occasions: []
   sheet_music: /assets/sheets/越過嘆息的哈利路亞.pdf
+  lyrics:
+  - part: verse1
+    text: |-
+      萬物嘆息勞苦，黑暗中摸索；
+      繁華世界如捕風，何處是盼望。
+      枯骨遍佈這地，呼求拯救者；
+      漫長黑夜等晨星，渴望恩典降。
+      道成肉身降世間，擔當罪孽與憂患，真光顯。
+  - part: chorus
+    text: |-
+      哈利路亞，榮耀歸於至高真神；
+      哈利路亞，十架寶血贖回我們。
+      哈利路亞，永遠掌權全能的神；
+      哈利路亞，哈利路！
+  - part: verse2
+    text: |-
+      聖靈印記賜下，應許已成全；
+      不再流浪與嘆息，活水湧如泉。
+      復活大能彰顯，幽谷化平原；
+      榮耀確據在眼前，喜樂滿心田。
+      基督活在我裡面，得勝君王已掌權，齊頌讚。
   versions:
   - {youtube_id: yOAhPlrybD4, type: vocal, key: Cm}
   - {youtube_id: pxBiAmsThTY, type: piano, key: Cm}
