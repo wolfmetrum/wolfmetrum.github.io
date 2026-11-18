@@ -32,7 +32,9 @@ const zh = {
   serveKey: '現有影片移調', serveKeyText: '依會眾音域，重新錄製合宜的調性。',
   serveSheet: '製作詩歌樂譜', serveSheetText: '提供音樂或影片，即為您製作適合教會使用的樂譜。',
   serveTerms: '僅供教會及非營利用途，收到後將以 Email 回覆。', serveMore: '服事需求說明',
-  form: '填寫需求表單', kofi: '在 Ko-fi 奉獻', pending: '連結待提供',
+  form: '填寫需求表單', pending: '連結待提供',
+  give: '線上奉獻', giveUrl: 'https://p.ecpay.com.tw/7D8AD7E', giveNote: '本奉獻由站長個人收受，不開立捐款收據，亦無法抵稅。',
+  giveQr: 'https://payment.ecpay.com.tw/Upload/QRCode/202611/QRCode_4fc68e2b-f79d-4581-860f-f83adb59d944.png', giveQrAlt: '綠界奉獻頁 QR Code', giveQrCaption: '以手機掃描，前往奉獻頁面',
   // song page
   vocal: '演唱版', piano: '鋼琴版', lyrics2: '第二詞', transpose: '降 {n}', paren: ['（', '）'], comma: '，',
   transposeNote: '原調降 {n} 個半音',
@@ -104,7 +106,8 @@ const en = {
   serveKey: 'A video in another key', serveKeyText: 'An existing video, recorded again in a key for your congregation.',
   serveSheet: 'Sheet music prepared', serveSheetText: 'Send a recording or video; a score fit for church use will be prepared.',
   serveTerms: 'For churches and non-profit use. Replies by email.', serveMore: 'About requests',
-  form: 'Send a request', kofi: 'Give on Ko-fi', pending: 'link to come',
+  form: 'Send a request', pending: 'link to come',
+  give: 'Give on Ko-fi', giveUrl: 'https://ko-fi.com/wolfmetrum', giveNote: 'Gifts are received personally; no tax receipt is issued.',
   vocal: 'Vocal', piano: 'Piano', lyrics2: '2nd lyrics', transpose: '{n} down', paren: [' (', ')'], comma: ', ',
   transposeNote: '{n} semitones below the original key',
   versionsAria: 'Versions', infoAria: 'Song details',
@@ -156,5 +159,4 @@ export default {
   email: 'wolfmetrum@outlook.com',
   youtube: 'https://www.youtube.com/@WolfMetrumRs',
   formUrl: 'https://forms.gle/7NE9jibhk5SJ2fJo7',
-  kofiUrl: 'https://ko-fi.com/wolfmetrum'
 };

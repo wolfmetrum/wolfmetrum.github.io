@@ -7,12 +7,13 @@
     <li><h2 class="h3">{{ L.serveSheet }}</h2><p>{{ L.serveSheetText }}</p></li>
     <li class="serve__act">
       {%- if t.formUrl %}<a class="btn" href="{{ t.formUrl }}">{{ L.form }}</a>{% else %}<a class="btn" aria-disabled="true">{{ L.form }}</a><span class="fill">{{ L.pending }}</span>{% endif %}
-      {%- if t.kofiUrl %}<a class="link" href="{{ t.kofiUrl }}">{{ L.kofi }}</a>{% else %}<span>{{ L.kofi }}　<span class="fill">{{ L.pending }}</span></span>{% endif %}
+      <a class="link" href="{{ L.giveUrl }}">{{ L.give }}</a>
     </li>
   </ol>
   <dl class="terms-list">
     <dt>{{ L.serviceSteps }}</dt><dd><ol><li>{{ L.serviceStep1 }}</li><li>{{ L.serviceStep2 }}</li></ol></dd>
     <dt>{{ L.serviceScope }}</dt><dd>{{ L.serviceScopeText }}</dd>
-    <dt>{{ L.serviceGive }}</dt><dd>{{ L.serviceGiveText }}</dd>
+    <dt>{{ L.serviceGive }}</dt><dd>{{ L.serviceGiveText }}<small class="note">{{ L.giveNote }}</small>
+      {%- if L.giveQr %}<figure class="qr"><img src="{{ L.giveQr }}" width="160" height="160" alt="{{ L.giveQrAlt }}" loading="lazy"><figcaption>{{ L.giveQrCaption }}</figcaption></figure>{% endif %}</dd>
   </dl>
 </div></main>
