@@ -3,6 +3,18 @@
 # version.type: vocal | piano; transpose: semitones from the original key (-3 = 降3); lyrics: 2 = 第二詞;
 # date: YouTube publish date; seconds: video length; thumb: hq when the video has no maxres thumbnail.
 
+- slug: give-thanks
+  title: 獻上感恩
+  title_en: Give Thanks
+  composer: Henry Smith
+  lyricist: Henry Smith
+  source: 新歌頌揚327、聖徒詩歌短詩集294
+  kind: hymn
+  tags: [新歌頌揚]
+  occasions: [offering]
+  versions:
+  - {youtube_id: 1P-6K62XVTI, type: piano, key: G, date: '2026-11-17', seconds: 231}
+
 - slug: peace-has-come
   title: 平安降臨
   title_en: Peace Has Come
