@@ -214,7 +214,7 @@ def add_videos(raw, videos):
     titles = dict(re.findall(r"^- slug: (\S+)\n  title: (.+)$", text, re.M))
     by_title = {yaml_unquote(t): slug for slug, t in titles.items()}
     slugs = set(titles)
-    report = {"new": [], "version": [], "check": [], "skipped": []}
+    report = {"new": [], "version": [], "check": [], "skipped": [], "unclassified": []}
     occ_ids = occasion_ids()
     new_works = []  # newest first
 
@@ -268,6 +268,8 @@ def add_videos(raw, videos):
             new_works.append(work)
             hint = "（建議：聖誕節）" if "聖誕詩歌" in tags and not occasions else ""
             report["new"].append(f"{base} {title_en}{'' if occasions else '：節期待分類'}{hint}（{link}）")
+            if not occasions:
+                report["unclassified"].append(base)
 
     if new_works:
         head_end = text.index("\n- slug:") + 1
@@ -315,6 +317,11 @@ def fetch_videos(ids):
     return videos
 
 
+def can_publish_directly(report):
+    """Clean runs go straight to the site: something was added, nothing skipped or doubtful, every new work classified."""
+    return bool(report["new"] or report["version"]) and not (report["check"] or report["skipped"] or report["unclassified"])
+
+
 def pr_body(report):
     body = ["自動從 YouTube 頻道同步新曲目。", ""]
     sections = [
@@ -345,7 +352,11 @@ def main():
             f.write(text.replace("\n", nl))
     with open(os.environ.get("PR_BODY_PATH", "pr_body.md"), "w", encoding="utf-8") as f:
         f.write(pr_body(report))
-    print({k: len(v) for k, v in report.items()})
+    direct = can_publish_directly(report)
+    if os.environ.get("GITHUB_OUTPUT"):
+        with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
+            f.write(f"direct={'true' if direct else 'false'}\n")
+    print({k: len(v) for k, v in report.items()}, "direct" if direct else "review")
 
 
 if __name__ == "__main__":

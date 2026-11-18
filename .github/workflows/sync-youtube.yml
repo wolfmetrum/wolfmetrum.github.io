@@ -8,10 +8,14 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  pages: write
+  id-token: write
 
 jobs:
   sync:
     runs-on: ubuntu-latest
+    outputs:
+      published: ${{ steps.publish.outputs.published }}
     steps:
       - uses: actions/checkout@v4
 
@@ -23,6 +27,7 @@ jobs:
         run: pip install pyyaml && python scripts/test_sync_youtube.py
 
       - name: Fetch new videos and update works.yml
+        id: sync
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           PR_BODY_PATH: ${{ runner.temp }}/pr_body.md
@@ -36,7 +41,22 @@ jobs:
       - name: Build the site to validate the data
         run: npm ci && npx eleventy --quiet
 
+      # Everything read cleanly and every new work has seasons: publish without waiting for review.
+      - name: Commit straight to main
+        id: publish
+        if: steps.sync.outputs.direct == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/_data/works.yml
+          { echo "Sync new YouTube videos into works.yml"; echo; cat "${{ runner.temp }}/pr_body.md"; } > "${{ runner.temp }}/msg.txt"
+          git commit -F "${{ runner.temp }}/msg.txt"
+          git push origin HEAD:main
+          echo "published=true" >> "$GITHUB_OUTPUT"
+
+      # Something needs a person: skipped videos, doubtful fields or a work without seasons.
       - name: Open pull request
+        if: steps.sync.outputs.direct != 'true'
         uses: peter-evans/create-pull-request@v7
         with:
           branch: auto/sync-youtube
@@ -44,3 +64,9 @@ jobs:
           body-path: ${{ runner.temp }}/pr_body.md
           commit-message: "Sync new YouTube videos into works.yml"
           add-paths: src/_data/works.yml
+
+  # A push made with the workflow token does not start other workflows, so deploy is called here.
+  deploy:
+    needs: sync
+    if: needs.sync.outputs.published == 'true'
+    uses: ./.github/workflows/deploy.yml

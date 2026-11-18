@@ -6,7 +6,7 @@ import unittest
 import yaml
 
 sys.path.insert(0, os.path.dirname(__file__))
-from sync_youtube import add_videos  # noqa: E402
+from sync_youtube import add_videos, can_publish_directly  # noqa: E402
 
 WORKS = """# header
 
@@ -65,6 +65,17 @@ class Merge(unittest.TestCase):
         self.assertEqual(new["occasions"], ["advent", "parents", "praise"])
         self.assertEqual(new["source"], "Aegisulf©狼的格律")  # 節期 is a known field, not taken as the source
         self.assertEqual(len(report["check"]), 1)
+
+    def test_direct_publish_only_when_clean(self):
+        classified = desc("新歌", "C", "A New Song", "• 標籤：現代詩歌\n• 節期與用途：敬拜讚美")
+        _, ok = add_videos(WORKS, [("F1", video(classified))])
+        self.assertTrue(can_publish_directly(ok))
+        _, unclassified = add_videos(WORKS, [("F2", video(desc("新歌", "C", "A New Song", "• 標籤：現代詩歌")))])
+        self.assertFalse(can_publish_directly(unclassified))
+        _, version_only = add_videos(WORKS, [("F3", video(desc("感謝神(降2)", "(移調)Ab", None, "• 標籤：傳統詩歌")))])
+        self.assertTrue(can_publish_directly(version_only))
+        _, nothing = add_videos(WORKS, [])
+        self.assertFalse(can_publish_directly(nothing))
 
     def test_transposed_without_amount_is_flagged(self):
         _, report = add_videos(WORKS, [("DDD", video(desc("感謝神", "(移調)A", "Thanks to God", "• 標籤：傳統詩歌")))])
