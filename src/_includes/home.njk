@@ -32,7 +32,7 @@
   <div class="sec__head"><h2 class="h2" id="h-year">{{ L.year }}</h2><p>{{ L.yearLead }}</p></div>
   <ol class="year">
   {%- for o in t.seasons %}{% set n = works | countOccasion(o) %}
-    <li data-season="{{ o }}">{% if n %}<a href="?o={{ o }}#catalog">{% else %}<span class="year__item">{% endif %}<b>{{ L.occasions[o].name }}</b><span>{{ L.occasions[o].when }}</span>{% if not n %}<span class="soon">{{ L.sorting }}</span>{% endif %}<span class="now" hidden>{{ L.upcoming }}</span>{% if n %}</a>{% else %}</span>{% endif %}</li>
+    <li data-season="{{ o }}">{% if n %}<a href="?o={{ o }}#catalog">{% else %}<span class="year__item">{% endif %}<b>{{ L.occasions[o].name | replace('與', '<wbr>與') | safe }}</b><span>{{ L.occasions[o].when }}</span>{% if not n %}<span class="soon">{{ L.sorting }}</span>{% endif %}<span class="now" hidden>{{ L.upcoming }}</span>{% if n %}</a>{% else %}</span>{% endif %}</li>
   {%- endfor %}
   </ol>
   {%- set usedUses = works | usedOccasions(t.uses) %}

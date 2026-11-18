@@ -49,9 +49,12 @@
 /* type */
 .h1 { font-size: var(--text-display-s); font-weight: 600; line-height: 1.15; }
 .h1 .en { margin-top: var(--space-xs); font-size: var(--text-lead); }
-.h2 { font-size: var(--text-section); font-weight: 600; line-height: 1.15; max-width: 22ch; }
+.h2 { font-size: var(--text-section); font-weight: 600; line-height: 1.15; max-width: 28ch; }
 .h3 { font-size: var(--text-title); font-weight: 600; line-height: 1.25; }
-.lead { font-size: var(--text-lead); color: var(--color-ink-2); max-width: 32ch; }
+.lead { font-size: var(--text-lead); color: var(--color-ink-2); max-width: 44ch; }
+/* ch is half a CJK character wide, so Chinese text gets its measure in em (one character each) */
+.h2:lang(zh-TW) { max-width: 18em; }
+.lead:lang(zh-TW) { max-width: 30em; }
 .en { display: block; font-family: var(--font-body); font-size: var(--text-sm); font-weight: 400; color: var(--color-ink-2); }
 .key { font-variant-numeric: tabular-nums; color: var(--color-accent); }
 
@@ -80,7 +83,8 @@ a.cover:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3
 .sec { padding-block: var(--section-gap-s); }
 .sec--well { background: var(--color-paper-2); }
 .sec__head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--space-md); margin-bottom: var(--space-xl); }
-.sec__head p { color: var(--color-ink-2); max-width: 40ch; }
+.sec__head p { color: var(--color-ink-2); max-width: 52ch; }
+.sec__head p:lang(zh-TW) { max-width: 26em; }
 
 /* originals rail */
 .rail { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(15rem, 1fr); gap: var(--gap-columns); overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; padding-bottom: var(--space-sm); list-style: none; margin: 0; padding-inline: 0; }
@@ -100,8 +104,10 @@ a.cover:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3
 .year a { display: grid; gap: var(--space-2xs); align-content: start; min-height: 168px; padding: var(--space-lg) var(--space-md); color: var(--color-ink); text-decoration: none; transition: background-color var(--dur-short) var(--ease-out); }
 .year a:hover { background: var(--color-paper-3); }
 .year a:focus-visible { outline: 2px solid var(--color-focus); outline-offset: -2px; }
-.year b { font: 600 var(--text-xl)/1.2 var(--font-display); }
-.year span { font-size: var(--text-xs); color: var(--color-ink-2); }
+/* Chinese names break only where marked (母親節<wbr>與父親節), never inside a word; the size eases down so 棕枝主日 fits nine across */
+.year b { font: 600 clamp(var(--text-lg), 1.7vw, var(--text-xl))/1.2 var(--font-display); word-break: keep-all; }
+.year b:lang(en) { font-size: var(--text-lg); }
+.year span { font-size: var(--text-xs); color: var(--color-ink-2); word-break: keep-all; }
 .year__item { display: grid; gap: var(--space-2xs); align-content: start; min-height: 168px; padding: var(--space-lg) var(--space-md); color: var(--color-muted); }
 .year .soon { margin-top: auto; color: var(--color-muted); }
 .year [aria-current="date"] > * { box-shadow: inset 0 3px 0 var(--color-accent); }
@@ -110,7 +116,10 @@ a.cover:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3
 .chip { display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--space-md); border: 1px solid var(--color-rule); border-radius: var(--radius-pill); color: var(--color-ink); text-decoration: none; font-size: var(--text-sm); white-space: nowrap; transition: border-color var(--dur-short) var(--ease-out); }
 .chip:hover { border-color: var(--color-accent); }
 .chip:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
-@media (max-width: 60rem) { .year { grid-template-columns: repeat(3, minmax(0, 1fr)); } .year li:nth-child(3n) { border-right: 0; } .year li { border-bottom: 1px solid var(--color-rule); } .year a, .year__item { min-height: 120px; } }
+@media (max-width: 89.99rem) { .year { grid-template-columns: repeat(3, minmax(0, 1fr)); } .year li:nth-child(3n) { border-right: 0; } .year li { border-bottom: 1px solid var(--color-rule); } .year a, .year__item { min-height: 120px; } }
+/* English season names are longer: three columns on every screen above phone width, date under the name on phones */
+@media (max-width: 40rem) { .year:lang(en) a, .year:lang(en) .year__item { grid-template-columns: minmax(0, 1fr); } }
+@media (min-width: 40.01rem) { .year:lang(en) { grid-template-columns: repeat(3, minmax(0, 1fr)); } .year:lang(en) li:nth-child(3n) { border-right: 0; } .year:lang(en) li { border-bottom: 1px solid var(--color-rule); } .year:lang(en) a, .year:lang(en) .year__item { min-height: 120px; } }
 @media (max-width: 40rem) { .year { grid-template-columns: minmax(0, 1fr); } .year li { border-right: 0; } .year a, .year__item { min-height: 0; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; padding: var(--space-md) var(--space-xs); } .year b { font-size: var(--text-lg); } .year .now, .year .soon { grid-column: 1 / -1; margin-top: 0; } }
 @media (prefers-reduced-motion: reduce) { .year a, .chip { transition: none; } }
 

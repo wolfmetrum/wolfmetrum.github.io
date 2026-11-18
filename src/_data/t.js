@@ -56,8 +56,7 @@ const zh = {
   nameOrigin: '「狼的格律」之名，取自以賽亞書 11:6 豺狼與綿羊羔同居的景象：正如標語所言，讓未馴的靈魂，臣服於恩典的格律。',
   bioTitle: '關於 Aegisulf',
   bio: [
-    'Aegisulf 自幼信主，在教會司琴近三十年。原為軟體工程師，後轉而專事音樂創作。',
-    'Aegisulf 的創作以電子音樂為主，亦跨界寫作基督教詩歌；未來也將嘗試融合兩者，為詩歌尋找新的聲音。',
+    '自幼信主，在教會司琴近三十年。原為軟體工程師，後轉而專事音樂創作。創作以電子音樂為主，亦跨界寫作基督教詩歌；未來也將嘗試融合兩者，為詩歌尋找新的聲音。',
   ],
   contactTitle: '聯絡', channel: 'YouTube 頻道',
   copyright: '原創曲目與樂譜版權屬狼的格律所有；其他詩歌之版權屬原權利人所有。',
@@ -132,8 +131,7 @@ const en = {
   nameOrigin: 'The name comes from Isaiah 11:6, where the wolf dwells with the lamb; as the motto has it, let the untamed soul bow to the meter of grace.',
   bioTitle: 'About Aegisulf',
   bio: [
-    'A believer in Jesus since childhood, Aegisulf has played the piano in church for nearly thirty years, and left a career in software engineering to work in music.',
-    'Most of Aegisulf’s own work is electronic music, alongside these Christian songs; pieces that bring the two together may follow.',
+    'A believer since childhood and a church pianist for nearly thirty years; once a software engineer, now devoted to music. The work is chiefly electronic, crossing over into Christian song, and future pieces may join the two.',
   ],
   contactTitle: 'Contact', channel: 'YouTube channel',
   copyright: 'Original works and sheet music © Wolf Metrum. Other songs remain the property of their rights holders.',
