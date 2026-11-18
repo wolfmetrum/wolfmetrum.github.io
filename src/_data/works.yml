@@ -11,7 +11,7 @@
   source: 新歌頌揚327、聖徒詩歌短詩集294
   kind: hymn
   tags: [新歌頌揚]
-  occasions: [offering]
+  occasions: [thanksgiving, praise, offering]
   versions:
   - {youtube_id: 1P-6K62XVTI, type: piano, key: G, date: '2026-11-17', seconds: 231}
 

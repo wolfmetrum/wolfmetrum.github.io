@@ -155,11 +155,12 @@ const en = {
   names: { 狼的格律: 'Wolf Metrum' },
   terms: [
     { from: '新靈糧詩選', to: 'New Spiritual Hymns ' }, { from: '靈糧詩選', to: 'Spiritual Hymns ' },
-    { from: '聖徒詩歌', to: 'Hymnary ' }, { from: '生命聖詩', to: 'Hymns of Life ' },
+    { from: '聖徒詩歌短詩集', to: 'Hymnary Singsperation ' }, { from: '聖徒詩歌', to: 'Hymnary ' }, { from: '生命聖詩', to: 'Hymns of Life ' },
     { from: '頌主新歌', to: 'New Songs of Praise ' }, { from: '普天頌讚', to: 'Hymns of Universal Praise ' },
     { from: '讚美之泉', to: 'Stream of Praise' }, { from: '我心旋律', to: 'Melody of My Heart' },
     { from: '約書亞樂團', to: 'Joshua Band' }, { from: '泥土音樂', to: 'Clay Music' },
     { from: '小羊詩歌', to: 'Lamb Music' }, { from: '有情天音樂', to: 'Heaventunes' }, { from: '狼的格律', to: 'Wolf Metrum' },
+    { from: '、', to: ', ' },
   ],
 };
 
