@@ -25,6 +25,7 @@ function loadWorks(works, occasions) {
     }
     for (const l of w.lyrics || []) if (!t.zh.parts[l.part] || !l.text) throw new Error(`${where}: lyrics part must be ${Object.keys(t.zh.parts).join(' | ')} with text`);
     if (w.lyrics && w.kind !== 'original') throw new Error(`${where}: lyrics are for originals only (copyright)`);
+    if (w.devotion) for (const f of ['ref', 'ref_en', 'verse', 'verse_en', 'text', 'text_en']) if (!w.devotion[f]) throw new Error(`${where}: devotion missing ${f}`);
     w.occasions ||= [];
     w.keys = [...new Set(w.versions.map((v) => v.key))];
   }

@@ -14,6 +14,14 @@
   kind: original
   occasions: [christmas]
   sheet_music: /assets/sheets/平安降臨.pdf
+  devotion:
+    ref: "路加福音 2:14"
+    ref_en: "Luke 2:14"
+    verse: "在至高之處榮耀歸與神！在地上平安歸與他所喜悅的人！"
+    verse_en: "Glory to God in the highest, and on earth peace, good will toward men."
+    text: "聖嬰降生於伯利恆，不在華麗殿堂，卻為世人帶來天上的平安。本曲以天使的頌讚為橋段，述說這份白白賜下、不求償還的愛。"
+    text_en: "Born in Bethlehem, not in a palace, the Child brings heaven's peace to the world. The bridge takes up the angels' song, telling of a love freely given that asks nothing in return."
+    reviewed: true
   lyrics:
   - part: verse1
     text: |-
@@ -51,6 +59,14 @@
   kind: original
   occasions: [newyear, praise]
   sheet_music: /assets/sheets/永恆恩典.pdf
+  devotion:
+    ref: "提摩太後書 1:9（節錄）"
+    ref_en: "2 Timothy 1:9 (excerpt)"
+    verse: "這恩典是萬古之先，在基督耶穌裡賜給我們的。"
+    verse_en: "His own purpose and grace, which was given us in Christ Jesus before the world began."
+    text: "恩典早在創世以先已經賜下，在基督裡成全，萬代不變。主歌回顧信心的道路，副歌以敬拜回應這永恆的信實。"
+    text_en: "Grace given before the world began, made complete in Christ, unchanged through every age. The verse looks back on the road of faith; the chorus answers that everlasting faithfulness with worship."
+    reviewed: true
   lyrics:
   - part: verse
     text: |-
@@ -84,6 +100,14 @@
   kind: original
   occasions: [parents, comfort, prayer]
   sheet_music: /assets/sheets/無限的慈愛.pdf
+  devotion:
+    ref: "以賽亞書 66:13（節錄）"
+    ref_en: "Isaiah 66:13 (excerpt)"
+    verse: "母親怎樣安慰兒子，我就照樣安慰你們。"
+    verse_en: "As one whom his mother comforteth, so will I comfort you."
+    text: "神的慈愛如晨光照耀，又如母親看顧，撫平創傷、引領歸家。無論軟弱或跌倒，祂的憐憫永不止息。"
+    text_en: "The love of God shines like the morning and keeps watch like a mother, healing wounds and leading home. In weakness or in falling, his mercy never ceases."
+    reviewed: true
   lyrics:
   - part: verse1
     text: |-
@@ -115,6 +139,14 @@
   kind: original
   occasions: [praise]
   sheet_music: /assets/sheets/榮耀真光.pdf
+  devotion:
+    ref: "約翰福音 1:9"
+    ref_en: "John 1:9"
+    verse: "那光是真光，照亮一切生在世上的人。"
+    verse_en: "That was the true Light, which lighteth every man that cometh into the world."
+    text: "晨光中來到聖所，以琴聲高聲讚美。基督是照亮世人的真光，聖靈同在，使憂愁得釋放、軟弱變為剛強。"
+    text_en: "Coming to the sanctuary at dawn with songs of praise: Christ is the true Light, and with the Holy Spirit near, sorrow is released and weakness made strong."
+    reviewed: true
   lyrics:
   - part: verse1
     text: |-
@@ -147,6 +179,14 @@
   kind: original
   occasions: [advent, praise]
   sheet_music: /assets/sheets/越過嘆息的哈利路亞.pdf
+  devotion:
+    ref: "羅馬書 8:22"
+    ref_en: "Romans 8:22"
+    verse: "我們知道，一切受造之物一同歎息、勞苦，直到如今。"
+    verse_en: "For we know that the whole creation groaneth and travaileth in pain together until now."
+    text: "萬物在黑暗中歎息，等候晨星升起。道成肉身，擔當罪孽，復活掌權；歌聲從歎息轉為哈利路亞，正是待降節的盼望。"
+    text_en: "All creation groans in the dark, waiting for the morning star. The Word made flesh bears our sin and rises to reign; the song turns from sighing to hallelujah, the hope of Advent."
+    reviewed: true
   lyrics:
   - part: verse1
     text: |-

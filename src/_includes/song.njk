@@ -28,11 +28,16 @@
     </aside>
   </div>
 
-  {%- if (w.devotion and w.reviewed) or w.lyrics %}
+  {#- drafts show only in local preview (npm start), never in the published build #}
+  {%- set d = w.devotion if (w.devotion and (w.devotion.reviewed or eleventy.env.runMode == 'serve')) else false %}
+  {%- if d or w.lyrics %}
   <section class="sec prose" style="padding-top: 0">
     <div>
-      {%- if w.devotion and w.reviewed %}
-      <div><h2>{{ L.devotion }}</h2>{{ w.devotion | safe }}</div>
+      {%- if d %}
+      <div><h2>{{ L.devotion }}{% if not d.reviewed %} <span class="fill">{{ L.draft }}</span>{% endif %}</h2>
+        <blockquote class="verse">{{ d.verse if lang == 'zh' else d.verse_en }}<cite>{{ d.ref if lang == 'zh' else (d.ref_en + ' (KJV)') }}</cite></blockquote>
+        <p>{{ d.text if lang == 'zh' else d.text_en }}</p>
+      </div>
       {%- endif %}
       {%- if w.lyrics %}
       <div><h2>{{ L.lyrics }}</h2>
