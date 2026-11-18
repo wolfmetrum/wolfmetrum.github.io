@@ -85,5 +85,8 @@
 {%- if script %}
 <script src="/assets/js/{{ script }}.js" defer></script>
 {%- endif %}
+{%- if eleventy.env.runMode == 'build' %}
+<!-- Cloudflare Web Analytics (production builds only, so local previews are not counted) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "79a1e61ba43a4e88b4e68b54442fdcda"}'></script><!-- End Cloudflare Web Analytics -->
+{%- endif %}
 </body>
 </html>
