@@ -1,5 +1,6 @@
 import yaml from 'js-yaml';
 import t from './src/_data/t.js';
+import * as seo from './seo.js';
 
 const KIND = ['original', 'hymn', 'contemporary'];
 const VTYPE = ['vocal', 'piano'];
@@ -54,13 +55,18 @@ export default function (eleventyConfig) {
     for (const { from, to } of t.terms) s = s.split(from).join(to);
     return s.replace(/\s+(\d)/g, ' $1').trim();
   });
+  eleventyConfig.addFilter('mmss', (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`);
   eleventyConfig.addFilter('fmt', (s, n) => String(s).replace('{n}', n));
-  eleventyConfig.addFilter('thumb', (id) => `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`);
+  eleventyConfig.addFilter('thumb', (v) => `https://i.ytimg.com/vi/${v.youtube_id}/${v.thumb === 'hq' ? 'hqdefault' : 'maxresdefault'}.jpg`);
   eleventyConfig.addFilter('altUrl', (url, lang) => (lang === 'en' ? url.replace(/^\/en/, '') || '/' : '/en' + url));
-  eleventyConfig.addFilter('versionLabel', (v, t) => {
-    const extra = [v.lyrics === 2 ? t.lyrics2 : '', v.transpose ? t.transpose.replace('{n}', -v.transpose) : ''].filter(Boolean);
-    return t[v.type] + (extra.length ? `${t.paren[0]}${extra.join(t.comma)}${t.paren[1]}` : '');
-  });
+  eleventyConfig.addFilter('versionLabel', seo.versionLabel);
+  eleventyConfig.addFilter('songTitle', seo.songTitle);
+  eleventyConfig.addFilter('songDescription', seo.songDescription);
+  eleventyConfig.addFilter('songLd', seo.songLd);
+  eleventyConfig.addFilter('homeLd', seo.homeLd);
+  // JSON for a <script> block: escape < so text can never close the tag
+  eleventyConfig.addFilter('ldJson', (o) => JSON.stringify(o).replace(/</g, '\\u003c'));
+  eleventyConfig.addFilter('latestDate', (w) => w.versions.map((v) => v.date).sort().at(-1));
   eleventyConfig.addFilter('byKind', (works, kind) => works.filter((w) => w.kind === kind));
   eleventyConfig.addFilter('withSheet', (works) => works.filter((w) => w.sheet_music));
   eleventyConfig.addFilter('related', (works, w) => works.filter((x) => x.kind === w.kind && x.slug !== w.slug).slice(0, 8));

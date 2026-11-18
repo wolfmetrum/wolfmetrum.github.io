@@ -6,6 +6,7 @@
 /* Hallmark · dismissed 77 · song.html is one song's detail page: the song, its words and the other originals, more blocks would be filler */
 /* Hallmark · note 30a · the flagged characters are the musical flat and sharp signs (U+266D, U+266F) the owner asked for in key names, not emoji or icons */
 /* Hallmark · dismissed 77, 78 · sheets, about, service and 404 are plain reading pages: one column of text and links, no sections to give mass to */
+/* Hallmark · dismissed 58 · the about page is prose meant to be read, and song-page rails list titles in two languages; neither is a landing screen */
 /* Hallmark · dismissed 7b · the QR code needs a pure white quiet zone so phone cameras read it reliably */
 @import url("./tokens.css");
 @import url("./base.css");

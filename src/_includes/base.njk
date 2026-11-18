@@ -33,6 +33,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/site.css">
+{%- if work %}
+<script type="application/ld+json">{{ work | songLd(t, L, page.url) | ldJson | safe }}</script>
+{%- elif home %}
+<script type="application/ld+json">{{ t | homeLd(L) | ldJson | safe }}</script>
+{%- endif %}
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>

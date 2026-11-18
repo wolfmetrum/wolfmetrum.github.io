@@ -8,13 +8,13 @@
       {%- if w.versions.length > 1 %}
       <div class="versions" role="tablist" aria-label="{{ L.versionsAria }}">
       {%- for x in w.versions %}
-        <button type="button" role="tab" aria-selected="{{ 'true' if loop.first else 'false' }}" tabindex="{{ 0 if loop.first else -1 }}" aria-controls="player" data-vid="{{ x.youtube_id }}" data-key="{{ x.key | keyName(L) }}" data-sub="{{ (L.transposeNote | fmt(-x.transpose)) if x.transpose else '' }}">{{ x | versionLabel(L) }}</button>
+        <button type="button" role="tab" aria-selected="{{ 'true' if loop.first else 'false' }}" tabindex="{{ 0 if loop.first else -1 }}" aria-controls="player" data-vid="{{ x.youtube_id }}" data-thumb="{{ x | thumb }}" data-len="{{ x.seconds | mmss }}" data-key="{{ x.key | keyName(L) }}" data-sub="{{ (L.transposeNote | fmt(-x.transpose)) if x.transpose else '' }}">{{ x | versionLabel(L) }}</button>
       {%- endfor %}
       </div>
       {%- endif %}
       <div class="cover" id="player" data-title="{{ name }} {{ L.video }}">
         <a href="https://www.youtube.com/watch?v={{ v.youtube_id }}" aria-label="{{ L.play }} {{ name }}">
-          <img src="{{ v.youtube_id | thumb }}" width="1280" height="720" alt="{{ name }} {{ L.cover }}" fetchpriority="high" onerror="this.onerror=null;this.src=this.src.replace('maxresdefault','hqdefault')">
+          <img src="{{ v | thumb }}" width="1280" height="720" alt="{{ name }} {{ L.cover }}" fetchpriority="high">
           <span class="cover__play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="7 4 20 12 7 20 7 4"/></svg></span>
         </a>
       </div>

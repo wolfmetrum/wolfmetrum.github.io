@@ -1,6 +1,7 @@
 # One entry per work; each video is a version. Newest work first.
 # kind: original | hymn | contemporary. occasions: ids from seasons/uses in src/_data/t.js.
-# version.type: vocal | piano; transpose: semitones from the original key (-3 = 降3); lyrics: 2 = 第二詞.
+# version.type: vocal | piano; transpose: semitones from the original key (-3 = 降3); lyrics: 2 = 第二詞;
+# date: YouTube publish date; seconds: video length; thumb: hq when the video has no maxres thumbnail.
 
 - slug: peace-has-come
   title: 平安降臨
@@ -39,7 +40,7 @@
       天使唱讚美新生王，天使唱平安歸給人，
       遠方傳來歌聲，穿過寒夜，溫柔唱著平安。
   versions:
-  - {youtube_id: BakXbdBvzjQ, type: vocal, key: C}
+  - {youtube_id: BakXbdBvzjQ, type: vocal, key: C, date: '2026-10-20', seconds: 310}
 
 - slug: eternal-grace
   title: 永恆恩典
@@ -72,7 +73,7 @@
       永恆恩典，溫柔憐憫，拭去我的淚眼。
       永恆恩典，榮耀冠冕，讚美祢直到永遠！
   versions:
-  - {youtube_id: 0PIoV51qx3Q, type: vocal, key: C}
+  - {youtube_id: 0PIoV51qx3Q, type: vocal, key: C, date: '2026-04-28', seconds: 431}
 
 - slug: boundless-love
   title: 無限的慈愛
@@ -103,7 +104,7 @@
       遇風暴，主作盾牌；走曠野，有祢同在。
       縱跌倒，落入塵埃；祢雙手，抱入胸懷。
   versions:
-  - {youtube_id: EYYSTQN3vXE, type: vocal, key: A}
+  - {youtube_id: EYYSTQN3vXE, type: vocal, key: A, date: '2026-04-14', seconds: 337}
 
 - slug: true-light-of-glory
   title: 榮耀真光
@@ -134,8 +135,8 @@
       打破黑暗圍牆，生命綻放新光芒，
       榮耀充滿殿堂，活水江河在這裡流淌。
   versions:
-  - {youtube_id: dPbFqBXviEk, type: vocal, key: C}
-  - {youtube_id: fooqSkaonEU, type: piano, key: C}
+  - {youtube_id: dPbFqBXviEk, type: vocal, key: C, date: '2026-04-11', seconds: 249}
+  - {youtube_id: fooqSkaonEU, type: piano, key: C, date: '2026-02-19', seconds: 249}
 
 - slug: beyond-the-sighing-hallelujah
   title: 越過嘆息的哈利路亞
@@ -168,8 +169,8 @@
       榮耀確據在眼前，喜樂滿心田。
       基督活在我裡面，得勝君王已掌權，齊頌讚。
   versions:
-  - {youtube_id: yOAhPlrybD4, type: vocal, key: Cm}
-  - {youtube_id: pxBiAmsThTY, type: piano, key: Cm}
+  - {youtube_id: yOAhPlrybD4, type: vocal, key: Cm, date: '2026-04-11', seconds: 389}
+  - {youtube_id: pxBiAmsThTY, type: piano, key: Cm, date: '2026-04-02', seconds: 389}
 
 - slug: love-you-till-the-end
   title: 愛你到底
@@ -181,7 +182,7 @@
   tags: [泥土音樂]
   occasions: []
   versions:
-  - {youtube_id: gcoz2s3ZtWc, type: piano, key: D}
+  - {youtube_id: gcoz2s3ZtWc, type: piano, key: D, date: '2026-05-15', seconds: 259}
 
 - slug: all-for-you
   title: 全然向祢
@@ -193,7 +194,7 @@
   tags: [讚美之泉]
   occasions: []
   versions:
-  - {youtube_id: 1xlGV5cGyqg, type: piano, key: D}
+  - {youtube_id: 1xlGV5cGyqg, type: piano, key: D, date: '2026-05-14', seconds: 270}
 
 - slug: because-you-walk-with-me
   title: 因祢與我同行
@@ -204,7 +205,7 @@
   kind: contemporary
   occasions: []
   versions:
-  - {youtube_id: WIONI-XB5X0, type: piano, key: E}
+  - {youtube_id: WIONI-XB5X0, type: piano, key: E, date: '2026-09-24', seconds: 207}
 
 - slug: whom-have-i-but-you
   title: 除祢以外
@@ -216,7 +217,7 @@
   tags: [讚美之泉]
   occasions: []
   versions:
-  - {youtube_id: 9VWTTcWkrvw, type: piano, key: C}
+  - {youtube_id: 9VWTTcWkrvw, type: piano, key: C, date: '2026-09-21', seconds: 190}
 
 - slug: oh-lord-i-worship-you
   title: 我的神我要敬拜祢
@@ -228,7 +229,7 @@
   tags: [我心旋律]
   occasions: []
   versions:
-  - {youtube_id: tDzlMqeTrsc, type: piano, key: C}
+  - {youtube_id: tDzlMqeTrsc, type: piano, key: C, date: '2026-09-21', seconds: 189}
 
 - slug: lean-on-you
   title: 永遠的依靠
@@ -240,7 +241,7 @@
   tags: [約書亞樂團]
   occasions: []
   versions:
-  - {youtube_id: Mi8SJ9tKe44, type: piano, key: E}
+  - {youtube_id: Mi8SJ9tKe44, type: piano, key: E, date: '2026-05-25', seconds: 251}
 
 - slug: how-great-thou-art
   title: 祢真偉大
@@ -252,7 +253,7 @@
   tags: [生命聖詩, 靈糧詩選]
   occasions: []
   versions:
-  - {youtube_id: W7GAGB08OX4, type: piano, key: A}
+  - {youtube_id: W7GAGB08OX4, type: piano, key: A, date: '2026-04-17', seconds: 265}
 
 - slug: the-path-of-grace
   title: 恩典之路
@@ -264,7 +265,7 @@
   tags: [讚美之泉]
   occasions: []
   versions:
-  - {youtube_id: VFEXMBNJ-_4, type: piano, key: F}
+  - {youtube_id: VFEXMBNJ-_4, type: piano, key: F, date: '2026-04-16', seconds: 213}
 
 - slug: thine-is-the-glory
   title: 復活得勝主
@@ -274,7 +275,7 @@
   kind: hymn
   occasions: []
   versions:
-  - {youtube_id: D6MWhmAzeKM, type: piano, key: D}
+  - {youtube_id: D6MWhmAzeKM, type: piano, key: D, date: '2026-03-24', seconds: 192}
 
 - slug: precious-cross
   title: 寶貴十架
@@ -286,7 +287,7 @@
   tags: [讚美之泉]
   occasions: []
   versions:
-  - {youtube_id: FJYjzt78ioo, type: piano, key: A}
+  - {youtube_id: FJYjzt78ioo, type: piano, key: A, date: '2026-03-26', seconds: 247}
 
 - slug: blessed-be-the-name
   title: 頌讚主尊名
@@ -298,7 +299,7 @@
   tags: [聖徒詩歌]
   occasions: []
   versions:
-  - {youtube_id: C9q_80mnjxw, type: piano, key: Ab}
+  - {youtube_id: C9q_80mnjxw, type: piano, key: Ab, date: '2026-03-20', seconds: 265}
 
 - slug: only-a-sinner-saved-by-grace
   title: 我是個罪人蒙主恩
@@ -310,7 +311,7 @@
   tags: [聖徒詩歌]
   occasions: []
   versions:
-  - {youtube_id: lKQAi2a56tc, type: piano, key: C}
+  - {youtube_id: lKQAi2a56tc, type: piano, key: C, date: '2026-06-04', seconds: 188}
 
 - slug: i-believe-in-a-hill-called-mount-calvary
   title: 我相信一山崗名叫各各他
@@ -321,7 +322,7 @@
   kind: contemporary
   occasions: []
   versions:
-  - {youtube_id: kv0FTgvYbUA, type: piano, key: A}
+  - {youtube_id: kv0FTgvYbUA, type: piano, key: A, date: '2026-03-14', seconds: 304}
 
 - slug: fixed-on-you
   title: 我心堅定於祢
@@ -333,7 +334,7 @@
   tags: [小羊詩歌]
   occasions: []
   versions:
-  - {youtube_id: U6poA500YN0, type: piano, key: C#}
+  - {youtube_id: U6poA500YN0, type: piano, key: C#, date: '2026-03-10', seconds: 224}
 
 - slug: jesus-keep-me-near-the-cross
   title: 十架為我榮耀
@@ -345,7 +346,7 @@
   tags: [頌主新歌]
   occasions: []
   versions:
-  - {youtube_id: kKAwt5N-pSk, type: piano, key: F}
+  - {youtube_id: kKAwt5N-pSk, type: piano, key: F, date: '2026-03-03', seconds: 236}
 
 - slug: because-he-lives
   title: 因祂活著
@@ -355,7 +356,7 @@
   kind: contemporary
   occasions: []
   versions:
-  - {youtube_id: orCbYcsxlnc, type: piano, key: Eb}
+  - {youtube_id: orCbYcsxlnc, type: piano, key: Eb, date: '2026-02-12', seconds: 306}
 
 - slug: bless-the-lord-o-my-soul
   title: 我的心你要稱頌耶和華
@@ -367,7 +368,7 @@
   tags: [讚美之泉]
   occasions: []
   versions:
-  - {youtube_id: yCdsnVwUuMk, type: piano, key: C}
+  - {youtube_id: yCdsnVwUuMk, type: piano, key: C, date: '2026-02-02', seconds: 341}
 
 - slug: safe-in-the-arms-of-jesus
   title: 安穩在耶穌手中
@@ -379,7 +380,7 @@
   tags: [生命聖詩]
   occasions: []
   versions:
-  - {youtube_id: WgB2PY51bv4, type: piano, key: G}
+  - {youtube_id: WgB2PY51bv4, type: piano, key: G, date: '2026-01-31', seconds: 217}
 
 - slug: grace-tis-a-charming-sound
   title: 恩典-美妙聲音
@@ -391,7 +392,7 @@
   tags: [聖徒詩歌]
   occasions: []
   versions:
-  - {youtube_id: f61FSLdNaEA, type: piano, key: D}
+  - {youtube_id: f61FSLdNaEA, type: piano, key: D, date: '2026-01-30', seconds: 186}
 
 - slug: ill-give-my-all-jesus-to-gain
   title: 我捨一切而要耶穌
@@ -401,8 +402,8 @@
   tags: [聖徒詩歌]
   occasions: []
   versions:
-  - {youtube_id: V09w2mAYHys, type: piano, key: Db}
-  - {youtube_id: sppc8m688CM, type: piano, key: A, transpose: -4}
+  - {youtube_id: V09w2mAYHys, type: piano, key: Db, date: '2026-01-22', seconds: 196}
+  - {youtube_id: sppc8m688CM, type: piano, key: A, transpose: -4, date: '2026-01-22', seconds: 196}
 
 - slug: come-thou-fount-of-every-blessing
   title: 萬福源頭
@@ -414,7 +415,7 @@
   tags: [生命聖詩]
   occasions: []
   versions:
-  - {youtube_id: bozN9lWZpbA, type: piano, key: Eb}
+  - {youtube_id: bozN9lWZpbA, type: piano, key: Eb, date: '2026-01-21', seconds: 150}
 
 - slug: rejoice-his-grace-is-free
   title: 樂哉，白白恩典
@@ -426,7 +427,7 @@
   tags: [聖徒詩歌]
   occasions: []
   versions:
-  - {youtube_id: U8SC9LXuBhA, type: piano, key: G}
+  - {youtube_id: U8SC9LXuBhA, type: piano, key: G, date: '2026-01-15', seconds: 229}
 
 - slug: neath-the-cross-of-my-savior
   title: 十架下我低頭
@@ -436,7 +437,7 @@
   tags: [聖徒詩歌]
   occasions: []
   versions:
-  - {youtube_id: 4aQuyzzY4ms, type: piano, key: F}
+  - {youtube_id: 4aQuyzzY4ms, type: piano, key: F, date: '2026-01-14', seconds: 228}
 
 - slug: let-me-love-and-not-be-respected
   title: 讓我愛而不受感戴
@@ -448,7 +449,7 @@
   tags: [聖徒詩歌]
   occasions: []
   versions:
-  - {youtube_id: IH1MvY95z0Y, type: piano, key: Em}
+  - {youtube_id: IH1MvY95z0Y, type: piano, key: Em, date: '2026-01-13', seconds: 202}
 
 - slug: yesterday-today-forever
   title: 昨日、今日、直到永遠
@@ -460,8 +461,8 @@
   tags: [聖徒詩歌]
   occasions: []
   versions:
-  - {youtube_id: MiZN5vfzyZY, type: piano, key: Bb}
-  - {youtube_id: MMBdWNaPeVM, type: piano, key: G, transpose: -3}
+  - {youtube_id: MiZN5vfzyZY, type: piano, key: Bb, date: '2026-01-07', seconds: 432}
+  - {youtube_id: MMBdWNaPeVM, type: piano, key: G, transpose: -3, date: '2026-01-07', seconds: 432}
 
 - slug: i-am-coming-lord
   title: 主我今來
@@ -473,7 +474,7 @@
   tags: [靈糧詩選]
   occasions: []
   versions:
-  - {youtube_id: eMUeD_ju4Ow, type: piano, key: Eb}
+  - {youtube_id: eMUeD_ju4Ow, type: piano, key: Eb, date: '2026-01-03', seconds: 190}
 
 - slug: it-is-well-with-my-soul
   title: 我心靈得安寧
@@ -485,7 +486,7 @@
   tags: [生命聖詩]
   occasions: []
   versions:
-  - {youtube_id: 9HUDxV8ZKwU, type: piano, key: Db}
+  - {youtube_id: 9HUDxV8ZKwU, type: piano, key: Db, date: '2026-01-02', seconds: 283}
 
 - slug: thanks-to-god
   title: 感謝神
@@ -497,8 +498,8 @@
   tags: [聖徒詩歌]
   occasions: []
   versions:
-  - {youtube_id: PzngT8fvihI, type: piano, key: Bb}
-  - {youtube_id: vdArXEdyirI, type: piano, key: G, transpose: -3}
+  - {youtube_id: PzngT8fvihI, type: piano, key: Bb, date: '2025-12-31', seconds: 180}
+  - {youtube_id: vdArXEdyirI, type: piano, key: G, transpose: -3, date: '2025-12-31', seconds: 180}
 
 - slug: angels-we-have-heard-on-high
   title: 天使歌唱在高天
@@ -509,7 +510,7 @@
   tags: [頌主新歌]
   occasions: [christmas]
   versions:
-  - {youtube_id: x_tQyXQPREc, type: piano, key: G}
+  - {youtube_id: x_tQyXQPREc, type: piano, key: G, date: '2025-12-26', seconds: 182}
 
 - slug: o-come-o-come-emmanuel
   title: 以馬內利來臨
@@ -520,7 +521,7 @@
   tags: [頌主新歌]
   occasions: [christmas]
   versions:
-  - {youtube_id: QiDhbNrfCV4, type: piano, key: Em}
+  - {youtube_id: QiDhbNrfCV4, type: piano, key: Em, date: '2025-12-20', seconds: 188}
 
 - slug: o-little-town-of-bethlehem
   title: 小伯利恆
@@ -532,7 +533,7 @@
   tags: [頌主新歌]
   occasions: [christmas]
   versions:
-  - {youtube_id: 3Z6l6vh7DuM, type: piano, key: G}
+  - {youtube_id: 3Z6l6vh7DuM, type: piano, key: G, date: '2025-12-19', seconds: 193}
 
 - slug: silent-night-holy-night
   title: 平安夜
@@ -544,7 +545,7 @@
   tags: [頌主新歌]
   occasions: [christmas]
   versions:
-  - {youtube_id: cvi6EOcsVXo, type: piano, key: Bb}
+  - {youtube_id: cvi6EOcsVXo, type: piano, key: Bb, date: '2025-12-16', seconds: 182}
 
 - slug: away-in-a-manger
   title: 聖嬰孩主耶穌
@@ -555,7 +556,7 @@
   tags: [頌主新歌]
   occasions: [christmas]
   versions:
-  - {youtube_id: ZtcNREVaugo, type: piano, key: F}
+  - {youtube_id: ZtcNREVaugo, type: piano, key: F, date: '2025-12-15', seconds: 133}
 
 - slug: hark-the-herald-angels-sing
   title: 新生王歌
@@ -567,7 +568,7 @@
   tags: [頌主新歌]
   occasions: [christmas]
   versions:
-  - {youtube_id: sNV2OhN9ZEc, type: piano, key: F}
+  - {youtube_id: sNV2OhN9ZEc, type: piano, key: F, date: '2025-12-13', seconds: 209}
 
 - slug: what-child-is-this
   title: 這位奇妙嬰孩是誰
@@ -578,7 +579,7 @@
   tags: [頌主新歌, 靈糧詩選]
   occasions: [christmas]
   versions:
-  - {youtube_id: GYaZ8n2pDUM, type: piano, key: Ebm}
+  - {youtube_id: GYaZ8n2pDUM, type: piano, key: Ebm, date: '2025-12-12', seconds: 230}
 
 - slug: joy-to-the-world
   title: 普世歡騰
@@ -590,7 +591,7 @@
   tags: [頌主新歌]
   occasions: [christmas]
   versions:
-  - {youtube_id: c-GkmWMcu80, type: piano, key: D}
+  - {youtube_id: c-GkmWMcu80, type: piano, key: D, date: '2025-12-10', seconds: 110}
 
 - slug: where-jesus-is-tis-heaven-there
   title: 耶穌同在就是天堂
@@ -602,10 +603,10 @@
   tags: [聖徒詩歌]
   occasions: []
   versions:
-  - {youtube_id: zs4EazFuhbA, type: piano, key: Ab, lyrics: 2}
-  - {youtube_id: UaTHvltUnSo, type: piano, key: F, lyrics: 2, transpose: -3}
-  - {youtube_id: LPM7P-NHXBQ, type: piano, key: Ab}
-  - {youtube_id: x3erRuOQsp8, type: piano, key: F, transpose: -3}
+  - {youtube_id: zs4EazFuhbA, type: piano, key: Ab, lyrics: 2, date: '2025-12-03', seconds: 286}
+  - {youtube_id: UaTHvltUnSo, type: piano, key: F, lyrics: 2, transpose: -3, date: '2025-12-03', seconds: 286}
+  - {youtube_id: LPM7P-NHXBQ, type: piano, key: Ab, date: '2025-12-02', seconds: 159}
+  - {youtube_id: x3erRuOQsp8, type: piano, key: F, transpose: -3, date: '2025-12-02', seconds: 159}
 
 - slug: father-twas-thy-love-that-knew-us
   title: 父啊，久在創世之前
@@ -617,8 +618,8 @@
   tags: [聖徒詩歌]
   occasions: []
   versions:
-  - {youtube_id: B28x-7VHeA4, type: piano, key: F}
-  - {youtube_id: wfTdkIdrSew, type: piano, key: Eb, transpose: -2}
+  - {youtube_id: B28x-7VHeA4, type: piano, key: F, date: '2025-11-27', seconds: 185, thumb: hq}
+  - {youtube_id: wfTdkIdrSew, type: piano, key: Eb, transpose: -2, date: '2025-11-27', seconds: 185, thumb: hq}
 
 - slug: thy-love-o-lord
   title: 思念主愛
@@ -630,5 +631,5 @@
   tags: [聖徒詩歌]
   occasions: []
   versions:
-  - {youtube_id: FfcqlcTFErs, type: piano, key: F}
-  - {youtube_id: sJXD3HGqGPo, type: piano, key: D, transpose: -3}
+  - {youtube_id: FfcqlcTFErs, type: piano, key: F, date: '2025-11-24', seconds: 228}
+  - {youtube_id: sJXD3HGqGPo, type: piano, key: D, transpose: -3, date: '2025-11-24', seconds: 228}

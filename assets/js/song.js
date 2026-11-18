@@ -13,9 +13,10 @@
     tabs.forEach((x) => { const on = x === t; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1; });
     current = t.dataset.vid;
     keyOut.textContent = t.dataset.key;
+    document.querySelector('[data-len-out]').textContent = t.dataset.len;
     if (t.dataset.sub) { const s = document.createElement('span'); s.className = 'sub'; s.textContent = t.dataset.sub; keyOut.append(s); }
     const a = box.querySelector('a');
-    if (a) { a.href = `https://www.youtube.com/watch?v=${current}`; a.querySelector('img').src = `https://i.ytimg.com/vi/${current}/maxresdefault.jpg`; }
+    if (a) { a.href = `https://www.youtube.com/watch?v=${current}`; a.querySelector('img').src = t.dataset.thumb; }
     else if (play) load(true);
   };
   tabs.forEach((t, i) => {

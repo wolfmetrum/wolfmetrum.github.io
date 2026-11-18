@@ -2,6 +2,7 @@
 {%- set lyricistName = w.lyricist if lang == 'zh' else (w.lyricist_en or (w.lyricist | tr(L))) %}
 <dl class="facts">
   <dt>{{ L.keyLabel }}</dt><dd class="key" data-key-out>{{ v.key | keyName(L) }}{% if v.transpose %}<span class="sub">{{ L.transposeNote | fmt(-v.transpose) }}</span>{% endif %}</dd>
+  {%- if v.seconds %}<dt>{{ L.lengthLabel }}</dt><dd data-len-out>{{ v.seconds | mmss }}</dd>{% endif %}
   {%- if w.composer and w.composer == w.lyricist %}
   <dt>{{ L.wordsMusic }}</dt><dd>{{ composerName }}</dd>
   {%- else %}

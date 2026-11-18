@@ -1,0 +1,19 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{%- for p in collections.all %}{% if not p.data.noindex and not p.data.altLink %}
+{%- set alt = p.url | altUrl(p.data.lang) %}{% set zhUrl = alt if p.data.lang == 'en' else p.url %}{% set enUrl = p.url if p.data.lang == 'en' else alt %}
+  <url>
+    <loc>{{ t.url }}{{ p.url }}</loc>
+    {%- if p.data.work %}
+    <lastmod>{{ p.data.work | latestDate }}</lastmod>
+    {%- endif %}
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="{{ t.url }}{{ zhUrl }}"/>
+    <xhtml:link rel="alternate" hreflang="en" href="{{ t.url }}{{ enUrl }}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ t.url }}{{ zhUrl }}"/>
+  </url>
+{%- endif %}{% endfor %}
+</urlset>

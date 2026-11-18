@@ -4,7 +4,11 @@
   {%- for p in L.about %}
   <p>{{ p }}</p>
   {%- endfor %}
-  <p><span class="fill">{{ L.aboutPending }}</span></p>
+  <h2 class="h3">{{ L.bioTitle }}</h2>
+  {%- for p in L.bio %}
+  <p>{{ p }}</p>
+  {%- endfor %}
+  <p>{{ L.nameOrigin }}</p>
   <blockquote class="verse">{{ L.verse }}<cite>{{ L.verseRef }}</cite></blockquote>
   <h2 class="h3">{{ L.contactTitle }}</h2>
   <ul class="plain">

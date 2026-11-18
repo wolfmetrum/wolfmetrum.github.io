@@ -1,5 +1,5 @@
     <li><a class="work" href="{{ L.prefix }}/songs/{{ w.slug }}/">
-      <span class="cover"><img src="{{ w.versions[0].youtube_id | thumb }}" width="1280" height="720" alt="" loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('maxresdefault','hqdefault')"></span>
+      <span class="cover"><img src="{{ w.versions[0] | thumb }}" width="1280" height="720" alt="" loading="lazy"></span>
       <h3>{% if lang == 'zh' %}{{ w.title }}<span class="en" lang="en">{{ w.title_en }}</span>{% else %}{{ w.title_en }}<span class="en" lang="zh-TW">{{ w.title }}</span>{% endif %}</h3>
       <span class="work__meta">{% for v in w.versions %}{{ v | versionLabel(L) }}{% if not loop.last %}{{ L.comma }}{% endif %}{% endfor %}{% if w.sheet_music %}{{ L.comma }}{{ L.withSheet }}{% endif %}</span>
     </a></li>

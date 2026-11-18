@@ -5,7 +5,7 @@
   <h1 class="visually-hidden">{{ L.homeH1 }}</h1>
   <div class="release">
     <a class="cover" href="{{ L.prefix }}/songs/{{ latest.slug }}/" aria-label="{{ L.play }} {{ latest.title if lang == 'zh' else latest.title_en }}">
-      <img src="{{ lv.youtube_id | thumb }}" width="1280" height="720" alt="" fetchpriority="high" onerror="this.onerror=null;this.src=this.src.replace('maxresdefault','hqdefault')">
+      <img src="{{ lv | thumb }}" width="1280" height="720" alt="" fetchpriority="high">
       <span class="cover__play">{{ ICON_PLAY | safe }}</span>
     </a>
     <div>
