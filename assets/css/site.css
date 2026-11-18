@@ -177,7 +177,7 @@ a.cover:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3
 .crumbs a { color: var(--color-ink-2); }
 .crumbs li[aria-current] { color: var(--color-ink); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .crumbs a:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
-.song { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: var(--gap-columns); padding-block: var(--space-xl) var(--space-3xl); align-items: start; }
+.song { display: grid; grid-template-columns: minmax(0, 8fr) minmax(18rem, 4fr); gap: var(--gap-columns); padding-block: var(--space-xl) var(--space-3xl); align-items: start; }
 .song h1 { font-size: var(--text-display-s); font-weight: 600; line-height: 1.12; }
 .song h1 .en { font-size: var(--text-lead); margin-top: var(--space-xs); }
 .versions { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin: var(--space-lg) 0 var(--space-md); }

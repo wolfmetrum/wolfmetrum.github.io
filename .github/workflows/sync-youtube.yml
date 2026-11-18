@@ -15,11 +15,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Fetch new videos and update songs.yml
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check the sync script
+        run: pip install pyyaml && python scripts/test_sync_youtube.py
+
+      - name: Fetch new videos and update works.yml
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           PR_BODY_PATH: ${{ runner.temp }}/pr_body.md
         run: python scripts/sync_youtube.py
+
+      # The build validates works.yml (keys, slugs, required fields); a bad entry stops here instead of reaching the site.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Build the site to validate the data
+        run: npm ci && npx eleventy --quiet
 
       - name: Open pull request
         uses: peter-evans/create-pull-request@v7
@@ -27,5 +42,5 @@ jobs:
           branch: auto/sync-youtube
           title: "同步 YouTube 新曲目"
           body-path: ${{ runner.temp }}/pr_body.md
-          commit-message: "+同步 YouTube 新曲目"
-          add-paths: _data/songs.yml
+          commit-message: "Sync new YouTube videos into works.yml"
+          add-paths: src/_data/works.yml

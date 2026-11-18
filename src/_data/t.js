@@ -118,7 +118,7 @@ const en = {
   transposeNote: '{n} semitones below the original key',
   versionsAria: 'Versions', infoAria: 'Song details',
   wordsMusic: 'Words & music', composer: 'Music', lyricist: 'Words', source: 'Source', versions: 'Versions',
-  download: 'Sheet music (PDF, Chinese)', openSheet: 'View in the browser',
+  download: 'Sheet music (PDF)', openSheet: 'View in the browser (scores in Chinese)',
   seo: { titleSep: ': ', vocal: 'vocal', piano: 'piano accompaniment', sheet: 'sheet music', original: 'an original hymn by Wolf Metrum, with ', inKey: ', in ', from: 'From ', colon: ': ', withLyrics: 'Lyrics included', clause: '. ', end: '.', listSep: ', ', and: ' and ' },
   lyrics: 'Lyrics (Chinese)', devotion: 'Scripture and reflection', draft: 'draft',
   parts: { verse: 'Verse', verse1: 'Verse 1', verse2: 'Verse 2', chorus: 'Chorus', chorus1: 'Chorus (first words)', chorus2: 'Chorus (second words)', bridge: 'Bridge' },
