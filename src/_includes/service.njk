@@ -1,0 +1,17 @@
+<main id="main"><div class="container page">
+  <h1 class="h1">{{ L.serviceTitle }}</h1>
+  <p class="lead">{{ L.serveLead }}</p>
+  <ol class="serve__grid">
+    <li><h2 class="h3">{{ L.serveNew }}</h2><p>{{ L.serveNewText }}</p></li>
+    <li><h2 class="h3">{{ L.serveKey }}</h2><p>{{ L.serveKeyText }}</p></li>
+    <li class="serve__act">
+      {%- if t.formUrl %}<a class="btn" href="{{ t.formUrl }}">{{ L.form }}</a>{% else %}<a class="btn" aria-disabled="true">{{ L.form }}</a><span class="fill">{{ L.pending }}</span>{% endif %}
+      {%- if t.kofiUrl %}<a class="link" href="{{ t.kofiUrl }}">{{ L.kofi }}</a>{% else %}<span>{{ L.kofi }}　<span class="fill">{{ L.pending }}</span></span>{% endif %}
+    </li>
+  </ol>
+  <dl class="terms-list">
+    <dt>{{ L.serviceSteps }}</dt><dd><ol><li>{{ L.serviceStep1 }}</li><li>{{ L.serviceStep2 }}</li></ol></dd>
+    <dt>{{ L.serviceScope }}</dt><dd>{{ L.serviceScopeText }}</dd>
+    <dt>{{ L.serviceGive }}</dt><dd>{{ L.serviceGiveText }}</dd>
+  </dl>
+</div></main>

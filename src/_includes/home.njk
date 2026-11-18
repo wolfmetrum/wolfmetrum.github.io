@@ -1,0 +1,92 @@
+{%- set latest = works[0] %}{% set lv = latest.versions[0] %}
+{%- set ICON_PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="7 4 20 12 7 20 7 4"/></svg>' %}
+<main id="main">
+<section class="hero" aria-label="{{ L.latestAria }}"><div class="container">
+  <h1 class="visually-hidden">{{ L.homeH1 }}</h1>
+  <div class="release">
+    <a class="cover" href="{{ L.prefix }}/songs/{{ latest.slug }}/" aria-label="{{ L.play }} {{ latest.title if lang == 'zh' else latest.title_en }}">
+      <img src="{{ lv.youtube_id | thumb }}" width="1280" height="720" alt="" fetchpriority="high" onerror="this.onerror=null;this.src=this.src.replace('maxresdefault','hqdefault')">
+      <span class="cover__play">{{ ICON_PLAY | safe }}</span>
+    </a>
+    <div>
+      {%- if lang == 'zh' %}
+      <h2><a href="/songs/{{ latest.slug }}/">{{ latest.title }}</a><span class="en" lang="en">{{ latest.title_en }}</span></h2>
+      {%- else %}
+      <h2><a href="/en/songs/{{ latest.slug }}/">{{ latest.title_en }}</a><span class="en" lang="zh-TW">{{ latest.title }}</span></h2>
+      {%- endif %}
+      {%- set w = latest %}{% set v = lv %}
+      {% include "facts.njk" %}
+      {%- if latest.sheet_music %}<a class="link" href="{{ latest.sheet_music }}">{{ L.download }}</a>{% endif %}
+    </div>
+  </div>
+</div></section>
+
+<section class="sec sec--well" aria-labelledby="h-orig"><div class="container">
+  <div class="sec__head"><h2 class="h2" id="h-orig">{{ L.originals }}</h2><p>{{ L.originalsLead }}</p></div>
+  <ul class="rail" tabindex="0" aria-label="{{ L.originalsAria }}">
+  {%- for w in works | byKind('original') %}{% include "card.njk" %}{% endfor %}
+  </ul>
+</div></section>
+
+<section class="sec" id="year" aria-labelledby="h-year"><div class="container">
+  <div class="sec__head"><h2 class="h2" id="h-year">{{ L.year }}</h2><p>{{ L.yearLead }}</p></div>
+  <ol class="year">
+  {%- for o in t.seasons %}{% set n = works | countOccasion(o) %}
+    <li data-season="{{ o }}">{% if n %}<a href="?o={{ o }}#catalog">{% else %}<span class="year__item">{% endif %}<b>{{ L.occasions[o].name }}</b><span>{{ L.occasions[o].when }}</span>{% if not n %}<span class="soon">{{ L.sorting }}</span>{% endif %}<span class="now" hidden>{{ L.upcoming }}</span>{% if n %}</a>{% else %}</span>{% endif %}</li>
+  {%- endfor %}
+  </ol>
+  {%- set usedUses = works | usedOccasions(t.uses) %}
+  {%- if usedUses.length %}
+  <ul class="uses" aria-label="{{ L.usesAria }}">
+  {%- for o in usedUses %}<li><a class="chip" href="?o={{ o }}#catalog">{{ L.occasions[o].name }}</a></li>{% endfor %}
+  </ul>
+  {%- endif %}
+</div></section>
+
+<section class="sec sec--well" id="catalog" aria-labelledby="h-cat"><div class="container">
+  <div class="sec__head"><h2 class="h2" id="h-cat">{{ L.catalog | fmt(works.length) }}</h2></div>
+  <form class="tools" role="search" onsubmit="return false">
+    <div class="field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><label class="visually-hidden" for="q">{{ L.searchLabel }}</label><input id="q" type="search" name="q" autocomplete="off" placeholder="{{ L.searchPh }}"></div>
+    <label class="visually-hidden" for="mode">{{ L.modeLabel }}</label>
+    <select id="mode" name="mode"><option value="">{{ L.modeAll }}</option><option value="major">{{ L.major }}</option><option value="minor">{{ L.minor }}</option></select>
+    <label class="visually-hidden" for="key">{{ L.keyLabel }}</label>
+    <select id="key" name="key"><option value="">{{ L.keyAll }}</option>
+    {%- for k in works | sortedKeys %}<option value="{{ k }}">{{ k | keySign }}</option>{% endfor %}
+    </select>
+    <label class="visually-hidden" for="o">{{ L.occLabel }}</label>
+    <select id="o" name="o"><option value="">{{ L.occAll }}</option>
+    {%- for o in works | usedOccasions(t.seasons) %}<option value="{{ o }}">{{ L.occasions[o].name }}</option>{% endfor %}
+    {%- for o in usedUses %}<option value="{{ o }}">{{ L.occasions[o].name }}</option>{% endfor %}
+    </select>
+  </form>
+  <fieldset class="types"><legend class="visually-hidden">{{ L.kindLabel }}</legend>
+    <input type="radio" name="kind" id="k0" value="" checked><label for="k0">{{ L.kindAll }}</label>
+    {%- for k, name in L.kinds %}
+    <input type="radio" name="kind" id="k-{{ k }}" value="{{ k }}"><label for="k-{{ k }}">{{ name }}</label>
+    {%- endfor %}
+  </fieldset>
+  <table class="index">
+    <thead><tr><th scope="col">{{ L.cols.title }}</th><th scope="col">{{ L.cols.key }}</th><th scope="col">{{ L.cols.source }}</th><th scope="col">{{ L.cols.kind }}</th></tr></thead>
+    <tbody>
+    {%- for w in works %}
+      <tr data-kind="{{ w.kind }}" data-keys="{{ w.keys | join(' ') }}" data-o="{{ w.occasions | join(' ') }}" data-search="{{ [w.title, w.title_en, w.composer, w.composer_en, w.lyricist, w.lyricist_en, w.source | clean, w.source | tr(t.en)] | join(' ') }}">
+        <td>{% if lang == 'zh' %}<a href="/songs/{{ w.slug }}/">{{ w.title }}</a><span class="en"><span lang="en">{{ w.title_en }}</span>{% else %}<a href="/en/songs/{{ w.slug }}/">{{ w.title_en }}</a><span class="en"><span lang="zh-TW">{{ w.title }}</span>{% endif %}{% if w.versions.length > 1 %}<span class="count">{{ L.versionsN | fmt(w.versions.length) }}</span>{% endif %}</span></td>
+        <td class="key">{% for k in w.keys %}{{ k | keySign }}{% if not loop.last %}{{ '、' if lang == 'zh' else ', ' }}{% endif %}{% endfor %}</td><td>{{ w.source | tr(L) }}</td><td>{{ L.kinds[w.kind] }}</td>
+      </tr>
+    {%- endfor %}
+    </tbody>
+  </table>
+  <p class="empty" role="status" hidden>{{ L.empty }}</p>
+  <button class="btn btn--quiet more" type="button" hidden>{{ L.more | fmt(works.length) }}</button>
+</div></section>
+
+<section class="sec" id="serve" aria-labelledby="h-serve"><div class="container">
+  <div class="sec__head"><h2 class="h2" id="h-serve">{{ L.serve }}</h2><p>{{ L.serveLead }}</p></div>
+  <ol class="serve__grid">
+    <li><h3 class="h3">{{ L.serveNew }}</h3><p>{{ L.serveNewText }}</p></li>
+    <li><h3 class="h3">{{ L.serveKey }}</h3><p>{{ L.serveKeyText }}</p></li>
+    <li class="serve__act"><a class="btn btn--quiet" href="{{ L.prefix }}/service/">{{ L.serveMore }}</a><p class="terms">{{ L.serveTerms }}</p></li>
+  </ol>
+</div></section>
+</main>
+<script type="application/json" id="video-map">{{ works | videoMap | safe }}</script>

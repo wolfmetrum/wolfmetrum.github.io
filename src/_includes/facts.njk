@@ -1,0 +1,13 @@
+{%- set composerName = w.composer if lang == 'zh' else (w.composer_en or (w.composer | tr(L))) %}
+{%- set lyricistName = w.lyricist if lang == 'zh' else (w.lyricist_en or (w.lyricist | tr(L))) %}
+<dl class="facts">
+  <dt>{{ L.keyLabel }}</dt><dd class="key" data-key-out>{{ v.key | keyName(L) }}{% if v.transpose %}<span class="sub">{{ L.transposeNote | fmt(-v.transpose) }}</span>{% endif %}</dd>
+  {%- if w.composer and w.composer == w.lyricist %}
+  <dt>{{ L.wordsMusic }}</dt><dd>{{ composerName }}</dd>
+  {%- else %}
+  {%- if w.composer %}<dt>{{ L.composer }}</dt><dd>{{ composerName }}</dd>{% endif %}
+  {%- if w.lyricist %}<dt>{{ L.lyricist }}</dt><dd>{{ lyricistName }}</dd>{% endif %}
+  {%- endif %}
+  {%- if w.source and w.kind != 'original' %}<dt>{{ L.source }}</dt><dd>{{ w.source | tr(L) }}</dd>{% endif %}
+  {%- if w.occasions.length %}<dt>{{ L.occLabel }}</dt><dd>{% for o in w.occasions %}{{ L.occasions[o].name }}{% if not loop.last %}{{ L.comma }}{% endif %}{% endfor %}</dd>{% endif %}
+</dl>

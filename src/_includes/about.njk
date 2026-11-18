@@ -1,0 +1,15 @@
+<main id="main"><div class="container page">
+  <div class="about__head"><img src="/assets/images/wolfmetrum-logo.svg" width="160" height="160" alt="{{ L.site }} logo"><h1 class="h1">{{ L.aboutTitle }}</h1></div>
+  <p class="lead">{{ L.motto }}</p>
+  {%- for p in L.about %}
+  <p>{{ p }}</p>
+  {%- endfor %}
+  <p><span class="fill">{{ L.aboutPending }}</span></p>
+  <blockquote class="verse">{{ L.verse }}<cite>{{ L.verseRef }}</cite></blockquote>
+  <h2 class="h3">{{ L.contactTitle }}</h2>
+  <ul class="plain">
+    <li><a class="link" href="{{ t.youtube }}">{{ L.channel }}</a></li>
+    <li><a class="link" href="mailto:{{ t.email }}">{{ t.email }}</a></li>
+  </ul>
+  <p class="terms">{{ L.copyright }}</p>
+</div></main>

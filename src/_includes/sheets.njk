@@ -1,0 +1,13 @@
+<main id="main"><div class="container page">
+  <h1 class="h1">{{ L.sheetsTitle }}</h1>
+  <p class="lead">{{ L.sheetsLead }}</p>
+  <ul class="sheets">
+  {%- for w in works | withSheet %}
+    <li>
+      <h2 class="h3"><a href="{{ L.prefix }}/songs/{{ w.slug }}/">{{ w.title if lang == 'zh' else w.title_en }}</a><span class="en" lang="{{ 'en' if lang == 'zh' else 'zh-TW' }}">{{ w.title_en if lang == 'zh' else w.title }}</span></h2>
+      <span class="key">{% for k in w.keys %}{{ k | keyName(L) }}{% if not loop.last %}{{ L.comma }}{% endif %}{% endfor %}</span>
+      <span class="sheets__act"><a class="btn btn--quiet" href="{{ w.sheet_music }}" download>{{ L.download }}</a><a class="link" href="{{ w.sheet_music }}">{{ L.openSheet }}</a></span>
+    </li>
+  {%- endfor %}
+  </ul>
+</div></main>

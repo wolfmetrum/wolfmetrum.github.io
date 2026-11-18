@@ -1,0 +1,529 @@
+# One entry per work; each video is a version. Newest work first.
+# kind: original | hymn | contemporary. occasions: ids from seasons/uses in src/_data/t.js.
+# version.type: vocal | piano; transpose: semitones from the original key (-3 = 降3); lyrics: 2 = 第二詞.
+
+- slug: peace-has-come
+  title: 平安降臨
+  title_en: Peace Has Come
+  composer: 狼的格律
+  composer_en: Wolf Metrum
+  lyricist: 狼的格律
+  lyricist_en: Wolf Metrum
+  source: Aegisulf©️狼的格律
+  kind: original
+  occasions: [christmas]
+  sheet_music: /assets/sheets/平安降臨.pdf
+  versions:
+  - {youtube_id: BakXbdBvzjQ, type: vocal, key: C}
+
+- slug: eternal-grace
+  title: 永恆恩典
+  title_en: Eternal Grace
+  composer: 狼的格律
+  lyricist: 狼的格律
+  source: Aegisulf©️狼的格律
+  kind: original
+  occasions: []
+  sheet_music: /assets/sheets/永恆恩典.pdf
+  versions:
+  - {youtube_id: 0PIoV51qx3Q, type: vocal, key: C}
+
+- slug: boundless-love
+  title: 無限的慈愛
+  title_en: Boundless Love
+  composer: 狼的格律
+  lyricist: 狼的格律
+  source: Aegisulf©️狼的格律
+  kind: original
+  occasions: []
+  sheet_music: /assets/sheets/無限的慈愛.pdf
+  versions:
+  - {youtube_id: EYYSTQN3vXE, type: vocal, key: A}
+
+- slug: true-light-of-glory
+  title: 榮耀真光
+  title_en: True Light of Glory
+  composer: 狼的格律
+  lyricist: 狼的格律
+  source: Aegisulf©️狼的格律
+  kind: original
+  occasions: []
+  sheet_music: /assets/sheets/榮耀真光.pdf
+  versions:
+  - {youtube_id: dPbFqBXviEk, type: vocal, key: C}
+  - {youtube_id: fooqSkaonEU, type: piano, key: C}
+
+- slug: beyond-the-sighing-hallelujah
+  title: 越過嘆息的哈利路亞
+  title_en: 'Beyond the Sighing: Hallelujah'
+  composer: 狼的格律
+  lyricist: 狼的格律
+  source: Aegisulf©️狼的格律
+  kind: original
+  occasions: []
+  sheet_music: /assets/sheets/越過嘆息的哈利路亞.pdf
+  versions:
+  - {youtube_id: yOAhPlrybD4, type: vocal, key: Cm}
+  - {youtube_id: pxBiAmsThTY, type: piano, key: Cm}
+
+- slug: love-you-till-the-end
+  title: 愛你到底
+  title_en: Love You Till the End
+  composer: 盛曉玫
+  lyricist: 盛曉玫
+  source: ©️泥土音樂
+  kind: contemporary
+  tags: [泥土音樂]
+  occasions: []
+  versions:
+  - {youtube_id: gcoz2s3ZtWc, type: piano, key: D}
+
+- slug: all-for-you
+  title: 全然向祢
+  title_en: All For You
+  composer: 游智婷
+  lyricist: 李信儀
+  source: ©️讚美之泉
+  kind: contemporary
+  tags: [讚美之泉]
+  occasions: []
+  versions:
+  - {youtube_id: 1xlGV5cGyqg, type: piano, key: D}
+
+- slug: because-you-walk-with-me
+  title: 因祢與我同行
+  title_en: Because You Walk With Me
+  composer: 曾毓蘭
+  lyricist: 曾毓蘭
+  source: ©️有情天音樂
+  kind: contemporary
+  occasions: []
+  versions:
+  - {youtube_id: WIONI-XB5X0, type: piano, key: E}
+
+- slug: whom-have-i-but-you
+  title: 除祢以外
+  title_en: Whom Have I But You
+  composer: 洪啟元
+  lyricist: 詩篇（改編：讚美之泉）
+  source: ©️讚美之泉
+  kind: contemporary
+  tags: [讚美之泉]
+  occasions: []
+  versions:
+  - {youtube_id: 9VWTTcWkrvw, type: piano, key: C}
+
+- slug: oh-lord-i-worship-you
+  title: 我的神我要敬拜祢
+  title_en: Oh Lord, I Worship You
+  composer: 林文蘭
+  lyricist: 林文蘭
+  source: ©️我心旋律
+  kind: contemporary
+  tags: [我心旋律]
+  occasions: []
+  versions:
+  - {youtube_id: tDzlMqeTrsc, type: piano, key: C}
+
+- slug: lean-on-you
+  title: 永遠的依靠
+  title_en: Lean on You
+  composer: 陳國富
+  lyricist: 陳國富
+  source: ©️約書亞樂團
+  kind: contemporary
+  tags: [約書亞樂團]
+  occasions: []
+  versions:
+  - {youtube_id: Mi8SJ9tKe44, type: piano, key: E}
+
+- slug: how-great-thou-art
+  title: 祢真偉大
+  title_en: How Great Thou Art
+  composer: Swedish Folk Melody, Stuart K. Hine
+  lyricist: Carl Boberg, Stuart K. Hine
+  source: 生命聖詩12/靈糧詩選67
+  kind: hymn
+  tags: [生命聖詩, 靈糧詩選]
+  occasions: []
+  versions:
+  - {youtube_id: W7GAGB08OX4, type: piano, key: A}
+
+- slug: the-path-of-grace
+  title: 恩典之路
+  title_en: The Path of Grace
+  composer: 曾祥怡
+  lyricist: 曾祥怡
+  source: ©️讚美之泉
+  kind: contemporary
+  tags: [讚美之泉]
+  occasions: []
+  versions:
+  - {youtube_id: VFEXMBNJ-_4, type: piano, key: F}
+
+- slug: thine-is-the-glory
+  title: 復活得勝主
+  title_en: Thine Is the Glory
+  composer: George Frideric Handel
+  lyricist: Edmond L. Budry / Richard B. Hoyle
+  kind: hymn
+  occasions: []
+  versions:
+  - {youtube_id: D6MWhmAzeKM, type: piano, key: D}
+
+- slug: precious-cross
+  title: 寶貴十架
+  title_en: Precious Cross
+  composer: 曾祥怡, 游智婷
+  lyricist: 曾祥怡
+  source: ©️讚美之泉
+  kind: contemporary
+  tags: [讚美之泉]
+  occasions: []
+  versions:
+  - {youtube_id: FJYjzt78ioo, type: piano, key: A}
+
+- slug: blessed-be-the-name
+  title: 頌讚主尊名
+  title_en: Blessed Be the Name
+  composer: Ralph E. Hudson / William H. Clark
+  lyricist: Ralph E. Hudson / William H. Clark
+  source: 聖徒詩歌164
+  kind: hymn
+  tags: [聖徒詩歌]
+  occasions: []
+  versions:
+  - {youtube_id: C9q_80mnjxw, type: piano, key: Ab}
+
+- slug: only-a-sinner-saved-by-grace
+  title: 我是個罪人蒙主恩
+  title_en: Only a Sinner Saved by Grace
+  composer: Daniel B. Towner
+  lyricist: James M. Gray
+  source: 聖徒詩歌220
+  kind: hymn
+  tags: [聖徒詩歌]
+  occasions: []
+  versions:
+  - {youtube_id: lKQAi2a56tc, type: piano, key: C}
+
+- slug: i-believe-in-a-hill-called-mount-calvary
+  title: 我相信一山崗名叫各各他
+  title_en: I Believe in a Hill Called Mount Calvary
+  composer: William J. Gaither
+  lyricist: Dale Oldham, Gloria Gaither, William J. Gaither
+  source: ©️Gaither Music Company
+  kind: contemporary
+  occasions: []
+  versions:
+  - {youtube_id: kv0FTgvYbUA, type: piano, key: A}
+
+- slug: fixed-on-you
+  title: 我心堅定於祢
+  title_en: Fixed on You
+  composer: 李呈呈
+  lyricist: 李呈呈
+  source: ©️小羊詩歌
+  kind: contemporary
+  tags: [小羊詩歌]
+  occasions: []
+  versions:
+  - {youtube_id: U6poA500YN0, type: piano, key: C#}
+
+- slug: jesus-keep-me-near-the-cross
+  title: 十架為我榮耀
+  title_en: Jesus, Keep Me Near the Cross
+  composer: William H. Doane
+  lyricist: Fanny J. Crosby
+  source: 頌主新歌136
+  kind: hymn
+  tags: [頌主新歌]
+  occasions: []
+  versions:
+  - {youtube_id: kKAwt5N-pSk, type: piano, key: F}
+
+- slug: because-he-lives
+  title: 因祂活著
+  title_en: Because He Lives
+  composer: Gloria Gaither
+  lyricist: William J. Gaither
+  kind: contemporary
+  occasions: []
+  versions:
+  - {youtube_id: orCbYcsxlnc, type: piano, key: Eb}
+
+- slug: bless-the-lord-o-my-soul
+  title: 我的心你要稱頌耶和華
+  title_en: Bless the Lord, O My Soul
+  composer: Tracie Lin, Sandy Yu
+  lyricist: Tracie Lin
+  source: ©️讚美之泉
+  kind: contemporary
+  tags: [讚美之泉]
+  occasions: []
+  versions:
+  - {youtube_id: yCdsnVwUuMk, type: piano, key: C}
+
+- slug: safe-in-the-arms-of-jesus
+  title: 安穩在耶穌手中
+  title_en: Safe in the Arms of Jesus
+  composer: William H. Doane
+  lyricist: Fanny J. Crosby
+  source: 生命聖詩343
+  kind: hymn
+  tags: [生命聖詩]
+  occasions: []
+  versions:
+  - {youtube_id: WgB2PY51bv4, type: piano, key: G}
+
+- slug: grace-tis-a-charming-sound
+  title: 恩典-美妙聲音
+  title_en: Grace! 'Tis a Charming Sound
+  composer: Isaac Smith
+  lyricist: Philip Doddridge
+  source: 聖徒詩歌96
+  kind: hymn
+  tags: [聖徒詩歌]
+  occasions: []
+  versions:
+  - {youtube_id: f61FSLdNaEA, type: piano, key: D}
+
+- slug: ill-give-my-all-jesus-to-gain
+  title: 我捨一切而要耶穌
+  title_en: I'll Give My All, Jesus to Gain
+  source: 聖徒詩歌330
+  kind: hymn
+  tags: [聖徒詩歌]
+  occasions: []
+  versions:
+  - {youtube_id: V09w2mAYHys, type: piano, key: Db}
+  - {youtube_id: sppc8m688CM, type: piano, key: A, transpose: -4}
+
+- slug: come-thou-fount-of-every-blessing
+  title: 萬福源頭
+  title_en: Come, Thou Fount of Every Blessing
+  composer: John Wyeth
+  lyricist: Robert Robinson
+  source: 生命聖詩76
+  kind: hymn
+  tags: [生命聖詩]
+  occasions: []
+  versions:
+  - {youtube_id: bozN9lWZpbA, type: piano, key: Eb}
+
+- slug: rejoice-his-grace-is-free
+  title: 樂哉，白白恩典
+  title_en: Rejoice! His Grace Is Free
+  composer: Eugene W. Dunbar
+  lyricist: Isaac Watts
+  source: 聖徒詩歌221
+  kind: hymn
+  tags: [聖徒詩歌]
+  occasions: []
+  versions:
+  - {youtube_id: U8SC9LXuBhA, type: piano, key: G}
+
+- slug: neath-the-cross-of-my-savior
+  title: 十架下我低頭
+  title_en: '''Neath the Cross of My Savior'
+  source: 聖徒詩歌199
+  kind: hymn
+  tags: [聖徒詩歌]
+  occasions: []
+  versions:
+  - {youtube_id: 4aQuyzzY4ms, type: piano, key: F}
+
+- slug: let-me-love-and-not-be-respected
+  title: 讓我愛而不受感戴
+  title_en: Let Me Love and Not Be Respected
+  composer: Mimi Lam
+  lyricist: Watchman Nee
+  source: 聖徒詩歌381
+  kind: hymn
+  tags: [聖徒詩歌]
+  occasions: []
+  versions:
+  - {youtube_id: IH1MvY95z0Y, type: piano, key: Em}
+
+- slug: yesterday-today-forever
+  title: 昨日、今日、直到永遠
+  title_en: Yesterday, Today, Forever
+  composer: James H. Burke
+  lyricist: Albert B. Simpson
+  source: 聖徒詩歌95
+  kind: hymn
+  tags: [聖徒詩歌]
+  occasions: []
+  versions:
+  - {youtube_id: MiZN5vfzyZY, type: piano, key: Bb}
+  - {youtube_id: MMBdWNaPeVM, type: piano, key: G, transpose: -3}
+
+- slug: i-am-coming-lord
+  title: 主我今來
+  title_en: I Am Coming, Lord
+  composer: Lewis Hartsough
+  lyricist: Lewis Hartsough
+  source: 靈糧詩選259
+  kind: hymn
+  tags: [靈糧詩選]
+  occasions: []
+  versions:
+  - {youtube_id: eMUeD_ju4Ow, type: piano, key: Eb}
+
+- slug: it-is-well-with-my-soul
+  title: 我心靈得安寧
+  title_en: It Is Well with My Soul
+  composer: Philip P. Bliss
+  lyricist: Horatio G. Spafford
+  source: 生命聖詩342
+  kind: hymn
+  tags: [生命聖詩]
+  occasions: []
+  versions:
+  - {youtube_id: 9HUDxV8ZKwU, type: piano, key: Db}
+
+- slug: thanks-to-god
+  title: 感謝神
+  title_en: Thanks to God
+  composer: John A. Hultman
+  lyricist: Auguet L. Storm
+  source: 聖徒詩歌713
+  kind: hymn
+  tags: [聖徒詩歌]
+  occasions: []
+  versions:
+  - {youtube_id: PzngT8fvihI, type: piano, key: Bb}
+  - {youtube_id: vdArXEdyirI, type: piano, key: G, transpose: -3}
+
+- slug: angels-we-have-heard-on-high
+  title: 天使歌唱在高天
+  title_en: Angels We Have Heard on High
+  composer: Gloria in Excelsis Deo
+  source: 頌主新歌98
+  kind: hymn
+  tags: [頌主新歌]
+  occasions: [christmas]
+  versions:
+  - {youtube_id: x_tQyXQPREc, type: piano, key: G}
+
+- slug: o-come-o-come-emmanuel
+  title: 以馬內利來臨
+  title_en: O Come, O Come, Emmanuel
+  lyricist: John Mason Neale
+  source: 頌主新歌94
+  kind: hymn
+  tags: [頌主新歌]
+  occasions: [christmas]
+  versions:
+  - {youtube_id: QiDhbNrfCV4, type: piano, key: Em}
+
+- slug: o-little-town-of-bethlehem
+  title: 小伯利恆
+  title_en: O Little Town of Bethlehem
+  composer: Lewis H. Redner
+  lyricist: Phillips Brooks
+  source: 頌主新歌111
+  kind: hymn
+  tags: [頌主新歌]
+  occasions: [christmas]
+  versions:
+  - {youtube_id: 3Z6l6vh7DuM, type: piano, key: G}
+
+- slug: silent-night-holy-night
+  title: 平安夜
+  title_en: Silent Night, Holy Night
+  composer: Franz Gruber
+  lyricist: Joseph Mohr
+  source: 頌主新歌107
+  kind: hymn
+  tags: [頌主新歌]
+  occasions: [christmas]
+  versions:
+  - {youtube_id: cvi6EOcsVXo, type: piano, key: Bb}
+
+- slug: away-in-a-manger
+  title: 聖嬰孩主耶穌
+  title_en: Away in a Manger
+  composer: James R. Murray
+  source: 頌主新歌112
+  kind: hymn
+  tags: [頌主新歌]
+  occasions: [christmas]
+  versions:
+  - {youtube_id: ZtcNREVaugo, type: piano, key: F}
+
+- slug: hark-the-herald-angels-sing
+  title: 新生王歌
+  title_en: Hark! The Herald Angels Sing
+  composer: Felix Mendelssohn
+  lyricist: Charles Wesley
+  source: 頌主新歌116
+  kind: hymn
+  tags: [頌主新歌]
+  occasions: [christmas]
+  versions:
+  - {youtube_id: sNV2OhN9ZEc, type: piano, key: F}
+
+- slug: what-child-is-this
+  title: 這位奇妙嬰孩是誰
+  title_en: What Child Is This?
+  lyricist: William Chatterton Dix
+  source: 新靈糧詩選173
+  kind: hymn
+  tags: [頌主新歌, 靈糧詩選]
+  occasions: [christmas]
+  versions:
+  - {youtube_id: GYaZ8n2pDUM, type: piano, key: Ebm}
+
+- slug: joy-to-the-world
+  title: 普世歡騰
+  title_en: Joy to the World
+  composer: Isaac Watts
+  lyricist: Isaac Watts
+  source: 普天頌讚167
+  kind: hymn
+  tags: [頌主新歌]
+  occasions: [christmas]
+  versions:
+  - {youtube_id: c-GkmWMcu80, type: piano, key: D}
+
+- slug: where-jesus-is-tis-heaven-there
+  title: 耶穌同在就是天堂
+  title_en: Where Jesus Is, 'Tis Heaven There
+  composer: James M. Black
+  lyricist: C .J. Butler
+  source: 聖徒詩歌206
+  kind: hymn
+  tags: [聖徒詩歌]
+  occasions: []
+  versions:
+  - {youtube_id: zs4EazFuhbA, type: piano, key: Ab, lyrics: 2}
+  - {youtube_id: UaTHvltUnSo, type: piano, key: F, lyrics: 2, transpose: -3}
+  - {youtube_id: LPM7P-NHXBQ, type: piano, key: Ab}
+  - {youtube_id: x3erRuOQsp8, type: piano, key: F, transpose: -3}
+
+- slug: father-twas-thy-love-that-knew-us
+  title: 父啊，久在創世之前
+  title_en: Father, 'Twas Thy Love That Knew Us
+  composer: Philip P. Bliss
+  lyricist: James G. Deck
+  source: 聖徒詩歌021
+  kind: hymn
+  tags: [聖徒詩歌]
+  occasions: []
+  versions:
+  - {youtube_id: B28x-7VHeA4, type: piano, key: F}
+  - {youtube_id: wfTdkIdrSew, type: piano, key: Eb, transpose: -2}
+
+- slug: thy-love-o-lord
+  title: 思念主愛
+  title_en: Thy Love, O Lord
+  composer: J. A. Butterfield
+  lyricist: W. W. Simpson
+  source: 聖徒詩歌226
+  kind: hymn
+  tags: [聖徒詩歌]
+  occasions: []
+  versions:
+  - {youtube_id: FfcqlcTFErs, type: piano, key: F}
+  - {youtube_id: sJXD3HGqGPo, type: piano, key: D, transpose: -3}

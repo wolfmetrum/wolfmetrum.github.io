@@ -1,2 +1,7 @@
 # Local-only maintenance notes (repo is public)
 MAINTENANCE.md
+Thumbs.db
+CLAUDE.md
+node_modules/
+_site/
+.hallmark/

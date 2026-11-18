@@ -1,0 +1,54 @@
+{%- set w = work %}{% set v = work.versions[0] %}
+{%- set name = w.title if lang == 'zh' else w.title_en %}
+<main id="main"><div class="container">
+  <nav aria-label="{{ L.home }}"><ol class="crumbs"><li><a href="{{ L.prefix }}/">{{ L.home }}</a></li><li><a href="{{ L.prefix }}/#catalog">{{ L.nav.catalog }}</a></li><li aria-current="page">{{ name }}</li></ol></nav>
+  <div class="song">
+    <div>
+      <h1>{{ name }}<span class="en" lang="{{ 'en' if lang == 'zh' else 'zh-TW' }}">{{ w.title_en if lang == 'zh' else w.title }}</span></h1>
+      {%- if w.versions.length > 1 %}
+      <div class="versions" role="tablist" aria-label="{{ L.versionsAria }}">
+      {%- for x in w.versions %}
+        <button type="button" role="tab" aria-selected="{{ 'true' if loop.first else 'false' }}" tabindex="{{ 0 if loop.first else -1 }}" aria-controls="player" data-vid="{{ x.youtube_id }}" data-key="{{ x.key | keyName(L) }}" data-sub="{{ (L.transposeNote | fmt(-x.transpose)) if x.transpose else '' }}">{{ x | versionLabel(L) }}</button>
+      {%- endfor %}
+      </div>
+      {%- endif %}
+      <div class="cover" id="player" data-title="{{ name }} {{ L.video }}">
+        <a href="https://www.youtube.com/watch?v={{ v.youtube_id }}" aria-label="{{ L.play }} {{ name }}">
+          <img src="{{ v.youtube_id | thumb }}" width="1280" height="720" alt="{{ name }} {{ L.cover }}" fetchpriority="high" onerror="this.onerror=null;this.src=this.src.replace('maxresdefault','hqdefault')">
+          <span class="cover__play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="7 4 20 12 7 20 7 4"/></svg></span>
+        </a>
+      </div>
+    </div>
+    <aside class="side" aria-label="{{ L.infoAria }}">
+      {% include "facts.njk" %}
+      {%- if w.sheet_music %}
+      <a class="btn" href="{{ w.sheet_music }}" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>{{ L.download }}</a>
+      <a class="link" href="{{ w.sheet_music }}">{{ L.openSheet }}</a>
+      {%- endif %}
+    </aside>
+  </div>
+
+  {%- if (w.devotion and w.reviewed) or w.lyrics %}
+  <section class="sec prose" style="padding-top: 0">
+    <div>
+      {%- if w.devotion and w.reviewed %}
+      <div><h2>{{ L.devotion }}</h2>{{ w.devotion | safe }}</div>
+      {%- endif %}
+      {%- if w.lyrics %}
+      <div><h2>{{ L.lyrics }}</h2><p class="lyrics" lang="zh-TW">{{ w.lyrics }}</p></div>
+      {%- endif %}
+    </div>
+  </section>
+  {%- endif %}
+</div>
+
+{%- set rel = works | related(w) %}
+{%- if rel.length %}
+<section class="sec sec--well" aria-labelledby="h-more"><div class="container">
+  <div class="sec__head"><h2 class="h2" id="h-more">{{ L.relatedOriginal if w.kind == 'original' else L.relatedOther }}</h2></div>
+  <ul class="rail" tabindex="0" aria-labelledby="h-more">
+  {%- for w in rel %}{% include "card.njk" %}{% endfor %}
+  </ul>
+</div></section>
+{%- endif %}
+</main>

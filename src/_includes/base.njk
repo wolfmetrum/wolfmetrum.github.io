@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="{{ L.htmlLang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{%- set pageTitle = (title + '｜' + L.site) if title and lang == 'zh' else ((title + ' | ' + L.site) if title else L.homeTitle) %}
+{%- set pageDesc = description or L.description %}
+{%- set alt = altLink or (page.url | altUrl(lang)) %}
+<title>{{ pageTitle | clean }}</title>
+<meta name="description" content="{{ pageDesc | clean }}">
+{%- if noindex %}
+<meta name="robots" content="noindex">
+{%- else %}
+<link rel="canonical" href="{{ t.url }}{{ page.url }}">
+{%- endif %}
+{%- if not altLink %}
+<link rel="alternate" hreflang="{{ t.zh.htmlLang }}" href="{{ t.url }}{{ (alt if lang == 'en' else page.url) }}">
+<link rel="alternate" hreflang="en" href="{{ t.url }}{{ (page.url if lang == 'en' else alt) }}">
+<link rel="alternate" hreflang="x-default" href="{{ t.url }}{{ (alt if lang == 'en' else page.url) }}">
+{%- endif %}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ L.siteFull }}">
+<meta property="og:locale" content="{{ L.locale }}">
+<meta property="og:title" content="{{ pageTitle | clean }}">
+<meta property="og:description" content="{{ pageDesc | clean }}">
+<meta property="og:url" content="{{ t.url }}{{ page.url }}">
+<meta property="og:image" content="{{ image or (t.url + '/assets/images/wolfmetrum-logo-512.png') }}">
+<meta name="twitter:card" content="{{ 'summary_large_image' if image else 'summary' }}">
+<link rel="icon" href="/assets/images/wolfmetrum-mark.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/images/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+<meta name="theme-color" content="#0B1220">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+<a class="skip" href="#main">{{ L.skip }}</a>
+{%- if lang == 'zh' %}
+<p class="banner" lang="en" hidden><a href="{{ alt }}" hreflang="en">This page is available in English</a></p>
+{%- endif %}
+<header class="nav"><div class="container nav__in">
+  <a class="brand" href="{{ L.prefix }}/" aria-label="{{ L.homeAria }}"><img src="/assets/images/wolfmetrum-logo.svg" width="40" height="40" alt=""><span>{{ L.site }}</span><small>{{ L.motto }}</small></a>
+  <ul class="nav__links">
+    <li><a href="{{ L.prefix }}/#catalog">{{ L.nav.catalog }}</a></li>
+    <li class="hide-s"><a href="{{ L.prefix }}/#year">{{ L.nav.year }}</a></li>
+    <li class="hide-s"><a href="{{ L.prefix }}/sheets/"{% if section == 'sheets' %} aria-current="page"{% endif %}>{{ L.nav.sheets }}</a></li>
+    <li class="hide-s"><a href="{{ L.prefix }}/service/"{% if section == 'service' %} aria-current="page"{% endif %}>{{ L.nav.service }}</a></li>
+    <li class="hide-s"><a href="{{ L.prefix }}/about/"{% if section == 'about' %} aria-current="page"{% endif %}>{{ L.nav.about }}</a></li>
+    <li><a href="{{ alt }}" lang="{{ t[L.other].htmlLang }}" hreflang="{{ t[L.other].htmlLang }}">{{ L.otherName }}</a></li>
+  </ul>
+</div></header>
+
+{{ content | safe }}
+
+<footer class="foot"><div class="container">
+  <div class="foot__in">
+    <div>
+      <a class="brand brand--foot" href="{{ L.prefix }}/" aria-label="{{ L.homeAria }}"><img src="/assets/images/wolfmetrum-logo.svg" width="64" height="64" alt=""><span>{{ L.site }}</span></a>
+      <blockquote>{{ L.verse }}<cite>{{ L.verseRef }}</cite></blockquote>
+    </div>
+    <div><h2>{{ L.footSite }}</h2><ul>
+      <li><a href="{{ L.prefix }}/#catalog">{{ L.nav.catalog }}</a></li>
+      <li><a href="{{ L.prefix }}/sheets/">{{ L.nav.sheets }}</a></li>
+      <li><a href="{{ L.prefix }}/service/">{{ L.nav.service }}</a></li>
+      <li><a href="{{ L.prefix }}/about/">{{ L.nav.about }}</a></li>
+    </ul></div>
+    <div><h2>{{ L.footContact }}</h2><ul>
+      <li><a href="{{ t.youtube }}">{{ L.channel }}</a></li>
+      <li><a href="mailto:{{ t.email }}">{{ t.email }}</a></li>
+      {%- if t.kofiUrl %}<li><a href="{{ t.kofiUrl }}">{{ L.kofi }}</a></li>{% endif %}
+    </ul></div>
+  </div>
+  <small>© {{ build.year }} {{ L.siteFull }}　{{ L.rights }}</small>
+</div></footer>
+{%- if lang == 'zh' %}
+<script>if (!(navigator.languages || [navigator.language]).some((l) => /^zh/i.test(l))) document.querySelector('.banner').hidden = false;</script>
+{%- endif %}
+{%- if script %}
+<script src="/assets/js/{{ script }}.js" defer></script>
+{%- endif %}
+</body>
+</html>

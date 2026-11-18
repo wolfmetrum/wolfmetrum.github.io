@@ -1,0 +1,10 @@
+---
+layout: base.njk
+permalink: "/songs/{{ work.slug }}/"
+script: song
+pagination: { data: works, size: 1, alias: work }
+eleventyComputed:
+  title: "{{ (work.title + ' ' + work.title_en) if lang == 'zh' else work.title_en }}"
+  image: "https://i.ytimg.com/vi/{{ work.versions[0].youtube_id }}/maxresdefault.jpg"
+---
+{% include "song.njk" %}

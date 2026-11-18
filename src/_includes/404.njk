@@ -1,0 +1,10 @@
+<main id="main"><div class="container page">
+  <h1 class="h1">{{ L.nfTitle }}<span class="en" lang="en">{{ t.en.nfTitle }}</span></h1>
+  <p>{{ L.nfText }}</p>
+  <p lang="en">{{ t.en.nfText }}</p>
+  <form class="tools tools--one" action="/" method="get" role="search">
+    <div class="field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><label class="visually-hidden" for="q">{{ L.searchLabel }}</label><input id="q" type="search" name="q" placeholder="{{ L.searchPh }}"></div>
+    <button class="btn" type="submit">{{ L.nfSearch }}</button>
+  </form>
+  <p><a class="link" href="/">{{ L.home }}</a>　<a class="link" href="/en/" lang="en">{{ t.en.home }}</a></p>
+</div></main>
