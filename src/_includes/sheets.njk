@@ -4,6 +4,7 @@
   <ul class="sheets">
   {%- for w in works | withSheet %}
     <li>
+      <a class="cover sheets__thumb" href="{{ L.prefix }}/songs/{{ w.slug }}/" tabindex="-1" aria-hidden="true"><img src="{{ w.versions[0] | thumb }}" width="1280" height="720" alt="" loading="lazy"></a>
       <h2 class="h3"><a href="{{ L.prefix }}/songs/{{ w.slug }}/">{{ w.title if lang == 'zh' else w.title_en }}</a><span class="en" lang="{{ 'en' if lang == 'zh' else 'zh-TW' }}">{{ w.title_en if lang == 'zh' else w.title }}</span></h2>
       <span class="key">{% for k in w.keys %}{{ k | keyName(L) }}{% if not loop.last %}{{ L.comma }}{% endif %}{% endfor %}</span>
       <span class="sheets__act"><a class="btn btn--quiet" href="{{ w.sheet_music }}" download>{{ L.download }}</a><a class="link" href="{{ w.sheet_music }}">{{ L.openSheet }}</a></span>

@@ -28,5 +28,6 @@
   });
   const want = tabs.find((t) => t.dataset.vid === new URLSearchParams(location.search).get('v'));
   if (want) select(want, false);
+  if (new URLSearchParams(location.search).has('play')) load(true); // from the home page's play button
   box.addEventListener('click', (ev) => { if (ev.target.closest('a')) { ev.preventDefault(); load(true); } });
 })();

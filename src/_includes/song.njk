@@ -51,11 +51,11 @@
 </div>
 
 {%- set rel = works | related(w) %}
-{%- if rel.length %}
+{%- if rel.items.length %}
 <section class="sec sec--well" aria-labelledby="h-more"><div class="container">
-  <div class="sec__head"><h2 class="h2" id="h-more">{{ L.relatedOriginal if w.kind == 'original' else L.relatedOther }}</h2></div>
+  <div class="sec__head"><h2 class="h2" id="h-more">{{ L.relatedOriginal if w.kind == 'original' else (L.relatedOccasion if rel.byOccasion else L.relatedOther) }}</h2></div>
   <ul class="rail" tabindex="0" aria-labelledby="h-more">
-  {%- for w in rel %}{% include "card.njk" %}{% endfor %}
+  {%- for w in rel.items %}{% include "card.njk" %}{% endfor %}
   </ul>
 </div></section>
 {%- endif %}

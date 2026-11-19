@@ -70,7 +70,14 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter('latestDate', (w) => w.versions.map((v) => v.date).sort().at(-1));
   eleventyConfig.addFilter('byKind', (works, kind) => works.filter((w) => w.kind === kind));
   eleventyConfig.addFilter('withSheet', (works) => works.filter((w) => w.sheet_music));
-  eleventyConfig.addFilter('related', (works, w) => works.filter((x) => x.kind === w.kind && x.slug !== w.slug).slice(0, 8));
+  // Originals list the other originals; other songs list those sharing the most seasons/services, else the same kind
+  eleventyConfig.addFilter('related', (works, w) => {
+    const others = works.filter((x) => x.slug !== w.slug);
+    const shared = (x) => x.occasions.filter((o) => w.occasions.includes(o)).length;
+    const byOccasion = others.filter(shared).sort((a, b) => shared(b) - shared(a) || (b.kind === w.kind) - (a.kind === w.kind));
+    if (w.kind !== 'original' && byOccasion.length >= 3) return { items: byOccasion.slice(0, 8), byOccasion: true };
+    return { items: others.filter((x) => x.kind === w.kind).slice(0, 8), byOccasion: false };
+  });
   eleventyConfig.addFilter('countOccasion', (works, o) => works.filter((w) => w.occasions.includes(o)).length);
   eleventyConfig.addFilter('usedOccasions', (works, ids) => ids.filter((o) => works.some((w) => w.occasions.includes(o))));
   eleventyConfig.addFilter('videoMap', (works) => JSON.stringify(Object.fromEntries(works.flatMap((w) => w.versions.map((v) => [v.youtube_id, w.slug])))));

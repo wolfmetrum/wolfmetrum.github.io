@@ -16,7 +16,10 @@
       {%- endif %}
       {%- set w = latest %}{% set v = lv %}
       {% include "facts.njk" %}
-      {%- if latest.sheet_music %}<a class="link" href="{{ latest.sheet_music }}">{{ L.download }}</a>{% endif %}
+      <div class="release__actions">
+        <a class="btn" href="{{ L.prefix }}/songs/{{ latest.slug }}/?play">{{ ICON_PLAY | safe }}{{ L.play }}</a>
+        {%- if latest.sheet_music %}<a class="link" href="{{ latest.sheet_music }}">{{ L.download }}</a>{% endif %}
+      </div>
     </div>
   </div>
 </div></section>
@@ -71,7 +74,7 @@
     {%- for w in works %}
       <tr data-kind="{{ w.kind }}" data-keys="{{ w.keys | join(' ') }}" data-o="{{ w.occasions | join(' ') }}" data-search="{{ [w.title, w.title_en, w.composer, w.composer_en, w.lyricist, w.lyricist_en, w.source | clean, w.source | tr(t.en)] | join(' ') }}">
         <td>{% if lang == 'zh' %}<a href="/songs/{{ w.slug }}/">{{ w.title }}</a><span class="en"><span lang="en">{{ w.title_en }}</span>{% else %}<a href="/en/songs/{{ w.slug }}/">{{ w.title_en }}</a><span class="en"><span lang="zh-TW">{{ w.title }}</span>{% endif %}{% if w.versions.length > 1 %}<span class="count">{{ L.versionsN | fmt(w.versions.length) }}</span>{% endif %}</span></td>
-        <td class="key">{% for k in w.keys %}{{ k | keySign }}{% if not loop.last %}{{ '、' if lang == 'zh' else ', ' }}{% endif %}{% endfor %}</td><td>{{ w.source | tr(L) }}</td><td>{{ L.kinds[w.kind] }}</td>
+        <td class="key">{% for k in w.keys %}{{ k | keySign }}{% if not loop.last %}{{ '、' if lang == 'zh' else ', ' }}{% endif %}{% endfor %}</td><td>{{ (L.sheetCell if w.sheet_music) if w.kind == 'original' else (w.source | tr(L)) }}</td><td>{{ L.kinds[w.kind] }}</td>
       </tr>
     {%- endfor %}
     </tbody>

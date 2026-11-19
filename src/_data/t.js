@@ -44,7 +44,7 @@ const zh = {
   seo: { titleSep: ' ', vocal: '演唱版', piano: '鋼琴伴奏', sheet: '樂譜', original: '狼的格律原創詩歌，', inKey: '，', from: '出處：', colon: '：', withLyrics: '附完整歌詞', clause: '；', end: '。', listSep: '、', and: '與' },
   lyrics: '歌詞', devotion: '經文與簡介', draft: '草稿，待審',
   parts: { verse: '主歌', verse1: '主歌一', verse2: '主歌二', chorus: '副歌', chorus1: '副歌（第一詞）', chorus2: '副歌（第二詞）', bridge: '橋段' },
-  relatedOriginal: '狼的格律的其他原創曲目', relatedOther: '其他詩歌',
+  relatedOriginal: '狼的格律的其他原創曲目', relatedOther: '其他詩歌', relatedOccasion: '適合相同聚會的詩歌', sheetCell: '附樂譜',
   // sheets
   sheetsTitle: '原創樂譜', sheetsLead: '狼的格律原創曲目之樂譜，供教會聚會使用。', sheetsMeta: '樂譜下載',
   // about
@@ -121,7 +121,7 @@ const en = {
   seo: { titleSep: ': ', vocal: 'vocal', piano: 'piano accompaniment', sheet: 'sheet music', original: 'an original hymn by Wolf Metrum, with ', inKey: ', in ', from: 'From ', colon: ': ', withLyrics: 'Lyrics included', clause: '. ', end: '.', listSep: ', ', and: ' and ' },
   lyrics: 'Lyrics (Chinese)', devotion: 'Scripture and reflection', draft: 'draft',
   parts: { verse: 'Verse', verse1: 'Verse 1', verse2: 'Verse 2', chorus: 'Chorus', chorus1: 'Chorus (first words)', chorus2: 'Chorus (second words)', bridge: 'Bridge' },
-  relatedOriginal: 'More original works by Wolf Metrum', relatedOther: 'More songs',
+  relatedOriginal: 'More original works by Wolf Metrum', relatedOther: 'More songs', relatedOccasion: 'Songs for the same occasions', sheetCell: 'Sheet music',
   sheetsTitle: 'Sheet music', sheetsLead: 'Scores of the Wolf Metrum originals, in Chinese, for use in worship.', sheetsMeta: 'Sheet music',
   aboutTitle: 'About Wolf Metrum',
   about: [
