@@ -8,12 +8,13 @@
     <li class="serve__act">
       {%- if t.formUrl %}<a class="btn" href="{{ t.formUrl }}">{{ L.form }}</a>{% else %}<a class="btn" aria-disabled="true">{{ L.form }}</a><span class="fill">{{ L.pending }}</span>{% endif %}
       <a class="link" href="{{ L.giveUrl }}">{{ L.give }}</a>
+      {%- if L.give2Url %}<a class="link" href="{{ L.give2Url }}">{{ L.give2 }}</a>{% endif %}
     </li>
   </ol>
   <dl class="terms-list">
     <dt>{{ L.serviceSteps }}</dt><dd><ol><li>{{ L.serviceStep1 }}</li><li>{{ L.serviceStep2 }}</li></ol></dd>
     <dt>{{ L.serviceScope }}</dt><dd>{{ L.serviceScopeText }}</dd>
     <dt>{{ L.serviceGive }}</dt><dd>{{ L.serviceGiveText }}<small class="note">{{ L.giveNote }}</small>
-      {%- if L.giveQr %}<figure class="qr"><img src="{{ L.giveQr }}" width="160" height="160" alt="{{ L.giveQrAlt }}" loading="lazy"><figcaption>{{ L.giveQrCaption }}</figcaption></figure>{% endif %}</dd>
+      {%- if L.giveQr %}<figure class="qr"><a href="{{ L.giveUrl }}"><img src="{{ L.giveQr }}" width="160" height="160" alt="{{ L.giveQrAlt }}" loading="lazy"></a><figcaption>{{ L.giveQrCaption }}</figcaption></figure>{% endif %}</dd>
   </dl>
 </div></main>

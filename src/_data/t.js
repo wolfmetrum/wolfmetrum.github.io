@@ -33,8 +33,10 @@ const zh = {
   serveSheet: '製作詩歌樂譜', serveSheetText: '提供音樂或影片，即為您製作適合教會使用的樂譜。',
   serveTerms: '僅供教會及非營利用途，收到後將以 Email 回覆。', serveMore: '服事需求說明',
   form: '填寫需求表單', pending: '連結待提供',
-  give: '線上奉獻', giveUrl: 'https://p.ecpay.com.tw/7D8AD7E', giveNote: '本奉獻由站長個人收受，不開立捐款收據，亦無法抵稅。',
-  giveQr: 'https://payment.ecpay.com.tw/Upload/QRCode/202611/QRCode_4fc68e2b-f79d-4581-860f-f83adb59d944.png', giveQrAlt: '綠界奉獻頁 QR Code', giveQrCaption: '以手機掃描，前往奉獻頁面',
+  give: '線上奉獻（綠界）', giveUrl: 'https://p.ecpay.com.tw/7D8AD7E',
+  // second giving channel on Chinese pages; English pages already give through Ko-fi
+  give2: '在 Ko-fi 奉獻（英文介面）', give2Url: 'https://ko-fi.com/wolfmetrum', giveNote: '本奉獻由站長個人收受，不開立捐款收據，亦無法抵稅。',
+  giveQr: 'https://payment.ecpay.com.tw/Upload/QRCode/202611/QRCode_4fc68e2b-f79d-4581-860f-f83adb59d944.png', giveQrAlt: '綠界奉獻頁 QR Code', giveQrCaption: '以手機掃描或點選，前往綠界奉獻頁面',
   // song page
   vocal: '演唱版', piano: '鋼琴版', lyrics2: '第二詞', transpose: '降 {n}', paren: ['（', '）'], comma: '，',
   transposeNote: '原調降 {n} 個半音',

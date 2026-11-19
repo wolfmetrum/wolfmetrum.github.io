@@ -75,6 +75,7 @@
       <li><a href="{{ t.youtube }}">{{ L.channel }}</a></li>
       <li><a href="mailto:{{ t.email }}">{{ t.email }}</a></li>
       <li><a href="{{ L.giveUrl }}">{{ L.give }}</a></li>
+      {%- if L.give2Url %}<li><a href="{{ L.give2Url }}">{{ L.give2 }}</a></li>{% endif %}
     </ul></div>
   </div>
   <small>© {{ build.year }} {{ L.siteFull }}　{{ L.rights }}</small>

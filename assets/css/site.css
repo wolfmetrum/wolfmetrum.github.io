@@ -243,6 +243,8 @@ a.cover:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3
 .terms-list dd { margin: 0; }
 .qr { margin: var(--space-md) 0 0; display: grid; gap: var(--space-xs); justify-items: start; }
 .qr img { width: 160px; height: 160px; padding: var(--space-xs); background: var(--color-qr-quiet-zone); border-radius: var(--radius-input); }
+.qr a { display: block; border-radius: var(--radius-input); }
+.qr a:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
 .qr figcaption { font-size: var(--text-xs); color: var(--color-ink-2); }
 .terms-list .note { display: block; margin-top: var(--space-2xs); font-size: var(--text-xs); color: var(--color-ink-2); }
 .terms-list ol { margin: 0; padding-left: 1.25em; }
